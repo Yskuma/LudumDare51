@@ -10,14 +10,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.livelyspark.ludumdare51.components.PlayerComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.VelocityComponent;
-import com.livelyspark.ludumdare51.components.genre.GenreFantasyFlappyComponent;
-import com.livelyspark.ludumdare51.components.genre.GenreSciFiRTypeComponent;
+import com.livelyspark.ludumdare51.components.genre.GenreSciFiComponent;
 
 
 public class PlayerMovementSciFiSystem extends IteratingSystem {
 
     private int camspeed = 100;
-    private int speed = 100;
+    private int speed = 200;
     private int min = 0;
     private int max = 500;
 
@@ -27,7 +26,7 @@ public class PlayerMovementSciFiSystem extends IteratingSystem {
     private boolean lastPressed = false;
 
     public PlayerMovementSciFiSystem() {
-        super(Family.all(GenreSciFiRTypeComponent.class, PlayerComponent.class, PositionComponent.class, VelocityComponent.class).get());
+        super(Family.all(GenreSciFiComponent.class, PlayerComponent.class, PositionComponent.class, VelocityComponent.class).get());
     }
 
     @Override

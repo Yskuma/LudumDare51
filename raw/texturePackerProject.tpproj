@@ -32,7 +32,7 @@ limitMemory=true
 useIndexes=true
 
 scaleFactors=[{suffix:"",factor:1,resampling:bicubic}]
-inputFiles=[{path:player_fantasy.png,type:Input,regionName:null},{path:player_scifi.png,type:Input,regionName:null}]
+inputFiles=[{path:player_fantasy.png,type:Input,regionName:null},{path:player_scifi.png,type:Input,regionName:null},{path:bullet_player.png,type:Input,regionName:null},{path:bullet_enemy.png,type:Input,regionName:null},{path:enemy_fantasy.png,type:Input,regionName:null},{path:enemy_scifi.png,type:Input,regionName:null}]
 keepInputFileExtensions=false
 
 

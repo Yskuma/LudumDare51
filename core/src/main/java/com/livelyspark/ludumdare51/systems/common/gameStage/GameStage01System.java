@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.math.MathUtils;
 import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.components.FactoryComponent;
 import com.livelyspark.ludumdare51.entityfactories.IEntityFactory;
@@ -18,6 +19,10 @@ public class GameStage01System extends EntitySystem {
     private final HashMap<EntityFactories, IEntityFactory> factoryMap;
     private final GlobalGameState gameState;
     float stageTime = 0.0f;
+
+    float enemyLast = 1.5f;
+    float enemyThreshold = 2.0f;
+
     private ImmutableArray<Entity> entities;
 
     public GameStage01System(GlobalGameState gameState, HashMap<EntityFactories, IEntityFactory> factoryMap)
@@ -38,6 +43,21 @@ public class GameStage01System extends EntitySystem {
     @Override
     public void update (float deltaTime) {
         stageTime += deltaTime;
+
+        enemyLast += deltaTime;
+
+        if(enemyLast > enemyThreshold)
+        {
+            IEntityFactory enemyFactory = factoryMap.get(EntityFactories.EnemyFactory);
+
+            float y =  MathUtils.random() * 500;
+
+            Entity enemy = enemyFactory.Create(gameState.gameGenre, 1000, y);
+            getEngine().addEntity(enemy);
+
+            enemyLast = 0.0f;
+        }
+
 
     }
 

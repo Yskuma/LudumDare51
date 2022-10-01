@@ -1,27 +1,20 @@
 package com.livelyspark.ludumdare51.screens;
 
 import com.badlogic.ashley.core.Engine;
-import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.livelyspark.ludumdare51.GlobalGameState;
-import com.livelyspark.ludumdare51.components.*;
-import com.livelyspark.ludumdare51.components.genre.GenreFantasyFlappyComponent;
-import com.livelyspark.ludumdare51.components.genre.GenreSciFiRTypeComponent;
-import com.livelyspark.ludumdare51.entityfactories.IEntityFactory;
-import com.livelyspark.ludumdare51.entityfactories.PlayerEntityFactory;
+import com.livelyspark.ludumdare51.entityfactories.*;
 import com.livelyspark.ludumdare51.enums.EntityFactories;
-import com.livelyspark.ludumdare51.enums.GameGenres;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
+import com.livelyspark.ludumdare51.systems.GameOverSystem;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
 import com.livelyspark.ludumdare51.systems.common.SpritePositionSystem;
-import com.livelyspark.ludumdare51.systems.common.camera.CameraMovementSystem;
+import com.livelyspark.ludumdare51.systems.common.collisions.PlayerBulletHitsEnemySystem;
+import com.livelyspark.ludumdare51.systems.common.collisions.PlayerHitsEnemySystem;
 import com.livelyspark.ludumdare51.systems.common.gameStage.GameStage01System;
 import com.livelyspark.ludumdare51.systems.common.physics.GravitySystem;
 import com.livelyspark.ludumdare51.systems.common.transition.GenreTransitionSystem;
@@ -30,6 +23,7 @@ import com.livelyspark.ludumdare51.systems.fantasy.player.PlayerMovementFantasyS
 import com.livelyspark.ludumdare51.systems.common.render.SpriteRenderSystem;
 import com.livelyspark.ludumdare51.systems.common.ui.DebugPlayerDetailUiSystem;
 import com.livelyspark.ludumdare51.systems.scifi.player.PlayerMovementSciFiSystem;
+import com.livelyspark.ludumdare51.systems.scifi.player.PlayerShootingSciFiSystem;
 
 import java.util.HashMap;
 
@@ -78,6 +72,7 @@ public class GameScreen extends AbstractScreen {
         //Player
         engine.addSystem(new PlayerMovementFantasySystem());
         engine.addSystem(new PlayerMovementSciFiSystem());
+        engine.addSystem(new PlayerShootingSciFiSystem(factoryMap.get(EntityFactories.PlayerBulletFactory)));
 
         //Move
         engine.addSystem(new GravitySystem());
@@ -90,6 +85,12 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new SpritePositionSystem());
         engine.addSystem(new SpriteRenderSystem(camera));
 
+        //Collisions
+        engine.addSystem(new PlayerBulletHitsEnemySystem());
+        engine.addSystem(new PlayerHitsEnemySystem());
+
+        engine.addSystem(new GameOverSystem(screenManager));
+
         //Debug
         engine.addSystem(new DebugPlayerDetailUiSystem());
         engine.addSystem(new DebugGameGenreUiSystem(gameState));
@@ -101,6 +102,15 @@ public class GameScreen extends AbstractScreen {
 
         IEntityFactory playerFactory = new PlayerEntityFactory(atlas);
         factoryMap.put(EntityFactories.PlayerFactory, playerFactory);
+
+        IEntityFactory enemyFactory = new EnemyEntityFactory(atlas);
+        factoryMap.put(EntityFactories.EnemyFactory, enemyFactory);
+
+        IEntityFactory playerBulletFactory = new PlayerBulletEntityFactory(atlas);
+        factoryMap.put(EntityFactories.PlayerBulletFactory, playerBulletFactory);
+
+        IEntityFactory enemyBulletFactory = new EnemyBulletEntityFactory(atlas);
+        factoryMap.put(EntityFactories.EnemyBulletFactory, enemyBulletFactory);
 
         return  factoryMap;
     }

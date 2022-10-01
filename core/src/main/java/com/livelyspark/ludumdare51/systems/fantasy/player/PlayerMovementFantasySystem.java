@@ -8,7 +8,7 @@ import com.badlogic.gdx.Input;
 import com.livelyspark.ludumdare51.components.PlayerComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.VelocityComponent;
-import com.livelyspark.ludumdare51.components.genre.GenreFantasyFlappyComponent;
+import com.livelyspark.ludumdare51.components.genre.GenreFantasyComponent;
 
 
 public class PlayerMovementFantasySystem extends IteratingSystem {
@@ -25,7 +25,7 @@ public class PlayerMovementFantasySystem extends IteratingSystem {
     private boolean lastPressed = false;
 
     public PlayerMovementFantasySystem() {
-        super(Family.all(GenreFantasyFlappyComponent.class, PlayerComponent.class, PositionComponent.class, VelocityComponent.class).get());
+        super(Family.all(GenreFantasyComponent.class, PlayerComponent.class, PositionComponent.class, VelocityComponent.class).get());
     }
 
     @Override

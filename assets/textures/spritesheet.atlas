@@ -1,19 +1,47 @@
 
 spritesheet.png
-size: 128, 64
+size: 256, 64
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
-player_fantasy
+bullet_enemy
   rotate: false
   xy: 2, 2
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+bullet_player
+  rotate: false
+  xy: 102, 18
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+enemy_fantasy
+  rotate: false
+  xy: 2, 12
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+enemy_scifi
+  rotate: false
+  xy: 52, 12
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+player_fantasy
+  rotate: false
+  xy: 102, 28
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 player_scifi
   rotate: false
-  xy: 36, 2
+  xy: 136, 28
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
