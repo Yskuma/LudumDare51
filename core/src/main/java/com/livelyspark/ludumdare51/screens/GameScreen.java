@@ -14,11 +14,15 @@ import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.components.*;
 import com.livelyspark.ludumdare51.components.genre.GenreFantasyFlappyComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreSciFiRTypeComponent;
+import com.livelyspark.ludumdare51.entityfactories.IEntityFactory;
+import com.livelyspark.ludumdare51.entityfactories.PlayerEntityFactory;
+import com.livelyspark.ludumdare51.enums.EntityFactories;
 import com.livelyspark.ludumdare51.enums.GameGenres;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
 import com.livelyspark.ludumdare51.systems.common.SpritePositionSystem;
 import com.livelyspark.ludumdare51.systems.common.camera.CameraMovementSystem;
+import com.livelyspark.ludumdare51.systems.common.gameStage.GameStage01System;
 import com.livelyspark.ludumdare51.systems.common.physics.GravitySystem;
 import com.livelyspark.ludumdare51.systems.common.transition.GenreTransitionSystem;
 import com.livelyspark.ludumdare51.systems.common.ui.DebugGameGenreUiSystem;
@@ -26,6 +30,8 @@ import com.livelyspark.ludumdare51.systems.fantasy.player.PlayerMovementFantasyS
 import com.livelyspark.ludumdare51.systems.common.render.SpriteRenderSystem;
 import com.livelyspark.ludumdare51.systems.common.ui.DebugPlayerDetailUiSystem;
 import com.livelyspark.ludumdare51.systems.scifi.player.PlayerMovementSciFiSystem;
+
+import java.util.HashMap;
 
 public class GameScreen extends AbstractScreen {
 
@@ -60,9 +66,14 @@ public class GameScreen extends AbstractScreen {
 
         camera = new OrthographicCamera(948, 533);
 
-        addEntities();
+        TextureAtlas atlas = assetManager.get("textures/spritesheet.atlas", TextureAtlas.class);
+        HashMap<EntityFactories, IEntityFactory> factoryMap = createFactoryMap(atlas);
 
-        engine.addSystem(new GenreTransitionSystem(gameState));
+        //Stage Control
+        engine.addSystem(new GameStage01System(gameState, factoryMap));
+
+        //Genre Transition
+        engine.addSystem(new GenreTransitionSystem(gameState, factoryMap));
 
         //Player
         engine.addSystem(new PlayerMovementFantasySystem());
@@ -84,20 +95,14 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new DebugGameGenreUiSystem(gameState));
     }
 
-    private void addEntities() {
-        TextureAtlas atlas = assetManager.get("textures/spritesheet.atlas", TextureAtlas.class);
+    private HashMap<EntityFactories, IEntityFactory> createFactoryMap(TextureAtlas atlas)
+    {
+        HashMap<EntityFactories, IEntityFactory> factoryMap = new HashMap<EntityFactories, IEntityFactory>();
 
-        engine.addEntity((new Entity())
-                //.add(new GenreFantasyFlappyComponent())
-                .add(new GenreSciFiRTypeComponent())
-                .add(new SpriteComponent(new Sprite(atlas.findRegion("player_fantasy"))))
-                .add(new PositionComponent(100, 200))
-                .add(new VelocityComponent())
-                //.add(new GravityComponent())
-                .add(new PlayerComponent())
-                .add(new DebugLabelComponent("Player"))
-        );
+        IEntityFactory playerFactory = new PlayerEntityFactory(atlas);
+        factoryMap.put(EntityFactories.PlayerFactory, playerFactory);
 
+        return  factoryMap;
     }
 
     @Override
