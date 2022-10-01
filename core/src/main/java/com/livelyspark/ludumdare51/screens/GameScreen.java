@@ -10,8 +10,11 @@ import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.entityfactories.*;
 import com.livelyspark.ludumdare51.enums.EntityFactories;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
+import com.livelyspark.ludumdare51.systems.GameOverSystem;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
 import com.livelyspark.ludumdare51.systems.common.SpritePositionSystem;
+import com.livelyspark.ludumdare51.systems.common.collisions.PlayerBulletHitsEnemySystem;
+import com.livelyspark.ludumdare51.systems.common.collisions.PlayerHitsEnemySystem;
 import com.livelyspark.ludumdare51.systems.common.gameStage.GameStage01System;
 import com.livelyspark.ludumdare51.systems.common.physics.GravitySystem;
 import com.livelyspark.ludumdare51.systems.common.transition.GenreTransitionSystem;
@@ -81,6 +84,12 @@ public class GameScreen extends AbstractScreen {
         //Render
         engine.addSystem(new SpritePositionSystem());
         engine.addSystem(new SpriteRenderSystem(camera));
+
+        //Collisions
+        engine.addSystem(new PlayerBulletHitsEnemySystem());
+        engine.addSystem(new PlayerHitsEnemySystem());
+
+        engine.addSystem(new GameOverSystem(screenManager));
 
         //Debug
         engine.addSystem(new DebugPlayerDetailUiSystem());

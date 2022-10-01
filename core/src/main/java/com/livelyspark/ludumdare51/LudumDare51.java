@@ -35,10 +35,11 @@ public class LudumDare51 extends ApplicationAdapter implements IScreenManager {
 				break;
 			case MainMenu:
 				if(mainMenuScreen == null){mainMenuScreen = new MainMenuScreen(this, assetManager);}
+				gameScreen = null;
 				setScreen(mainMenuScreen);
 				break;
 			case Game:
-				if(gameScreen == null){gameScreen = new GameScreen(this, assetManager);}
+				gameScreen = new GameScreen(this, assetManager);
 				setScreen(gameScreen);
 				break;
 		}

@@ -24,6 +24,7 @@ public class EnemyEntityFactory implements IEntityFactory {
     {
         Entity e = new Entity()
                 .add(new FactoryComponent(EntityFactories.EnemyFactory))
+                .add(new EnemyComponent())
                 .add(new PositionComponent(x, y))
                 .add(new VelocityComponent())
                 .add(new DebugLabelComponent("Enemy"));

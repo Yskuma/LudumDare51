@@ -24,6 +24,7 @@ public class PlayerBulletEntityFactory implements IEntityFactory {
     {
         Entity e = new Entity()
                 .add(new FactoryComponent(EntityFactories.PlayerBulletFactory))
+                .add(new PlayerBulletComponent())
                 .add(new PositionComponent(x, y))
                 .add(new VelocityComponent());
                 //.add(new DebugLabelComponent("Player"));
