@@ -19,6 +19,7 @@ import com.livelyspark.ludumdare51.components.DebugLabelComponent;
 import com.livelyspark.ludumdare51.components.PlayerComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.VelocityComponent;
+import text.formic.Stringf;
 
 public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {
 
@@ -46,9 +47,10 @@ public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {
 
 
         table = new Table(uiSkin);
+
         //table.setDebug(true);
         table.setWidth(400);
-        table.setHeight(40);
+        table.setHeight(100);
         table.setX(0);
         table.setY(stage.getHeight() - table.getHeight());
         table.background(tableBackground);
@@ -62,6 +64,7 @@ public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {
    public void startProcessing()
    {
        table.reset();
+       table.columnDefaults(0).pad(4);
    }
 
     @Override
@@ -78,10 +81,11 @@ public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {
         VelocityComponent velocity = mm.get(entity);
 
         String text = debug.label.concat(": ");
-        text = text.concat("pos(" + position.x + "," + position.y + ") ");
-        text = text.concat("vel(" + velocity.x + "," + velocity.y + ") ");
+        text = text.concat("pos(" + Stringf.format("%.2f",position.x) + "," + Stringf.format("%.2f",position.y) + ") ");
+        text = text.concat("vel(" + Stringf.format("%.2f",velocity.x) + "," + Stringf.format("%.2f",velocity.y) + ") ");
 
         table.add(text, "small", Color.BLACK).getActor();
+        table.row();
     }
 
     private Drawable backgroundDrawable()

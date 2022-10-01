@@ -9,8 +9,6 @@ import com.livelyspark.ludumdare51.components.*;
 import com.livelyspark.ludumdare51.components.genre.GenreSciFiComponent;
 import com.livelyspark.ludumdare51.entityfactories.IEntityFactory;
 import com.livelyspark.ludumdare51.enums.GameGenres;
-
-import java.awt.*;
 import java.util.ArrayList;
 
 

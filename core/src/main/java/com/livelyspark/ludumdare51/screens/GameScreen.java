@@ -13,6 +13,7 @@ import com.livelyspark.ludumdare51.managers.IScreenManager;
 import com.livelyspark.ludumdare51.systems.GameOverSystem;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
 import com.livelyspark.ludumdare51.systems.common.SpritePositionSystem;
+import com.livelyspark.ludumdare51.systems.common.cleanup.CleanOutOfBoundsSystem;
 import com.livelyspark.ludumdare51.systems.common.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare51.systems.common.collisions.PlayerHitsEnemySystem;
 import com.livelyspark.ludumdare51.systems.common.gameStage.GameStage01System;
@@ -94,6 +95,9 @@ public class GameScreen extends AbstractScreen {
         //Debug
         engine.addSystem(new DebugPlayerDetailUiSystem());
         engine.addSystem(new DebugGameGenreUiSystem(gameState));
+
+        //Cleanup
+        engine.addSystem(new CleanOutOfBoundsSystem());
     }
 
     private HashMap<EntityFactories, IEntityFactory> createFactoryMap(TextureAtlas atlas)

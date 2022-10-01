@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.livelyspark.ludumdare51.GlobalGameState;
+import text.formic.Stringf;
+
 
 public class DebugGameGenreUiSystem extends EntitySystem {
 
@@ -75,7 +77,7 @@ public class DebugGameGenreUiSystem extends EntitySystem {
         }
 
         nameLabel.setText(text);
-        timeLabel.setText(String.valueOf(gameState.timeInGenre));
+        timeLabel.setText(Stringf.format("%.2f",gameState.timeInGenre));
 
         stage.act();
         stage.draw();
