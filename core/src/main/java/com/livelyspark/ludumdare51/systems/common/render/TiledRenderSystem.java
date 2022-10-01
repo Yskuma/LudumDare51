@@ -1,4 +1,4 @@
-package com.livelyspark.ludumdare51.systems.render;
+package com.livelyspark.ludumdare51.systems.common.render;
 
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.graphics.OrthographicCamera;

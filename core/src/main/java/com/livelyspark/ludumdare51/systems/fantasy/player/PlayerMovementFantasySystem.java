@@ -1,19 +1,16 @@
-package com.livelyspark.ludumdare51.systems.player;
+package com.livelyspark.ludumdare51.systems.fantasy.player;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.math.Vector2;
 
-import com.livelyspark.ludumdare51.components.GravityComponent;
 import com.livelyspark.ludumdare51.components.PlayerComponent;
-import com.livelyspark.ludumdare51.components.SpriteComponent;
 import com.livelyspark.ludumdare51.components.VelocityComponent;
+import com.livelyspark.ludumdare51.components.genre.GenreFantasyFlappyComponent;
 
 
-public class PlayerMovementSystem extends IteratingSystem {
+public class PlayerMovementFantasySystem extends IteratingSystem {
     private int push = 100;
     private int maxVel = 500;
 
@@ -21,8 +18,8 @@ public class PlayerMovementSystem extends IteratingSystem {
 
     private boolean lastPressed = false;
 
-    public PlayerMovementSystem() {
-        super(Family.all(PlayerComponent.class, VelocityComponent.class).get());
+    public PlayerMovementFantasySystem() {
+        super(Family.all(GenreFantasyFlappyComponent.class, PlayerComponent.class, VelocityComponent.class).get());
     }
 
     @Override

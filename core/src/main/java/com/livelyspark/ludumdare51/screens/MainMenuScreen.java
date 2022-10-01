@@ -1,23 +1,18 @@
 package com.livelyspark.ludumdare51.screens;
 
 import com.badlogic.ashley.core.Engine;
-import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.livelyspark.ludumdare51.components.PositionComponent;
-import com.livelyspark.ludumdare51.components.SpriteComponent;
 import com.livelyspark.ludumdare51.enums.Screens;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
-import com.livelyspark.ludumdare51.systems.SpritePositionSystem;
-import com.livelyspark.ludumdare51.systems.render.SpriteRenderSystem;
+import com.livelyspark.ludumdare51.systems.common.SpritePositionSystem;
+import com.livelyspark.ludumdare51.systems.common.render.SpriteRenderSystem;
 
 public class MainMenuScreen extends AbstractScreen {
 

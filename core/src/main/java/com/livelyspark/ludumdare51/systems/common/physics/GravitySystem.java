@@ -1,4 +1,4 @@
-package com.livelyspark.ludumdare51.systems.physics;
+package com.livelyspark.ludumdare51.systems.common.physics;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
