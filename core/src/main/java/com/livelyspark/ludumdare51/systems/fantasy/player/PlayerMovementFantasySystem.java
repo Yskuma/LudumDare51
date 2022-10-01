@@ -28,11 +28,15 @@ public class PlayerMovementFantasySystem extends IteratingSystem {
         boolean isPressed = Gdx.input.isButtonPressed(Input.Buttons.LEFT)
                 || Gdx.input.isKeyPressed(Input.Keys.SPACE);
 
+        VelocityComponent vel = vm.get(entity);
+        vel.x = 100;
+
         if(isPressed && !lastPressed)
         {
-            VelocityComponent vel = vm.get(entity);
             vel.y = Math.min(vel.y + push, maxVel);
         }
+
+
 
         lastPressed = isPressed;
     }

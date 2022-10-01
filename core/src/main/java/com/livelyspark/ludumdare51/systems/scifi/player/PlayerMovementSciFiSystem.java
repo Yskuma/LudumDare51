@@ -39,6 +39,7 @@ public class PlayerMovementSciFiSystem extends IteratingSystem {
 
 
         PositionComponent pos = pm.get(entity);
+        pos = (PositionComponent) pos.add((new Vector2(100,0)).scl(deltaTime));
 
         if(up)
         {

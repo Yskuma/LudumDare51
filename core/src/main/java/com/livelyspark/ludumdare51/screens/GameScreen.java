@@ -18,6 +18,7 @@ import com.livelyspark.ludumdare51.enums.GameGenres;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
 import com.livelyspark.ludumdare51.systems.common.SpritePositionSystem;
+import com.livelyspark.ludumdare51.systems.common.camera.CameraMovementSystem;
 import com.livelyspark.ludumdare51.systems.common.physics.GravitySystem;
 import com.livelyspark.ludumdare51.systems.common.transition.GenreTransitionSystem;
 import com.livelyspark.ludumdare51.systems.common.ui.DebugGameGenreUiSystem;
@@ -30,7 +31,6 @@ public class GameScreen extends AbstractScreen {
 
     private Engine engine;
     private OrthographicCamera camera;
-    private Stage stage;
 
     public GameScreen(IScreenManager screenManager, AssetManager assetManager) {
         super(screenManager, assetManager);
@@ -42,13 +42,6 @@ public class GameScreen extends AbstractScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         engine.update(delta);
-
-        stage.act();
-        stage.draw();
-
-        if (Gdx.input.isTouched()) { // If the screen is touched after the game is done loading, go to the main menu screen
-            //screenManager.switchScreen(Screens.Level1);
-        }
     }
 
     @Override
@@ -58,9 +51,6 @@ public class GameScreen extends AbstractScreen {
         camera.position.x = width / 2;
         camera.position.y = height / 2;
         camera.update();
-
-        float midX = (stage.getWidth() / 2);
-        float midY = (stage.getHeight() / 2);
     }
 
     ////948x533
@@ -70,17 +60,22 @@ public class GameScreen extends AbstractScreen {
 
         camera = new OrthographicCamera(948, 533);
 
-        Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
-
-        stage = new Stage();
         addEntities();
 
         engine.addSystem(new GenreTransitionSystem(gameState));
 
-        engine.addSystem(new GravitySystem());
+        //Player
         engine.addSystem(new PlayerMovementFantasySystem());
         engine.addSystem(new PlayerMovementSciFiSystem());
+
+        //Move
+        engine.addSystem(new GravitySystem());
         engine.addSystem(new MovementSystem());
+
+        //Camera
+        engine.addSystem(new CameraMovementSystem(camera));
+
+        //Render
         engine.addSystem(new SpritePositionSystem());
         engine.addSystem(new SpriteRenderSystem(camera));
 
