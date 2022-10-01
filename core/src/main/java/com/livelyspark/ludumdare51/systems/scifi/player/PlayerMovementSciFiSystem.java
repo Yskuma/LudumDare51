@@ -16,16 +16,18 @@ import com.livelyspark.ludumdare51.components.genre.GenreSciFiRTypeComponent;
 
 public class PlayerMovementSciFiSystem extends IteratingSystem {
 
+    private int camspeed = 100;
     private int speed = 100;
     private int min = 0;
     private int max = 500;
 
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
+    private ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
 
     private boolean lastPressed = false;
 
     public PlayerMovementSciFiSystem() {
-        super(Family.all(GenreSciFiRTypeComponent.class, PlayerComponent.class, PositionComponent.class).get());
+        super(Family.all(GenreSciFiRTypeComponent.class, PlayerComponent.class, PositionComponent.class, VelocityComponent.class).get());
     }
 
     @Override
@@ -37,21 +39,39 @@ public class PlayerMovementSciFiSystem extends IteratingSystem {
         boolean down = Gdx.input.isKeyPressed(Input.Keys.S) ||
                 Gdx.input.isKeyPressed(Input.Keys.DOWN);
 
+        boolean right = Gdx.input.isKeyPressed(Input.Keys.D) ||
+                Gdx.input.isKeyPressed(Input.Keys.RIGHT);
 
-        PositionComponent pos = pm.get(entity);
+        boolean left = Gdx.input.isKeyPressed(Input.Keys.A) ||
+                Gdx.input.isKeyPressed(Input.Keys.LEFT);
+
+
+        VelocityComponent vel = vm.get(entity);
+
+        float y = 0;
+        float x = 0;
 
         if(up)
         {
-            pos = (PositionComponent) pos.add((new Vector2(0,speed)).scl(deltaTime));
+            y += speed;
         }
 
         if(down)
         {
-            pos = (PositionComponent) pos.add((new Vector2(0,-speed)).scl(deltaTime));
+            y += -speed;
         }
 
-        pos.y = Math.min(pos.y, max);
-        pos.y = Math.max(pos.y, 0);
+        if(right)
+        {
+            x += speed;
+        }
+
+        if(left)
+        {
+            x += -speed;
+        }
+
+        vel.set(new Vector2(x,y));
 
     }
 

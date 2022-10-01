@@ -6,20 +6,26 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
 import com.livelyspark.ludumdare51.components.PlayerComponent;
+import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.VelocityComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreFantasyFlappyComponent;
 
 
 public class PlayerMovementFantasySystem extends IteratingSystem {
+
+    private int targetloc = 100;
+    private int fudge = 1;
+    private int speed = 100;
     private int push = 100;
     private int maxVel = 500;
 
     private ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
+    private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
 
     private boolean lastPressed = false;
 
     public PlayerMovementFantasySystem() {
-        super(Family.all(GenreFantasyFlappyComponent.class, PlayerComponent.class, VelocityComponent.class).get());
+        super(Family.all(GenreFantasyFlappyComponent.class, PlayerComponent.class, PositionComponent.class, VelocityComponent.class).get());
     }
 
     @Override
@@ -29,7 +35,21 @@ public class PlayerMovementFantasySystem extends IteratingSystem {
                 || Gdx.input.isKeyPressed(Input.Keys.SPACE);
 
         VelocityComponent vel = vm.get(entity);
-        vel.x = 100;
+        PositionComponent pos = pm.get(entity);
+
+        if(pos.x > targetloc + fudge)
+        {
+            vel.x = -speed;
+        }
+        else if(pos.x < targetloc - fudge)
+        {
+            vel.x = speed;
+        }
+        else
+        {
+            vel.x = 0;
+        }
+        //vel.x = camspeed;
 
         if(isPressed && !lastPressed)
         {

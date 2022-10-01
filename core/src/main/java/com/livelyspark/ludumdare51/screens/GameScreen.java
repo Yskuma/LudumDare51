@@ -84,7 +84,7 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new MovementSystem());
 
         //Camera
-        engine.addSystem(new CameraMovementSystem(camera));
+        //engine.addSystem(new CameraMovementSystem(camera));
 
         //Render
         engine.addSystem(new SpritePositionSystem());

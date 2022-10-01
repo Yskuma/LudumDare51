@@ -53,7 +53,7 @@ public class PlayerEntityFactory implements IEntityFactory {
 
         VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.y = 0;
-        vel.x = 100;
+        vel.x = 0;
 
         e.add(new GenreSciFiRTypeComponent());
         e.add(new SpriteComponent(new Sprite(atlas.findRegion("player_scifi"))));
@@ -68,7 +68,7 @@ public class PlayerEntityFactory implements IEntityFactory {
 
         VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.y = 0;
-        vel.x = 100;
+        vel.x = 0;
 
         e.add(new GenreFantasyFlappyComponent());
         e.add(new GravityComponent());
