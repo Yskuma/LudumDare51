@@ -1,8 +1,10 @@
 package com.livelyspark.ludumdare51.entityfactories;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.livelyspark.ludumdare51.components.*;
 import com.livelyspark.ludumdare51.components.genre.GenreFantasyComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreSciFiComponent;
@@ -26,7 +28,8 @@ public class PlayerEntityFactory implements IEntityFactory {
                 .add(new PositionComponent(x, y))
                 .add(new VelocityComponent())
                 .add(new PlayerComponent())
-                .add(new DebugLabelComponent("Player"));
+                .add(new DebugLabelComponent("Player"))
+                .add(new BoundingRectangleComponent());
 
         return ConvertGenre(e, gameGenre);
     }
@@ -49,14 +52,16 @@ public class PlayerEntityFactory implements IEntityFactory {
     {
         e.remove(GenreFantasyComponent.class);
         e.remove(GravityComponent.class);
-        e.remove(SpriteComponent.class);
+        e.remove(AnimationComponent.class);
 
         VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.y = 0;
         vel.x = 0;
 
         e.add(new GenreSciFiComponent());
-        e.add(new SpriteComponent(new Sprite(atlas.findRegion("player_scifi"))));
+        e.add(new AnimationComponent(
+                new Animation<TextureRegion>(0.033f, atlas.findRegions("player_scifi"), Animation.PlayMode.LOOP)
+        ));
 
         return e;
     }
@@ -64,7 +69,7 @@ public class PlayerEntityFactory implements IEntityFactory {
     public Entity ToFantasy(Entity e)
     {
         e.remove(GenreSciFiComponent.class);
-        e.remove(SpriteComponent.class);
+        e.remove(AnimationComponent.class);
 
         VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.y = 0;
@@ -72,7 +77,9 @@ public class PlayerEntityFactory implements IEntityFactory {
 
         e.add(new GenreFantasyComponent());
         e.add(new GravityComponent());
-        e.add(new SpriteComponent(new Sprite(atlas.findRegion("player_fantasy"))));
+        e.add(new AnimationComponent(
+                new Animation<TextureRegion>(0.033f, atlas.findRegions("player_fantasy"), Animation.PlayMode.LOOP)
+        ));
 
         return e;
     }

@@ -3,11 +3,9 @@ package com.livelyspark.ludumdare51.systems.common.render;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.ShapeComponent;
-import com.livelyspark.ludumdare51.components.SpriteComponent;
 
 public class ShapeRenderSystem extends EntitySystem {
     private ImmutableArray<Entity> entities;

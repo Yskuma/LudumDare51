@@ -44,6 +44,7 @@ public class MusicSystem extends EntitySystem {
                 break;
         }
         music.setLooping(true);
+        music.setVolume(0.1f);
         music.play();
     }
 

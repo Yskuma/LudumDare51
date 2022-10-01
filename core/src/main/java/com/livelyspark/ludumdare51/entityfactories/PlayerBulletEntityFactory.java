@@ -1,8 +1,10 @@
 package com.livelyspark.ludumdare51.entityfactories;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.*;
 import com.livelyspark.ludumdare51.components.genre.GenreFantasyComponent;
@@ -24,9 +26,9 @@ public class PlayerBulletEntityFactory implements IEntityFactory {
     {
         Entity e = new Entity()
                 .add(new FactoryComponent(EntityFactories.PlayerBulletFactory))
-                .add(new PlayerBulletComponent())
                 .add(new PositionComponent(x, y))
-                .add(new VelocityComponent());
+                .add(new VelocityComponent())
+                .add(new BoundingRectangleComponent());
                 //.add(new DebugLabelComponent("Player"));
 
         return ConvertGenre(e, gameGenre);
@@ -49,14 +51,17 @@ public class PlayerBulletEntityFactory implements IEntityFactory {
     public Entity ToSciFi(Entity e)
     {
         e.remove(GenreFantasyComponent.class);
-        e.remove(SpriteComponent.class);
+        e.remove(AnimationComponent.class);
 
         VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.x = 3 * StaticConstants.camSpeed;
         vel.y = 0;
 
         e.add(new GenreSciFiComponent());
-        e.add(new SpriteComponent(new Sprite(atlas.findRegion("bullet_player"))));
+        e.add(new AnimationComponent(
+                new Animation<TextureRegion>(0.033f, atlas.findRegions("bullet_player"), Animation.PlayMode.LOOP)
+        ));
+        e.add(new PlayerBulletComponent());
 
         return e;
     }
@@ -64,7 +69,8 @@ public class PlayerBulletEntityFactory implements IEntityFactory {
     public Entity ToFantasy(Entity e)
     {
         e.remove(GenreSciFiComponent.class);
-        e.remove(SpriteComponent.class);
+        e.remove(AnimationComponent.class);
+        e.remove(PlayerBulletComponent.class);
 
         e.add(new GenreFantasyComponent());
 

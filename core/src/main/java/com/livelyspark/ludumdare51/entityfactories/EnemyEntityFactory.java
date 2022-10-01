@@ -1,8 +1,10 @@
 package com.livelyspark.ludumdare51.entityfactories;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.*;
 import com.livelyspark.ludumdare51.components.genre.GenreFantasyComponent;
@@ -27,7 +29,8 @@ public class EnemyEntityFactory implements IEntityFactory {
                 .add(new EnemyComponent())
                 .add(new PositionComponent(x, y))
                 .add(new VelocityComponent())
-                .add(new DebugLabelComponent("Enemy"));
+                .add(new DebugLabelComponent("Enemy"))
+                .add(new BoundingRectangleComponent());
 
         return ConvertGenre(e, gameGenre);
     }
@@ -49,14 +52,16 @@ public class EnemyEntityFactory implements IEntityFactory {
     public Entity ToSciFi(Entity e)
     {
         e.remove(GenreFantasyComponent.class);
-        e.remove(SpriteComponent.class);
+        e.remove(AnimationComponent.class);
 
         VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.x = -StaticConstants.camSpeed;
         vel.y = 0;
 
         e.add(new GenreSciFiComponent());
-        e.add(new SpriteComponent(new Sprite(atlas.findRegion("enemy_scifi"))));
+        e.add(new AnimationComponent(
+                new Animation<TextureRegion>(0.033f, atlas.findRegions("enemy_scifi"), Animation.PlayMode.LOOP)
+        ));
 
         return e;
     }
@@ -64,14 +69,16 @@ public class EnemyEntityFactory implements IEntityFactory {
     public Entity ToFantasy(Entity e)
     {
         e.remove(GenreSciFiComponent.class);
-        e.remove(SpriteComponent.class);
+        e.remove(AnimationComponent.class);
 
         VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.x = -StaticConstants.camSpeed;
         vel.y = 0;
 
         e.add(new GenreFantasyComponent());
-        e.add(new SpriteComponent(new Sprite(atlas.findRegion("enemy_fantasy"))));
+        e.add(new AnimationComponent(
+                new Animation<TextureRegion>(0.033f, atlas.findRegions("enemy_fantasy"), Animation.PlayMode.LOOP)
+        ));
 
         return e;
     }

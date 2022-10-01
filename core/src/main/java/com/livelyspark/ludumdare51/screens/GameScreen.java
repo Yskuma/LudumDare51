@@ -12,13 +12,14 @@ import com.livelyspark.ludumdare51.enums.EntityFactories;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
 import com.livelyspark.ludumdare51.systems.GameOverSystem;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
-import com.livelyspark.ludumdare51.systems.common.SpritePositionSystem;
 import com.livelyspark.ludumdare51.systems.common.cleanup.CleanOutOfBoundsSystem;
 import com.livelyspark.ludumdare51.systems.common.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare51.systems.common.collisions.PlayerHitsEnemySystem;
 import com.livelyspark.ludumdare51.systems.common.gameStage.GameStage01System;
 import com.livelyspark.ludumdare51.systems.common.music.MusicSystem;
+import com.livelyspark.ludumdare51.systems.common.physics.BoundingRectangleUpdateSystem;
 import com.livelyspark.ludumdare51.systems.common.physics.GravitySystem;
+import com.livelyspark.ludumdare51.systems.common.render.AnimationKeyframeUpdateSystem;
 import com.livelyspark.ludumdare51.systems.common.transition.GenreTransitionSystem;
 import com.livelyspark.ludumdare51.systems.common.ui.DebugGameGenreUiSystem;
 import com.livelyspark.ludumdare51.systems.fantasy.player.PlayerMovementFantasySystem;
@@ -71,6 +72,10 @@ public class GameScreen extends AbstractScreen {
         //Genre Transition
         engine.addSystem(new GenreTransitionSystem(gameState, factoryMap));
 
+        // Animation Frames & Bounding Boxes
+        engine.addSystem(new AnimationKeyframeUpdateSystem());
+        engine.addSystem(new BoundingRectangleUpdateSystem());
+
         //Player
         engine.addSystem(new PlayerMovementFantasySystem());
         engine.addSystem(new PlayerMovementSciFiSystem());
@@ -84,7 +89,7 @@ public class GameScreen extends AbstractScreen {
         //engine.addSystem(new CameraMovementSystem(camera));
 
         //Render
-        engine.addSystem(new SpritePositionSystem());
+
         engine.addSystem(new SpriteRenderSystem(camera));
 
         //Collisions

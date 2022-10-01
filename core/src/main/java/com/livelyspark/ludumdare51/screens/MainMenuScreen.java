@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.livelyspark.ludumdare51.enums.Screens;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
-import com.livelyspark.ludumdare51.systems.common.SpritePositionSystem;
+import com.livelyspark.ludumdare51.systems.common.render.AnimationKeyframeUpdateSystem;
 import com.livelyspark.ludumdare51.systems.common.render.SpriteRenderSystem;
 
 public class MainMenuScreen extends AbstractScreen {
@@ -92,7 +92,7 @@ public class MainMenuScreen extends AbstractScreen {
 
         addEntities();
 
-        engine.addSystem(new SpritePositionSystem());
+        engine.addSystem(new AnimationKeyframeUpdateSystem());
         engine.addSystem(new SpriteRenderSystem(camera));
     }
 

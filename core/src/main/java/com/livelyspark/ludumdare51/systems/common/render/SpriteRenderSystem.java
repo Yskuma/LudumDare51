@@ -4,7 +4,9 @@ import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.livelyspark.ludumdare51.components.SpriteComponent;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.livelyspark.ludumdare51.components.AnimationComponent;
+import com.livelyspark.ludumdare51.components.PositionComponent;
 
 public class SpriteRenderSystem extends EntitySystem {
     private ImmutableArray<Entity> entities;
@@ -12,7 +14,10 @@ public class SpriteRenderSystem extends EntitySystem {
     private SpriteBatch batch;
     private OrthographicCamera camera;
 
-    private ComponentMapper<SpriteComponent> sm = ComponentMapper.getFor(SpriteComponent.class);
+    private float stateTime = 0.0f;
+
+    private ComponentMapper<AnimationComponent> sm = ComponentMapper.getFor(AnimationComponent.class);
+    private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
 
     public SpriteRenderSystem (OrthographicCamera camera) {
         batch = new SpriteBatch();
@@ -21,7 +26,7 @@ public class SpriteRenderSystem extends EntitySystem {
 
     @Override
     public void addedToEngine (Engine engine) {
-        entities = engine.getEntitiesFor(Family.all(SpriteComponent.class).get());
+        entities = engine.getEntitiesFor(Family.all(AnimationComponent.class, PositionComponent.class).get());
     }
 
     @Override
@@ -35,16 +40,27 @@ public class SpriteRenderSystem extends EntitySystem {
             return;
         }
 
-        SpriteComponent sprite;
+        stateTime += deltaTime;
+
+        AnimationComponent animation;
+        PositionComponent pos;
+
         camera.update();
 
         batch.begin();
         batch.setProjectionMatrix(camera.combined);
 
         for (int i = 0; i < entities.size(); ++i) {
+
             Entity e = entities.get(i);
-            sprite = sm.get(e);
-            sprite.sprite.draw(batch);
+
+            animation = sm.get(e);
+            pos = pm.get(e);
+
+            TextureRegion tex = animation.getCurrentKeyframe();
+            batch.draw(tex,
+                    pos.x - (tex.getRegionWidth()/2),
+                    pos.y- (tex.getRegionHeight()/2));
         }
 
         batch.end();

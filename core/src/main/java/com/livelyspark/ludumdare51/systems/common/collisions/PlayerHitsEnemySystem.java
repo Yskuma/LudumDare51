@@ -3,25 +3,25 @@ package com.livelyspark.ludumdare51.systems.common.collisions;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.Rectangle;
+import com.livelyspark.ludumdare51.components.BoundingRectangleComponent;
 import com.livelyspark.ludumdare51.components.EnemyComponent;
-import com.livelyspark.ludumdare51.components.PlayerBulletComponent;
 import com.livelyspark.ludumdare51.components.PlayerComponent;
-import com.livelyspark.ludumdare51.components.SpriteComponent;
+import com.livelyspark.ludumdare51.components.AnimationComponent;
 
 import java.util.ArrayList;
 
 
 public class PlayerHitsEnemySystem extends EntitySystem {
 
-    private ComponentMapper<SpriteComponent> sm = ComponentMapper.getFor(SpriteComponent.class);
+    private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
 
     private ImmutableArray<Entity> enemyEntities;
     private ImmutableArray<Entity> playerEntities;
 
     @Override
     public void addedToEngine(Engine engine) {
-        enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, SpriteComponent.class).get());
-        playerEntities = engine.getEntitiesFor(Family.all(PlayerComponent.class, SpriteComponent.class).get());
+        enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, BoundingRectangleComponent.class).get());
+        playerEntities = engine.getEntitiesFor(Family.all(PlayerComponent.class, BoundingRectangleComponent.class).get());
     }
 
     @Override
@@ -36,15 +36,13 @@ public class PlayerHitsEnemySystem extends EntitySystem {
 
         for (Entity e : enemyEntities) {
 
-            SpriteComponent es = sm.get(e);
-            Rectangle er = es.sprite.getBoundingRectangle();
+            BoundingRectangleComponent er = rm.get(e);
 
             for (Entity p : playerEntities) {
 
-                SpriteComponent ps = sm.get(p);
-                Rectangle pr = ps.sprite.getBoundingRectangle();
+                BoundingRectangleComponent pr = rm.get(p);
 
-                if (pr.overlaps(er)) {
+                if (pr.rectangle.overlaps(er.rectangle)) {
                     destroyed.add(p);
                 }
             }
