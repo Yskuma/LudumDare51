@@ -20,6 +20,7 @@ import com.livelyspark.ludumdare51.systems.common.music.MusicSystem;
 import com.livelyspark.ludumdare51.systems.common.physics.BoundingRectangleUpdateSystem;
 import com.livelyspark.ludumdare51.systems.common.physics.GravitySystem;
 import com.livelyspark.ludumdare51.systems.common.render.AnimationKeyframeUpdateSystem;
+import com.livelyspark.ludumdare51.systems.common.render.DebugBoundBoxRenderSystem;
 import com.livelyspark.ludumdare51.systems.common.transition.GenreTransitionSystem;
 import com.livelyspark.ludumdare51.systems.common.ui.DebugGameGenreUiSystem;
 import com.livelyspark.ludumdare51.systems.fantasy.player.PlayerMovementFantasySystem;
@@ -72,10 +73,6 @@ public class GameScreen extends AbstractScreen {
         //Genre Transition
         engine.addSystem(new GenreTransitionSystem(gameState, factoryMap));
 
-        // Animation Frames & Bounding Boxes
-        engine.addSystem(new AnimationKeyframeUpdateSystem());
-        engine.addSystem(new BoundingRectangleUpdateSystem());
-
         //Player
         engine.addSystem(new PlayerMovementFantasySystem());
         engine.addSystem(new PlayerMovementSciFiSystem());
@@ -85,11 +82,11 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new GravitySystem());
         engine.addSystem(new MovementSystem());
 
-        //Camera
-        //engine.addSystem(new CameraMovementSystem(camera));
+        // Animation Frames & Bounding Boxes
+        engine.addSystem(new AnimationKeyframeUpdateSystem());
+        engine.addSystem(new BoundingRectangleUpdateSystem());
 
         //Render
-
         engine.addSystem(new SpriteRenderSystem(camera));
 
         //Collisions
@@ -99,8 +96,9 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new GameOverSystem(screenManager));
 
         //Debug
-        engine.addSystem(new DebugPlayerDetailUiSystem());
+        //engine.addSystem(new DebugPlayerDetailUiSystem());
         engine.addSystem(new DebugGameGenreUiSystem(gameState));
+        //engine.addSystem(new DebugBoundBoxRenderSystem(camera));
 
         //Cleanup
         engine.addSystem(new CleanOutOfBoundsSystem());

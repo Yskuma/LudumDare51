@@ -1,48 +1,118 @@
 
 spritesheet.png
-size: 256, 64
+size: 2048, 128
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 bullet_enemy
   rotate: false
-  xy: 2, 2
+  xy: 1304, 118
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 bullet_player
   rotate: false
-  xy: 102, 18
+  xy: 2, 2
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 enemy_fantasy
   rotate: false
-  xy: 2, 12
-  size: 48, 48
-  orig: 48, 48
+  xy: 1234, 12
+  size: 50, 64
+  orig: 50, 64
   offset: 0, 0
   index: -1
 enemy_scifi
   rotate: false
-  xy: 52, 12
-  size: 48, 48
-  orig: 48, 48
+  xy: 1234, 78
+  size: 68, 48
+  orig: 68, 48
   offset: 0, 0
   index: -1
 player_fantasy
   rotate: false
-  xy: 102, 28
-  size: 32, 32
-  orig: 32, 32
+  xy: 114, 16
+  size: 110, 110
+  orig: 110, 110
   offset: 0, 0
-  index: -1
+  index: 1
+player_fantasy
+  rotate: false
+  xy: 226, 16
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: 6
+player_fantasy
+  rotate: false
+  xy: 338, 16
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: 3
+player_fantasy
+  rotate: false
+  xy: 450, 16
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: 8
+player_fantasy
+  rotate: false
+  xy: 674, 16
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: 5
+player_fantasy
+  rotate: false
+  xy: 898, 16
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: 2
+player_fantasy
+  rotate: false
+  xy: 1010, 16
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: 7
+player_fantasy
+  rotate: false
+  xy: 1122, 16
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: 4
 player_scifi
   rotate: false
-  xy: 136, 28
-  size: 32, 32
-  orig: 32, 32
+  xy: 2, 16
+  size: 110, 110
+  orig: 110, 110
   offset: 0, 0
-  index: -1
+  index: 2
+player_scifi
+  rotate: false
+  xy: 2, 16
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: 4
+player_scifi
+  rotate: false
+  xy: 562, 16
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: 1
+player_scifi
+  rotate: false
+  xy: 786, 16
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: 3

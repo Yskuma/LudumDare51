@@ -32,7 +32,7 @@ limitMemory=true
 useIndexes=true
 
 scaleFactors=[{suffix:"",factor:1,resampling:bicubic}]
-inputFiles=[{path:player_fantasy.png,type:Input,regionName:null},{path:player_scifi.png,type:Input,regionName:null},{path:bullet_player.png,type:Input,regionName:null},{path:bullet_enemy.png,type:Input,regionName:null},{path:enemy_fantasy.png,type:Input,regionName:null},{path:enemy_scifi.png,type:Input,regionName:null}]
+inputFiles=[{path:bullet_player.png,type:Input,regionName:null},{path:bullet_enemy.png,type:Input,regionName:null},{path:enemy_fantasy.png,type:Input,regionName:null},{path:enemy_scifi.png,type:Input,regionName:null},{path:player_fantasy/player_fantasy_1.png,type:Input,regionName:null},{path:player_fantasy/player_fantasy_8.png,type:Input,regionName:null},{path:player_fantasy/player_fantasy_2.png,type:Input,regionName:null},{path:player_fantasy/player_fantasy_3.png,type:Input,regionName:null},{path:player_fantasy/player_fantasy_4.png,type:Input,regionName:null},{path:player_fantasy/player_fantasy_5.png,type:Input,regionName:null},{path:player_fantasy/player_fantasy_6.png,type:Input,regionName:null},{path:player_fantasy/player_fantasy_7.png,type:Input,regionName:null},{path:player_scifi/player_scifi_1.png,type:Input,regionName:null},{path:player_scifi/player_scifi_4.png,type:Input,regionName:null},{path:player_scifi/player_scifi_2.png,type:Input,regionName:null},{path:player_scifi/player_scifi_3.png,type:Input,regionName:null}]
 keepInputFileExtensions=false
 
 
