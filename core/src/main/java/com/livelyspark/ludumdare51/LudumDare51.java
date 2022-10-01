@@ -11,6 +11,7 @@ import com.livelyspark.ludumdare51.enums.Screens;
 import com.livelyspark.ludumdare51.managers.FloatFormatter;
 import com.livelyspark.ludumdare51.managers.FormatManager;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
+import com.livelyspark.ludumdare51.screens.GameScreen;
 import com.livelyspark.ludumdare51.screens.LoadingScreen;
 import com.livelyspark.ludumdare51.screens.MainMenuScreen;
 
@@ -24,6 +25,7 @@ public class LudumDare51 extends ApplicationAdapter implements IScreenManager {
 
 	private LoadingScreen loadingScreen;
 	private MainMenuScreen mainMenuScreen;
+	private GameScreen gameScreen;
 
 	public void switchScreen(Screens screen)  {
 		switch (screen) {
@@ -34,6 +36,10 @@ public class LudumDare51 extends ApplicationAdapter implements IScreenManager {
 			case MainMenu:
 				if(mainMenuScreen == null){mainMenuScreen = new MainMenuScreen(this, assetManager);}
 				setScreen(mainMenuScreen);
+				break;
+			case Game:
+				if(gameScreen == null){gameScreen = new GameScreen(this, assetManager);}
+				setScreen(gameScreen);
 				break;
 		}
 	}

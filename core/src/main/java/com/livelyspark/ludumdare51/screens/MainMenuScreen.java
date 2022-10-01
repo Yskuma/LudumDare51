@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.SpriteComponent;
+import com.livelyspark.ludumdare51.enums.Screens;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
 import com.livelyspark.ludumdare51.systems.SpritePositionSystem;
 import com.livelyspark.ludumdare51.systems.render.SpriteRenderSystem;
@@ -45,7 +46,7 @@ public class MainMenuScreen extends AbstractScreen {
         stage.draw();
 
         if (Gdx.input.isTouched()) { // If the screen is touched after the game is done loading, go to the main menu screen
-            //screenManager.switchScreen(Screens.Level1);
+            screenManager.switchScreen(Screens.Game);
         }
     }
 

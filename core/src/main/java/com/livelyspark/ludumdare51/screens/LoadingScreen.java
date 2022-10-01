@@ -46,6 +46,8 @@ public class LoadingScreen extends AbstractScreen {
     public void loadAssets() {
         // Add everything to be loaded, for instance:
 
+        assetManager.load("textures/spritesheet.atlas", TextureAtlas.class);
+
         /*
         assetManager.setLoader(TiledMap.class, new TmxMapLoader());
 
