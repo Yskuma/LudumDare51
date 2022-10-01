@@ -13,10 +13,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.livelyspark.ludumdare51.GlobalGameState;
-import com.livelyspark.ludumdare51.ashley.IteratingSystemBetter;
-import com.livelyspark.ludumdare51.components.DebugLabelComponent;
-import com.livelyspark.ludumdare51.components.PositionComponent;
-import com.livelyspark.ludumdare51.components.VelocityComponent;
 
 public class DebugGameGenreUiSystem extends EntitySystem {
 
@@ -71,10 +67,10 @@ public class DebugGameGenreUiSystem extends EntitySystem {
 
         switch(gameState.gameGenre)
         {
-            case FantasyFlappy:
+            case Fantasy:
                 text = "Fantasy";
                 break;
-            case ScifiRType:
+            case Scifi:
                 text = "SciFi";
         }
 
