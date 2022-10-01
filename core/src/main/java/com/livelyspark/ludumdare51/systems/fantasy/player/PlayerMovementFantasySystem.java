@@ -16,8 +16,8 @@ public class PlayerMovementFantasySystem extends IteratingSystem {
     private int targetloc = 100;
     private int fudge = 1;
     private int speed = 100;
-    private int push = 100;
-    private int maxVel = 500;
+    private int push = 400;
+    private int maxVel = 1000;
 
     private ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);

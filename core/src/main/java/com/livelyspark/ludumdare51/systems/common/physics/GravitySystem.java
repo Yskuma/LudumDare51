@@ -11,7 +11,7 @@ import com.livelyspark.ludumdare51.components.VelocityComponent;
 
 public class GravitySystem extends IteratingSystem {
 
-    private float gravity = -200;
+    private float gravity = -400;
     private ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
 
     public GravitySystem() {
