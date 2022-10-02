@@ -4,12 +4,11 @@ import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.livelyspark.ludumdare51.components.PlayerComponent;
+import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
-import com.livelyspark.ludumdare51.components.VelocityComponent;
+import com.livelyspark.ludumdare51.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreSciFiComponent;
 import com.livelyspark.ludumdare51.entityfactories.IEntityFactory;
-import com.livelyspark.ludumdare51.entityfactories.PlayerBulletEntityFactory;
 import com.livelyspark.ludumdare51.enums.GameGenres;
 
 

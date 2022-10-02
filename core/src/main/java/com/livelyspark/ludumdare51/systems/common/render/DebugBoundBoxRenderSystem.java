@@ -6,9 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.livelyspark.ludumdare51.components.BoundingRectangleComponent;
-import com.livelyspark.ludumdare51.components.PositionComponent;
-import com.livelyspark.ludumdare51.components.ShapeComponent;
+import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
 
 public class DebugBoundBoxRenderSystem extends EntitySystem {
     private ImmutableArray<Entity> entities;

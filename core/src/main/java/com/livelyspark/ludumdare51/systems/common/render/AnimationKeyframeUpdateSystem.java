@@ -2,7 +2,7 @@ package com.livelyspark.ludumdare51.systems.common.render;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.livelyspark.ludumdare51.components.AnimationComponent;
+import com.livelyspark.ludumdare51.components.rendering.AnimationComponent;
 
 public class AnimationKeyframeUpdateSystem extends EntitySystem {
     private ImmutableArray<Entity> entities;

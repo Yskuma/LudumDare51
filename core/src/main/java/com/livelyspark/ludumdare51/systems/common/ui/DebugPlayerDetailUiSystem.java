@@ -1,24 +1,20 @@
 package com.livelyspark.ludumdare51.systems.common.ui;
 
 import com.badlogic.ashley.core.*;
-import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.livelyspark.ludumdare51.ashley.IteratingSystemBetter;
 import com.livelyspark.ludumdare51.components.DebugLabelComponent;
-import com.livelyspark.ludumdare51.components.PlayerComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
-import com.livelyspark.ludumdare51.components.VelocityComponent;
+import com.livelyspark.ludumdare51.components.physics.VelocityComponent;
 import text.formic.Stringf;
 
 public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {

@@ -5,7 +5,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.livelyspark.ludumdare51.components.PositionComponent;
-import com.livelyspark.ludumdare51.components.ShapeComponent;
+import com.livelyspark.ludumdare51.components.rendering.ShapeComponent;
 
 public class ShapeRenderSystem extends EntitySystem {
     private ImmutableArray<Entity> entities;

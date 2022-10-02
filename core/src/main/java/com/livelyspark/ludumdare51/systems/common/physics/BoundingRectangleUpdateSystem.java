@@ -5,8 +5,8 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.livelyspark.ludumdare51.components.AnimationComponent;
-import com.livelyspark.ludumdare51.components.BoundingRectangleComponent;
+import com.livelyspark.ludumdare51.components.rendering.AnimationComponent;
+import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 
 public class BoundingRectangleUpdateSystem extends IteratingSystem {

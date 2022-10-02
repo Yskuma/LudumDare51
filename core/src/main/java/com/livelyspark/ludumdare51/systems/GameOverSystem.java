@@ -8,12 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.livelyspark.ludumdare51.components.PlayerComponent;
-import com.livelyspark.ludumdare51.components.PositionComponent;
-import com.livelyspark.ludumdare51.components.VelocityComponent;
-import com.livelyspark.ludumdare51.components.genre.GenreSciFiComponent;
-import com.livelyspark.ludumdare51.entityfactories.IEntityFactory;
-import com.livelyspark.ludumdare51.enums.GameGenres;
+import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 import com.livelyspark.ludumdare51.enums.Screens;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
 

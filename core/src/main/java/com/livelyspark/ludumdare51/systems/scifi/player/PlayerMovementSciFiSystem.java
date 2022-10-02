@@ -7,9 +7,9 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
-import com.livelyspark.ludumdare51.components.PlayerComponent;
+import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
-import com.livelyspark.ludumdare51.components.VelocityComponent;
+import com.livelyspark.ludumdare51.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreSciFiComponent;
 
 

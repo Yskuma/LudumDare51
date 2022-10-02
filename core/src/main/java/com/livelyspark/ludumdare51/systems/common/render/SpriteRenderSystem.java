@@ -5,7 +5,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.livelyspark.ludumdare51.components.AnimationComponent;
+import com.livelyspark.ludumdare51.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 
 public class SpriteRenderSystem extends EntitySystem {

@@ -1,4 +1,4 @@
-package com.livelyspark.ludumdare51.components;
+package com.livelyspark.ludumdare51.components.rendering;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.graphics.Color;
 import com.livelyspark.ludumdare51.enums.Shapes;

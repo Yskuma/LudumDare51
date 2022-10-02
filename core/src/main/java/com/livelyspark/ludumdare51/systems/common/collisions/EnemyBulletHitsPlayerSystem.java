@@ -2,7 +2,9 @@ package com.livelyspark.ludumdare51.systems.common.collisions;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.livelyspark.ludumdare51.components.*;
+import com.livelyspark.ludumdare51.components.enemy.EnemyBulletComponent;
+import com.livelyspark.ludumdare51.components.player.PlayerComponent;
+import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
 
 import java.util.ArrayList;
 

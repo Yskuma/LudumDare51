@@ -2,13 +2,16 @@ package com.livelyspark.ludumdare51.entityfactories;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.*;
+import com.livelyspark.ludumdare51.components.enemy.EnemyBulletComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreFantasyComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreSciFiComponent;
+import com.livelyspark.ludumdare51.components.physics.VelocityComponent;
+import com.livelyspark.ludumdare51.components.rendering.AnimationComponent;
+import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
 import com.livelyspark.ludumdare51.enums.EntityFactories;
 import com.livelyspark.ludumdare51.enums.GameGenres;
 
