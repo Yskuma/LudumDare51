@@ -3,6 +3,7 @@ package com.livelyspark.ludumdare51.screens;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.livelyspark.ludumdare51.components.PositionComponent;
@@ -46,7 +48,7 @@ public class MainMenuScreen extends AbstractScreen {
         stage.act();
         stage.draw();
 
-        if (Gdx.input.isTouched()) { // If the screen is touched after the game is done loading, go to the main menu screen
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) { // If the screen is touched after the game is done loading, go to the main menu screen
             screenManager.switchScreen(Screens.Game);
         }
     }
@@ -86,7 +88,7 @@ public class MainMenuScreen extends AbstractScreen {
         stage = new Stage();
 
         titleLabel = new Label("Ludum Dare 51", uiSkin, "title", Color.WHITE);
-        clickContinueLabel = new Label("Click To Continue", uiSkin, "medium", Color.WHITE);
+        clickContinueLabel = new Label("Press Space To Continue", uiSkin, "medium", Color.WHITE);
 
         hintLabel1 = new Label("Hint1", uiSkin, "medium", Color.WHITE);
         hintLabel2 = new Label("Hint2", uiSkin, "medium", Color.WHITE);
