@@ -1,6 +1,7 @@
 package com.livelyspark.ludumdare51.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -48,6 +49,18 @@ public class LoadingScreen extends AbstractScreen {
 
         assetManager.load("textures/spritesheet.atlas", TextureAtlas.class);
         assetManager.load("textures/static.atlas", TextureAtlas.class);
+
+        assetManager.load("textures/background_fantasy/background_1.png", Texture.class);
+        assetManager.load("textures/background_fantasy/background_2.png", Texture.class);
+        assetManager.load("textures/background_fantasy/background_3.png", Texture.class);
+        assetManager.load("textures/background_fantasy/background_4.png", Texture.class);
+        assetManager.load("textures/background_fantasy/background_5.png", Texture.class);
+
+        assetManager.load("textures/background_scifi/background_1.png", Texture.class);
+        assetManager.load("textures/background_scifi/background_2.png", Texture.class);
+        assetManager.load("textures/background_scifi/background_3.png", Texture.class);
+        assetManager.load("textures/background_scifi/background_4.png", Texture.class);
+        assetManager.load("textures/background_scifi/background_5.png", Texture.class);
         /*
         assetManager.setLoader(TiledMap.class, new TmxMapLoader());
 
@@ -55,7 +68,7 @@ public class LoadingScreen extends AbstractScreen {
         assetManager.load("textures/sprites.atlas", TextureAtlas.class);
         assetManager.load("textures/actionables.atlas", TextureAtlas.class);
         assetManager.load("textures/dude.atlas", TextureAtlas.class);
-
+s
         assetManager.load("textures/nuclear.png", Texture.class);
         assetManager.load("textures/nuclear-night.png", Texture.class);
         assetManager.load("textures/nuclear-boom.png", Texture.class);
