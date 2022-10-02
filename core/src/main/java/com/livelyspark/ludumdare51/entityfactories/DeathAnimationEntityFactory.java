@@ -1,6 +1,9 @@
 package com.livelyspark.ludumdare51.entityfactories;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.Files;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -42,6 +45,8 @@ public class DeathAnimationEntityFactory implements IEntityFactory {
         e.add(new AnimationComponent(
                 new Animation<TextureRegion>(0.033f, atlas.findRegions("enemy_ship_explode"), Animation.PlayMode.NORMAL)
         ));
+        Sound explosion = Gdx.audio.newSound(Gdx.files.getFileHandle("sounds/explosion.wav", Files.FileType.Internal));
+        explosion.play();
         return e;
     }
 
