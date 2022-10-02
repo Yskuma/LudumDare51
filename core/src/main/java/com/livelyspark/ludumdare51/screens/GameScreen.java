@@ -104,7 +104,7 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new HealthRenderSystem(camera, atlas));
 
         //Collisions
-        engine.addSystem(new PlayerBulletHitsEnemySystem());
+
         engine.addSystem(new EnemyBulletHitsPlayerSystem());
         engine.addSystem(new PlayerHitsEnemyFantasySystem());
         engine.addSystem(new PlayerHitsEnemySciFiSystem());
@@ -118,7 +118,7 @@ public class GameScreen extends AbstractScreen {
 
         //Screen Effects
         engine.addSystem(new ScreenEffectRenderSystem(camera));
-
+        engine.addSystem(new PlayerBulletHitsEnemySystem(factoryMap.get(EntityFactories.DeathAnimationFactory), gameState));
         //Cleanup
         engine.addSystem(new CleanOutOfBoundsSystem());
         engine.addSystem(new CleanLifespanSystem());
@@ -126,6 +126,8 @@ public class GameScreen extends AbstractScreen {
 
         //Music
         engine.addSystem(new MusicSystem(gameState));
+
+
     }
 
     private HashMap<EntityFactories, IEntityFactory> createFactoryMap(TextureAtlas atlas, TextureAtlas atlasStatic)
@@ -146,6 +148,9 @@ public class GameScreen extends AbstractScreen {
 
         IEntityFactory staticScreenEffectFactory = new StaticScreenEffectFactory(atlasStatic);
         factoryMap.put(EntityFactories.StaticScreenEffectFactory, staticScreenEffectFactory);
+
+        IEntityFactory deathAnimationFactory = new DeathAnimationEntityFactory(atlasStatic);
+        factoryMap.put(EntityFactories.DeathAnimationFactory, deathAnimationFactory);
 
         return  factoryMap;
     }

@@ -3,11 +3,14 @@ package com.livelyspark.ludumdare51.systems.scifi.collisions;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.livelyspark.ludumdare51.components.HealthComponent;
+import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreFantasyComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreSciFiComponent;
+import com.livelyspark.ludumdare51.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
+import com.livelyspark.ludumdare51.entityfactories.DeathAnimationEntityFactory;
 
 import java.util.ArrayList;
 
@@ -16,13 +19,14 @@ public class PlayerHitsEnemySciFiSystem extends EntitySystem {
 
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
     private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
+    private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
 
     private ImmutableArray<Entity> enemyEntities;
     private ImmutableArray<Entity> playerEntities;
 
     @Override
     public void addedToEngine(Engine engine) {
-        enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, BoundingRectangleComponent.class).get());
+        enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, BoundingRectangleComponent.class, PositionComponent.class).get());
         playerEntities = engine.getEntitiesFor(Family.all(GenreSciFiComponent.class,PlayerComponent.class, BoundingRectangleComponent.class, HealthComponent.class).get());
     }
 
@@ -55,7 +59,10 @@ public class PlayerHitsEnemySciFiSystem extends EntitySystem {
 
         for(Entity e : destroyed)
         {
+            PositionComponent pc = pm.get(e);
+
             getEngine().removeEntity(e);
+
         }
 
     }

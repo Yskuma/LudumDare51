@@ -2,10 +2,13 @@ package com.livelyspark.ludumdare51.systems.common.collisions;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.components.HealthComponent;
+import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare51.components.player.PlayerBulletComponent;
 import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
+import com.livelyspark.ludumdare51.entityfactories.IEntityFactory;
 
 import java.util.ArrayList;
 
@@ -14,13 +17,22 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
 
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
     private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
+    private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
 
     private ImmutableArray<Entity> enemyEntities;
     private ImmutableArray<Entity> playerBulletEntities;
 
+    IEntityFactory deathAnimationFactory;
+    GlobalGameState gameState;
+
+    public PlayerBulletHitsEnemySystem(IEntityFactory deathAnimationFactory, GlobalGameState gameState){
+        this.deathAnimationFactory = deathAnimationFactory;
+        this.gameState = gameState;
+    }
+
     @Override
     public void addedToEngine(Engine engine) {
-        enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, BoundingRectangleComponent.class, HealthComponent.class).get());
+        enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, BoundingRectangleComponent.class, HealthComponent.class, PositionComponent.class).get());
         playerBulletEntities = engine.getEntitiesFor(Family.all(PlayerBulletComponent.class, BoundingRectangleComponent.class).get());
     }
 
@@ -53,6 +65,8 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
 
         for(Entity e : destroyed)
         {
+            PositionComponent pc = pm.get(e);
+            getEngine().addEntity(deathAnimationFactory.Create(gameState.gameGenre, pc.x, pc.y));
             getEngine().removeEntity(e);
         }
 

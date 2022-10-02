@@ -6,119 +6,147 @@ filter: Nearest, Nearest
 repeat: none
 bullet_enemy
   rotate: false
-  xy: 1304, 118
+  xy: 2, 2
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 bullet_player
   rotate: false
-  xy: 2, 2
+  xy: 1234, 45
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 enemy_fantasy
   rotate: false
-  xy: 1234, 12
+  xy: 1636, 58
   size: 50, 64
   orig: 50, 64
   offset: 0, 0
   index: -1
 enemy_scifi
   rotate: false
-  xy: 1234, 78
+  xy: 1566, 74
   size: 68, 48
   orig: 68, 48
   offset: 0, 0
   index: -1
+enemy_ship_explode
+  rotate: false
+  xy: 1234, 55
+  size: 81, 67
+  orig: 81, 67
+  offset: 0, 0
+  index: 2
+enemy_ship_explode
+  rotate: false
+  xy: 1317, 55
+  size: 81, 67
+  orig: 81, 67
+  offset: 0, 0
+  index: 4
+enemy_ship_explode
+  rotate: false
+  xy: 1400, 55
+  size: 81, 67
+  orig: 81, 67
+  offset: 0, 0
+  index: 1
+enemy_ship_explode
+  rotate: false
+  xy: 1483, 55
+  size: 81, 67
+  orig: 81, 67
+  offset: 0, 0
+  index: 3
 health_bar
   rotate: false
-  xy: 1286, 70
+  xy: 1566, 66
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 player_fantasy
   rotate: false
-  xy: 114, 16
+  xy: 114, 12
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
   index: 1
 player_fantasy
   rotate: false
-  xy: 226, 16
+  xy: 226, 12
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
   index: 6
 player_fantasy
   rotate: false
-  xy: 338, 16
+  xy: 338, 12
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
   index: 3
 player_fantasy
   rotate: false
-  xy: 450, 16
+  xy: 450, 12
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
   index: 8
 player_fantasy
   rotate: false
-  xy: 674, 16
+  xy: 674, 12
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
   index: 5
 player_fantasy
   rotate: false
-  xy: 898, 16
+  xy: 898, 12
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
   index: 2
 player_fantasy
   rotate: false
-  xy: 1010, 16
+  xy: 1010, 12
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
   index: 7
 player_fantasy
   rotate: false
-  xy: 1122, 16
+  xy: 1122, 12
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
   index: 4
 player_scifi
   rotate: false
-  xy: 2, 16
+  xy: 2, 12
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
   index: 2
 player_scifi
   rotate: false
-  xy: 2, 16
+  xy: 2, 12
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
   index: 4
 player_scifi
   rotate: false
-  xy: 562, 16
+  xy: 562, 12
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
   index: 1
 player_scifi
   rotate: false
-  xy: 786, 16
+  xy: 786, 12
   size: 110, 110
   orig: 110, 110
   offset: 0, 0

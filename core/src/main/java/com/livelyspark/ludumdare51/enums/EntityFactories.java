@@ -5,5 +5,6 @@ public enum EntityFactories {
     EnemyFactory,
     PlayerBulletFactory,
     EnemyBulletFactory, StaticScreenEffectFactory,
+    DeathAnimationFactory
 
 }
