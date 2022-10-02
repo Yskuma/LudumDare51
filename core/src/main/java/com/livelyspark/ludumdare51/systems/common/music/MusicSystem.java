@@ -43,6 +43,8 @@ public class MusicSystem extends EntitySystem {
                 music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Scifi.wav"));
                 break;
         }
+
+        music.setVolume(0.1f);
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
