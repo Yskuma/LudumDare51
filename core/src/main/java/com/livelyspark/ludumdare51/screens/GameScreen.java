@@ -13,6 +13,7 @@ import com.livelyspark.ludumdare51.enums.EntityFactories;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
 import com.livelyspark.ludumdare51.managers.MusicManager;
 import com.livelyspark.ludumdare51.systems.GameOverSystem;
+import com.livelyspark.ludumdare51.systems.YouWinSystem;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
 import com.livelyspark.ludumdare51.systems.common.ai.BossPositioningSystem;
 import com.livelyspark.ludumdare51.systems.common.ai.EnemyBobberAiSystem;
@@ -119,6 +120,7 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new PlayerHitsEnemySciFiSystem(assetManager));
 
         engine.addSystem(new GameOverSystem(screenManager, musicManager));
+        engine.addSystem(new YouWinSystem(screenManager, musicManager));
 
         //Debug
         //engine.addSystem(new DebugPlayerDetailUiSystem());
