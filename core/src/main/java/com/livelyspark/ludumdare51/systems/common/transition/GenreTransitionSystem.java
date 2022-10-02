@@ -49,6 +49,9 @@ public class GenreTransitionSystem extends EntitySystem {
                     break;
             }
 
+            IEntityFactory screenEffFact = factoryMap.get(EntityFactories.StaticScreenEffectFactory);
+            getEngine().addEntity(screenEffFact.Create(gameState.gameGenre,0,0));
+
             for(Entity e : entities)
             {
                 FactoryComponent fc = fm.get(e);
@@ -58,7 +61,6 @@ public class GenreTransitionSystem extends EntitySystem {
                 {
                     fact.ConvertGenre(e, gameState.gameGenre);
                 }
-
             }
 
             gameState.timeInGenre = 0.0f;

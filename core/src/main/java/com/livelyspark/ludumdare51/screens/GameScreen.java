@@ -8,10 +8,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.entityfactories.*;
+import com.livelyspark.ludumdare51.entityfactories.screeneffects.StaticScreenEffectFactory;
 import com.livelyspark.ludumdare51.enums.EntityFactories;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
 import com.livelyspark.ludumdare51.systems.GameOverSystem;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
+import com.livelyspark.ludumdare51.systems.common.cleanup.CleanLifespanSystem;
 import com.livelyspark.ludumdare51.systems.common.cleanup.CleanOutOfBoundsSystem;
 import com.livelyspark.ludumdare51.systems.common.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare51.systems.common.collisions.PlayerHitsEnemySystem;
@@ -20,12 +22,11 @@ import com.livelyspark.ludumdare51.systems.common.music.MusicSystem;
 import com.livelyspark.ludumdare51.systems.common.physics.BoundingRectangleUpdateSystem;
 import com.livelyspark.ludumdare51.systems.common.physics.GravitySystem;
 import com.livelyspark.ludumdare51.systems.common.render.AnimationKeyframeUpdateSystem;
-import com.livelyspark.ludumdare51.systems.common.render.DebugBoundBoxRenderSystem;
+import com.livelyspark.ludumdare51.systems.common.render.ScreenEffectRenderSystem;
 import com.livelyspark.ludumdare51.systems.common.transition.GenreTransitionSystem;
 import com.livelyspark.ludumdare51.systems.common.ui.DebugGameGenreUiSystem;
 import com.livelyspark.ludumdare51.systems.fantasy.player.PlayerMovementFantasySystem;
 import com.livelyspark.ludumdare51.systems.common.render.SpriteRenderSystem;
-import com.livelyspark.ludumdare51.systems.common.ui.DebugPlayerDetailUiSystem;
 import com.livelyspark.ludumdare51.systems.scifi.player.PlayerMovementSciFiSystem;
 import com.livelyspark.ludumdare51.systems.scifi.player.PlayerShootingSciFiSystem;
 
@@ -65,7 +66,9 @@ public class GameScreen extends AbstractScreen {
         camera = new OrthographicCamera(948, 533);
 
         TextureAtlas atlas = assetManager.get("textures/spritesheet.atlas", TextureAtlas.class);
-        HashMap<EntityFactories, IEntityFactory> factoryMap = createFactoryMap(atlas);
+        TextureAtlas atlasStatic = assetManager.get("textures/static.atlas", TextureAtlas.class);
+
+        HashMap<EntityFactories, IEntityFactory> factoryMap = createFactoryMap(atlas, atlasStatic);
 
         //Stage Control
         engine.addSystem(new GameStage01System(gameState, factoryMap));
@@ -100,14 +103,18 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new DebugGameGenreUiSystem(gameState));
         //engine.addSystem(new DebugBoundBoxRenderSystem(camera));
 
+        //Screen Effects
+        engine.addSystem(new ScreenEffectRenderSystem(camera));
+
         //Cleanup
         engine.addSystem(new CleanOutOfBoundsSystem());
+        engine.addSystem(new CleanLifespanSystem());
 
         //Music
         engine.addSystem(new MusicSystem(gameState));
     }
 
-    private HashMap<EntityFactories, IEntityFactory> createFactoryMap(TextureAtlas atlas)
+    private HashMap<EntityFactories, IEntityFactory> createFactoryMap(TextureAtlas atlas, TextureAtlas atlasStatic)
     {
         HashMap<EntityFactories, IEntityFactory> factoryMap = new HashMap<EntityFactories, IEntityFactory>();
 
@@ -122,6 +129,9 @@ public class GameScreen extends AbstractScreen {
 
         IEntityFactory enemyBulletFactory = new EnemyBulletEntityFactory(atlas);
         factoryMap.put(EntityFactories.EnemyBulletFactory, enemyBulletFactory);
+
+        IEntityFactory staticScreenEffectFactory = new StaticScreenEffectFactory(atlasStatic);
+        factoryMap.put(EntityFactories.StaticScreenEffectFactory, staticScreenEffectFactory);
 
         return  factoryMap;
     }

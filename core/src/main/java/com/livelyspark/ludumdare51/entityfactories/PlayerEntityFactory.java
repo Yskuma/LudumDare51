@@ -78,8 +78,8 @@ public class PlayerEntityFactory implements IEntityFactory {
         e.add(new GenreFantasyComponent());
         e.add(new GravityComponent());
         e.add(new AnimationComponent(
-                new Animation<TextureRegion>(0.1f, atlas.findRegions("player_fantasy"), Animation.PlayMode.LOOP)
-        ));
+            new Animation<TextureRegion>(0.1f, atlas.findRegions("player_fantasy"), Animation.PlayMode.LOOP)
+    ));
 
         return e;
     }
