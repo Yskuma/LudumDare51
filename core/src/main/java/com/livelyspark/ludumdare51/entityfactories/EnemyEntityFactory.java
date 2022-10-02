@@ -62,6 +62,7 @@ public class EnemyEntityFactory implements IEntityFactory {
         e.add(new AnimationComponent(
                 new Animation<TextureRegion>(0.033f, atlas.findRegions("enemy_scifi"), Animation.PlayMode.LOOP)
         ));
+        e.add(new EnemyShooterComponent(2.0f));
 
         return e;
     }
@@ -70,6 +71,7 @@ public class EnemyEntityFactory implements IEntityFactory {
     {
         e.remove(GenreSciFiComponent.class);
         e.remove(AnimationComponent.class);
+        e.remove(EnemyShooterComponent.class);
 
         VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.x = -StaticConstants.camSpeed;

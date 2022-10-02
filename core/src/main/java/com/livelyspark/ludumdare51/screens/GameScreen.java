@@ -13,8 +13,10 @@ import com.livelyspark.ludumdare51.enums.EntityFactories;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
 import com.livelyspark.ludumdare51.systems.GameOverSystem;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
+import com.livelyspark.ludumdare51.systems.common.ai.EnemyShootingSciFiSystem;
 import com.livelyspark.ludumdare51.systems.common.cleanup.CleanLifespanSystem;
 import com.livelyspark.ludumdare51.systems.common.cleanup.CleanOutOfBoundsSystem;
+import com.livelyspark.ludumdare51.systems.common.collisions.EnemyBulletHitsPlayerSystem;
 import com.livelyspark.ludumdare51.systems.common.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare51.systems.common.collisions.PlayerHitsEnemySystem;
 import com.livelyspark.ludumdare51.systems.common.gameStage.GameStage01System;
@@ -81,6 +83,9 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new PlayerMovementSciFiSystem());
         engine.addSystem(new PlayerShootingSciFiSystem(factoryMap.get(EntityFactories.PlayerBulletFactory)));
 
+        //AI (Can we really call it that?!)
+        engine.addSystem(new EnemyShootingSciFiSystem(factoryMap.get(EntityFactories.EnemyBulletFactory)));
+
         //Move
         engine.addSystem(new GravitySystem());
         engine.addSystem(new MovementSystem());
@@ -95,6 +100,7 @@ public class GameScreen extends AbstractScreen {
         //Collisions
         engine.addSystem(new PlayerBulletHitsEnemySystem());
         engine.addSystem(new PlayerHitsEnemySystem());
+        engine.addSystem(new EnemyBulletHitsPlayerSystem());
 
         engine.addSystem(new GameOverSystem(screenManager));
 
