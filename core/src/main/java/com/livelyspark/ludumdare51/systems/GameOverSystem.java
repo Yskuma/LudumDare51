@@ -12,6 +12,8 @@ import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 import com.livelyspark.ludumdare51.enums.Screens;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
 
+import static com.livelyspark.ludumdare51.managers.MusicManager.StopMusic;
+
 
 public class GameOverSystem extends EntitySystem {
 
@@ -57,10 +59,9 @@ public class GameOverSystem extends EntitySystem {
                     || Gdx.input.isKeyPressed(Input.Keys.SPACE);
 
             if(isPressed) {
+                StopMusic();
                 screenManager.switchScreen(Screens.MainMenu);
             }
         }
-
     }
-
 }
