@@ -49,7 +49,7 @@ public class EnemyShootingSciFiSystem extends EntitySystem {
                 PositionComponent pos = pm.get(e);
 
                 Entity bullet = bulletFactory.Create(GameGenres.Scifi, pos.x, pos.y);
-                pew.play(StaticConstants.sfxVolume - 0.05f);
+                pew.play(StaticConstants.sfxVolume - 0.07f);
                 getEngine().addEntity(bullet);
 
                 es.shotTime = 0;
