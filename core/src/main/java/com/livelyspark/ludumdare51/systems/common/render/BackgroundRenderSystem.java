@@ -37,20 +37,15 @@ public class BackgroundRenderSystem extends EntitySystem {
         fantasyBackList.add(new BackgroundTexture(
                 assetManager.get("textures/background_fantasy/background_1.png", Texture.class),
                 baseSpeed * 1.0f));
-
         fantasyBackList.add(new BackgroundTexture(
                 assetManager.get("textures/background_fantasy/background_2.png", Texture.class),
                 baseSpeed * 1.2f));
-
-
         fantasyBackList.add(new BackgroundTexture(
                 assetManager.get("textures/background_fantasy/background_3.png", Texture.class),
                 baseSpeed * 1.4f));
-
         fantasyBackList.add(new BackgroundTexture(
                 assetManager.get("textures/background_fantasy/background_4.png", Texture.class),
                 baseSpeed * 1.6f));
-
         fantasyBackList.add(new BackgroundTexture(
                 assetManager.get("textures/background_fantasy/background_5.png", Texture.class),
                 baseSpeed * 1.8f));
@@ -59,20 +54,15 @@ public class BackgroundRenderSystem extends EntitySystem {
         scifiBackList.add(new BackgroundTexture(
                 assetManager.get("textures/background_scifi/background_1.png", Texture.class),
                 baseSpeed * 1.0f));
-
         scifiBackList.add(new BackgroundTexture(
                 assetManager.get("textures/background_scifi/background_2.png", Texture.class),
                 baseSpeed * 1.2f));
-
-
         scifiBackList.add(new BackgroundTexture(
                 assetManager.get("textures/background_scifi/background_3.png", Texture.class),
                 baseSpeed * 1.4f));
-
         scifiBackList.add(new BackgroundTexture(
                 assetManager.get("textures/background_scifi/background_4.png", Texture.class),
                 baseSpeed * 1.6f));
-
         scifiBackList.add(new BackgroundTexture(
                 assetManager.get("textures/background_scifi/background_5.png", Texture.class),
                 baseSpeed * 1.8f));
