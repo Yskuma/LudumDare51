@@ -22,6 +22,7 @@ import com.livelyspark.ludumdare51.systems.common.cleanup.CleanOutOfBoundsSystem
 import com.livelyspark.ludumdare51.systems.common.collisions.EnemyBulletHitsPlayerSystem;
 import com.livelyspark.ludumdare51.systems.common.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare51.systems.common.render.*;
+import com.livelyspark.ludumdare51.systems.common.ui.RainbowUiSystem;
 import com.livelyspark.ludumdare51.systems.fantasy.collisions.PlayerHitsEnemyFantasySystem;
 import com.livelyspark.ludumdare51.systems.common.gameStage.GameStage01System;
 import com.livelyspark.ludumdare51.systems.common.music.MusicSystem;
@@ -117,6 +118,9 @@ public class GameScreen extends AbstractScreen {
         //engine.addSystem(new DebugPlayerDetailUiSystem());
         engine.addSystem(new DebugGameGenreUiSystem(gameState));
         //engine.addSystem(new DebugBoundBoxRenderSystem(camera));
+
+        //UI
+        engine.addSystem(new RainbowUiSystem(gameState, atlas));
 
         //Screen Effects
         engine.addSystem(new ScreenEffectRenderSystem(camera));

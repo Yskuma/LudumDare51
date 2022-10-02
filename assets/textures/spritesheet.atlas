@@ -20,14 +20,14 @@ boss_scifi
   index: -1
 bullet_enemy
   rotate: false
-  xy: 770, 92
+  xy: 876, 134
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 bullet_player
   rotate: false
-  xy: 876, 134
+  xy: 733, 65
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -165,3 +165,10 @@ player_scifi
   orig: 104, 40
   offset: 0, 0
   index: 3
+rainbow
+  rotate: false
+  xy: 770, 86
+  size: 20, 14
+  orig: 20, 14
+  offset: 0, 0
+  index: -1
