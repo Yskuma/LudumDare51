@@ -44,19 +44,7 @@ public class GameStage01System extends EntitySystem {
         Entity player = playerFactory.Create(gameState.gameGenre, 100, 400);
         getEngine().addEntity(player);
 
-        IEntityFactory enemyFactory = factoryMap.get(EntityFactories.EnemyFactory);
-        for(int i = 0; i < 180; i++)
-        {
-            if(i%2 == 0) {
-                float y = MathUtils.random() * 500;
-                events.add(new EnemySpawnEvent(i, getEngine(), gameState, enemyFactory, 1000, y));
-            }
-        }
-
-        for(int posy = 0; posy < 600; posy+=100)
-        {
-            events.add(new EnemySpawnEvent(5, getEngine(), gameState, enemyFactory, 1000, posy));
-        }
+        AddEnemies();
 
         events.sort(new Comparator<IGameStageEvent>() {
             @Override
@@ -79,6 +67,59 @@ public class GameStage01System extends EntitySystem {
             nextEvent.event();
             events.remove(0);
         }
+    }
+
+    private void AddEnemies()
+    {
+        IEntityFactory enemyFactory = factoryMap.get(EntityFactories.EnemyFactory);
+
+        events.add(new EnemySpawnEvent(0, getEngine(), gameState, enemyFactory, 1000, 30));
+        events.add(new EnemySpawnEvent(2, getEngine(), gameState, enemyFactory, 1000, 150));
+        events.add(new EnemySpawnEvent(4, getEngine(), gameState, enemyFactory, 1000, 270));
+        events.add(new EnemySpawnEvent(6, getEngine(), gameState, enemyFactory, 1000, 490));
+        events.add(new EnemySpawnEvent(6, getEngine(), gameState, enemyFactory, 1000, 430));
+        events.add(new EnemySpawnEvent(6, getEngine(), gameState, enemyFactory, 1000, 370));
+        events.add(new EnemySpawnEvent(6, getEngine(), gameState, enemyFactory, 1000, 310));
+        events.add(new EnemySpawnEvent(6, getEngine(), gameState, enemyFactory, 1000, 250));
+        events.add(new EnemySpawnEvent(10, getEngine(), gameState, enemyFactory, 1000, 390));
+        events.add(new EnemySpawnEvent(11, getEngine(), gameState, enemyFactory, 1000, 450));
+        events.add(new EnemySpawnEvent(11, getEngine(), gameState, enemyFactory, 1000, 330));
+        events.add(new EnemySpawnEvent(12, getEngine(), gameState, enemyFactory, 1000, 420));
+        events.add(new EnemySpawnEvent(12, getEngine(), gameState, enemyFactory, 1000, 360));
+        events.add(new EnemySpawnEvent(14, getEngine(), gameState, enemyFactory, 1000, 210));
+        events.add(new EnemySpawnEvent(15, getEngine(), gameState, enemyFactory, 1000, 270));
+        events.add(new EnemySpawnEvent(15, getEngine(), gameState, enemyFactory, 1000, 150));
+        events.add(new EnemySpawnEvent(16, getEngine(), gameState, enemyFactory, 1000, 240));
+        events.add(new EnemySpawnEvent(16, getEngine(), gameState, enemyFactory, 1000, 180));
+        events.add(new EnemySpawnEvent(20, getEngine(), gameState, enemyFactory, 1000, 450));
+        events.add(new EnemySpawnEvent(21, getEngine(), gameState, enemyFactory, 1000, 390));
+        events.add(new EnemySpawnEvent(23, getEngine(), gameState, enemyFactory, 1000, 90));
+        events.add(new EnemySpawnEvent(24, getEngine(), gameState, enemyFactory, 1000, 30));
+        events.add(new EnemySpawnEvent(27, getEngine(), gameState, enemyFactory, 1000, 270));
+        events.add(new EnemySpawnEvent(28, getEngine(), gameState, enemyFactory, 1000, 210));
+        events.add(new EnemySpawnEvent(30, getEngine(), gameState, enemyFactory, 1000, 430));
+        events.add(new EnemySpawnEvent(31, getEngine(), gameState, enemyFactory, 1000, 460));
+        events.add(new EnemySpawnEvent(31, getEngine(), gameState, enemyFactory, 1000, 400));
+        events.add(new EnemySpawnEvent(32, getEngine(), gameState, enemyFactory, 1000, 490));
+        events.add(new EnemySpawnEvent(32, getEngine(), gameState, enemyFactory, 1000, 370));
+        events.add(new EnemySpawnEvent(33, getEngine(), gameState, enemyFactory, 1000, 250));
+        events.add(new EnemySpawnEvent(34, getEngine(), gameState, enemyFactory, 1000, 280));
+        events.add(new EnemySpawnEvent(34, getEngine(), gameState, enemyFactory, 1000, 220));
+        events.add(new EnemySpawnEvent(35, getEngine(), gameState, enemyFactory, 1000, 310));
+        events.add(new EnemySpawnEvent(35, getEngine(), gameState, enemyFactory, 1000, 190));
+        events.add(new EnemySpawnEvent(36, getEngine(), gameState, enemyFactory, 1000, 70));
+        events.add(new EnemySpawnEvent(37, getEngine(), gameState, enemyFactory, 1000, 100));
+        events.add(new EnemySpawnEvent(37, getEngine(), gameState, enemyFactory, 1000, 40));
+        events.add(new EnemySpawnEvent(38, getEngine(), gameState, enemyFactory, 1000, 130));
+        events.add(new EnemySpawnEvent(38, getEngine(), gameState, enemyFactory, 1000, 10));
+        events.add(new EnemySpawnEvent(42, getEngine(), gameState, enemyFactory, 1000, 450));
+        events.add(new EnemySpawnEvent(42, getEngine(), gameState, enemyFactory, 1000, 370));
+        events.add(new EnemySpawnEvent(45, getEngine(), gameState, enemyFactory, 1000, 330));
+        events.add(new EnemySpawnEvent(45, getEngine(), gameState, enemyFactory, 1000, 250));
+        events.add(new EnemySpawnEvent(48, getEngine(), gameState, enemyFactory, 1000, 210));
+        events.add(new EnemySpawnEvent(48, getEngine(), gameState, enemyFactory, 1000, 130));
+
+
     }
 
 }

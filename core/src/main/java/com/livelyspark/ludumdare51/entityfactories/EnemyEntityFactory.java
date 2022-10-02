@@ -69,7 +69,7 @@ public class EnemyEntityFactory implements IEntityFactory {
                 new Animation<TextureRegion>(0.033f, atlas.findRegions("enemy_scifi"), Animation.PlayMode.LOOP)
         ));
         e.add(new EnemyShooterComponent(2.0f));
-        e.add(new EnemyBobberAiComponent(100, 1.5f));
+        e.add(new EnemyBobberAiComponent(100, 0.5f));
         e.add(new HealthComponent(100.0f));
 
         return e;
