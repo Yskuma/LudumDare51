@@ -6,6 +6,7 @@ import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.livelyspark.ludumdare51.GlobalGameState;
+import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.HealthComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.enemy.EnemyComponent;
@@ -61,7 +62,7 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
         for(Entity e : destroyed)
         {
             Sound hit = Gdx.audio.newSound(Gdx.files.getFileHandle("sounds/hit.wav", Files.FileType.Internal));
-            hit.play();
+            hit.play(StaticConstants.sfxVolume);
             getEngine().removeEntity(e);
         }
 
