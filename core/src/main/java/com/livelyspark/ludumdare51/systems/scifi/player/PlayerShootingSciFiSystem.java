@@ -24,7 +24,7 @@ public class PlayerShootingSciFiSystem extends EntitySystem {
     private boolean lastPressed = false;
     private ImmutableArray<Entity> entities;
     private float lastShot = 0.0f;
-    private float shotDelay = 0.3f;
+    private float shotDelay = 0.2f;
 
 
     public PlayerShootingSciFiSystem(IEntityFactory bulletFactory) {

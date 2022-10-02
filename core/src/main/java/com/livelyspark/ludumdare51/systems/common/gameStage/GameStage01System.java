@@ -10,7 +10,10 @@ import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.components.FactoryComponent;
 import com.livelyspark.ludumdare51.entityfactories.IEntityFactory;
 import com.livelyspark.ludumdare51.enums.EntityFactories;
+import com.livelyspark.ludumdare51.systems.common.gameStage.Events.EnemySpawnEvent;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
 // Spawning stuff goes here
@@ -25,6 +28,8 @@ public class GameStage01System extends EntitySystem {
 
     private ImmutableArray<Entity> entities;
 
+    private ArrayList<IGameStageEvent> events = new ArrayList<IGameStageEvent>();
+
     public GameStage01System(GlobalGameState gameState, HashMap<EntityFactories, IEntityFactory> factoryMap)
     {
         this.gameState = gameState;
@@ -38,27 +43,42 @@ public class GameStage01System extends EntitySystem {
         IEntityFactory playerFactory = factoryMap.get(EntityFactories.PlayerFactory);
         Entity player = playerFactory.Create(gameState.gameGenre, 100, 400);
         getEngine().addEntity(player);
+
+        IEntityFactory enemyFactory = factoryMap.get(EntityFactories.EnemyFactory);
+        for(int i = 0; i < 180; i++)
+        {
+            if(i%2 == 0) {
+                float y = MathUtils.random() * 500;
+                events.add(new EnemySpawnEvent(i, getEngine(), gameState, enemyFactory, 1000, y));
+            }
+        }
+
+        for(int posy = 0; posy < 600; posy+=100)
+        {
+            events.add(new EnemySpawnEvent(5, getEngine(), gameState, enemyFactory, 1000, posy));
+        }
+
+        events.sort(new Comparator<IGameStageEvent>() {
+            @Override
+            public int compare(IGameStageEvent o1, IGameStageEvent o2) {
+                if(o1.getEventTime() < o2.getEventTime()) return -1;
+                if(o1.getEventTime() > o2.getEventTime()) return 1;
+                return 0;
+            }
+        });
     }
 
     @Override
     public void update (float deltaTime) {
         stageTime += deltaTime;
 
-        enemyLast += deltaTime;
+        IGameStageEvent nextEvent = events.get(0);
 
-        if(enemyLast > enemyThreshold)
+        if(nextEvent != null && stageTime > nextEvent.getEventTime())
         {
-            IEntityFactory enemyFactory = factoryMap.get(EntityFactories.EnemyFactory);
-
-            float y =  MathUtils.random() * 500;
-
-            Entity enemy = enemyFactory.Create(gameState.gameGenre, 1000, y);
-            getEngine().addEntity(enemy);
-
-            enemyLast = 0.0f;
+            nextEvent.event();
+            events.remove(0);
         }
-
-
     }
 
 }
