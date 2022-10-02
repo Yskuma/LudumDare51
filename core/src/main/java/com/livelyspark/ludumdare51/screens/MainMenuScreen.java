@@ -1,14 +1,20 @@
 package com.livelyspark.ludumdare51.screens;
 
 import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.livelyspark.ludumdare51.components.PositionComponent;
+import com.livelyspark.ludumdare51.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare51.enums.Screens;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
 import com.livelyspark.ludumdare51.systems.common.render.AnimationKeyframeUpdateSystem;
@@ -97,18 +103,14 @@ public class MainMenuScreen extends AbstractScreen {
     }
 
     private void addEntities() {
-        /*
-        Texture background = assetManager.get("textures/background.png", Texture.class);
-        sprite = new Sprite(background);
-        sprite.scale(1f);
 
-        spritePos = new PositionComponent();
-
-        engine.addEntity((new Entity())
-                .add(new SpriteComponent(sprite))
-                .add(spritePos)
+        Texture background = assetManager.get("textures/title_screen.png", Texture.class);
+        TextureRegion tr = new TextureRegion(background);
+        Animation<TextureRegion> anim = new Animation<TextureRegion>(1.0f, tr);
+        engine.addEntity(new Entity()
+                        .add(new AnimationComponent(anim))
+                        .add(new PositionComponent(camera.viewportWidth/2, camera.viewportHeight/2))
         );
-        */
     }
 
     @Override

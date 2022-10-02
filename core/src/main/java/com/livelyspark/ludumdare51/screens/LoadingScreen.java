@@ -61,6 +61,8 @@ public class LoadingScreen extends AbstractScreen {
         assetManager.load("textures/background_scifi/background_3.png", Texture.class);
         assetManager.load("textures/background_scifi/background_4.png", Texture.class);
         assetManager.load("textures/background_scifi/background_5.png", Texture.class);
+
+        assetManager.load("textures/title_screen.png", Texture.class);
         /*
         assetManager.setLoader(TiledMap.class, new TmxMapLoader());
 
