@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.physics.VelocityComponent;
@@ -15,7 +16,7 @@ import com.livelyspark.ludumdare51.enums.GameGenres;
 public class PlayerShootingSciFiSystem extends EntitySystem {
 
     private final IEntityFactory bulletFactory;
-
+    private Sound pew;
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
 
@@ -26,7 +27,9 @@ public class PlayerShootingSciFiSystem extends EntitySystem {
 
 
     public PlayerShootingSciFiSystem(IEntityFactory bulletFactory) {
+
         this.bulletFactory = bulletFactory;
+        this.pew = Gdx.audio.newSound(Gdx.files.internal("sounds/Pew.wav"));
     }
 
     @Override
@@ -52,6 +55,7 @@ public class PlayerShootingSciFiSystem extends EntitySystem {
                 PositionComponent pos = pm.get(e);
 
                 Entity bullet = bulletFactory.Create(GameGenres.Scifi, pos.x, pos.y);
+                pew.play(0.2f);
                 getEngine().addEntity(bullet);
 
                 lastShot = 0.0f;
