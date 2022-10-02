@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.*;
+import com.livelyspark.ludumdare51.components.enemy.EnemyBobberAiComponent;
 import com.livelyspark.ludumdare51.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare51.components.enemy.EnemyShooterComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreFantasyComponent;
@@ -57,6 +58,7 @@ public class EnemyEntityFactory implements IEntityFactory {
     {
         e.remove(GenreFantasyComponent.class);
         e.remove(AnimationComponent.class);
+        e.remove(EnemyBobberAiComponent.class);
 
         VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.x = -StaticConstants.camSpeed;
@@ -67,6 +69,7 @@ public class EnemyEntityFactory implements IEntityFactory {
                 new Animation<TextureRegion>(0.033f, atlas.findRegions("enemy_scifi"), Animation.PlayMode.LOOP)
         ));
         e.add(new EnemyShooterComponent(2.0f));
+        e.add(new EnemyBobberAiComponent(100, 1.5f));
 
         return e;
     }
@@ -76,6 +79,7 @@ public class EnemyEntityFactory implements IEntityFactory {
         e.remove(GenreSciFiComponent.class);
         e.remove(AnimationComponent.class);
         e.remove(EnemyShooterComponent.class);
+        e.remove(EnemyBobberAiComponent.class);
 
         VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.x = -StaticConstants.camSpeed;
@@ -85,6 +89,7 @@ public class EnemyEntityFactory implements IEntityFactory {
         e.add(new AnimationComponent(
                 new Animation<TextureRegion>(0.033f, atlas.findRegions("enemy_fantasy"), Animation.PlayMode.LOOP)
         ));
+        e.add(new EnemyBobberAiComponent(10, 4.0f));
 
         return e;
     }

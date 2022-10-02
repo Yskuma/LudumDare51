@@ -13,6 +13,7 @@ import com.livelyspark.ludumdare51.enums.EntityFactories;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
 import com.livelyspark.ludumdare51.systems.GameOverSystem;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
+import com.livelyspark.ludumdare51.systems.common.ai.EnemyBobberAiSystem;
 import com.livelyspark.ludumdare51.systems.common.ai.EnemyShootingSciFiSystem;
 import com.livelyspark.ludumdare51.systems.common.cleanup.CleanLifespanSystem;
 import com.livelyspark.ludumdare51.systems.common.cleanup.CleanOutOfBoundsSystem;
@@ -85,6 +86,7 @@ public class GameScreen extends AbstractScreen {
 
         //AI (Can we really call it that?!)
         engine.addSystem(new EnemyShootingSciFiSystem(factoryMap.get(EntityFactories.EnemyBulletFactory)));
+        engine.addSystem(new EnemyBobberAiSystem());
 
         //Move
         engine.addSystem(new GravitySystem());
