@@ -70,6 +70,7 @@ public class EnemyEntityFactory implements IEntityFactory {
         ));
         e.add(new EnemyShooterComponent(2.0f));
         e.add(new EnemyBobberAiComponent(100, 1.5f));
+        e.add(new HealthComponent(100.0f));
 
         return e;
     }
@@ -80,6 +81,7 @@ public class EnemyEntityFactory implements IEntityFactory {
         e.remove(AnimationComponent.class);
         e.remove(EnemyShooterComponent.class);
         e.remove(EnemyBobberAiComponent.class);
+        e.remove(HealthComponent.class);
 
         VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.x = -StaticConstants.camSpeed;

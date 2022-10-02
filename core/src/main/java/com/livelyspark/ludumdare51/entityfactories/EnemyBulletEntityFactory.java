@@ -64,7 +64,7 @@ public class EnemyBulletEntityFactory implements IEntityFactory {
         e.add(new AnimationComponent(
                 new Animation<TextureRegion>(0.033f, atlas.findRegions("bullet_enemy"), Animation.PlayMode.LOOP)
         ));
-        e.add(new EnemyBulletComponent());
+        e.add(new EnemyBulletComponent(10.0f));
 
 
         return e;

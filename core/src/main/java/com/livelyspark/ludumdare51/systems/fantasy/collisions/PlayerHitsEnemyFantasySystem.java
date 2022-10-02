@@ -1,27 +1,27 @@
-package com.livelyspark.ludumdare51.systems.common.collisions;
+package com.livelyspark.ludumdare51.systems.fantasy.collisions;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.livelyspark.ludumdare51.components.HealthComponent;
-import com.livelyspark.ludumdare51.components.enemy.EnemyComponent;
-import com.livelyspark.ludumdare51.components.player.PlayerBulletComponent;
+import com.livelyspark.ludumdare51.components.genre.GenreFantasyComponent;
 import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
+import com.livelyspark.ludumdare51.components.enemy.EnemyComponent;
+import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 
 import java.util.ArrayList;
 
 
-public class PlayerBulletHitsEnemySystem extends EntitySystem {
+public class PlayerHitsEnemyFantasySystem extends EntitySystem {
 
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
-    private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
 
     private ImmutableArray<Entity> enemyEntities;
-    private ImmutableArray<Entity> playerBulletEntities;
+    private ImmutableArray<Entity> playerEntities;
 
     @Override
     public void addedToEngine(Engine engine) {
-        enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, BoundingRectangleComponent.class, HealthComponent.class).get());
-        playerBulletEntities = engine.getEntitiesFor(Family.all(PlayerBulletComponent.class, BoundingRectangleComponent.class).get());
+        enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, BoundingRectangleComponent.class).get());
+        playerEntities = engine.getEntitiesFor(Family.all(GenreFantasyComponent.class,PlayerComponent.class, BoundingRectangleComponent.class).get());
     }
 
     @Override
@@ -38,21 +38,18 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
 
             BoundingRectangleComponent er = rm.get(e);
 
-            for (Entity p : playerBulletEntities) {
+            for (Entity p : playerEntities) {
 
                 BoundingRectangleComponent pr = rm.get(p);
 
                 if (pr.rectangle.overlaps(er.rectangle)) {
-                    HealthComponent h = hm.get(e);
-                    h.currentHealth -= 50.0f;
-
                     destroyed.add(p);
+                    destroyed.add(e);
                 }
             }
         }
 
-        for(Entity e : destroyed)
-        {
+        for (Entity e : destroyed) {
             getEngine().removeEntity(e);
         }
 

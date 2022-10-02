@@ -64,7 +64,7 @@ public class PlayerBulletEntityFactory implements IEntityFactory {
         e.add(new AnimationComponent(
                 new Animation<TextureRegion>(0.033f, atlas.findRegions("bullet_player"), Animation.PlayMode.LOOP)
         ));
-        e.add(new PlayerBulletComponent());
+        e.add(new PlayerBulletComponent(50.0f));
 
         return e;
     }

@@ -2,6 +2,7 @@ package com.livelyspark.ludumdare51.systems.common.collisions;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.livelyspark.ludumdare51.components.HealthComponent;
 import com.livelyspark.ludumdare51.components.enemy.EnemyBulletComponent;
 import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 public class EnemyBulletHitsPlayerSystem extends EntitySystem {
 
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
+    private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
 
     private ImmutableArray<Entity> enemyBulletEntities;
     private ImmutableArray<Entity> playerEntities;
@@ -19,7 +21,7 @@ public class EnemyBulletHitsPlayerSystem extends EntitySystem {
     @Override
     public void addedToEngine(Engine engine) {
         enemyBulletEntities = engine.getEntitiesFor(Family.all(EnemyBulletComponent.class, BoundingRectangleComponent.class).get());
-        playerEntities = engine.getEntitiesFor(Family.all(PlayerComponent.class, BoundingRectangleComponent.class).get());
+        playerEntities = engine.getEntitiesFor(Family.all(PlayerComponent.class, BoundingRectangleComponent.class, HealthComponent.class).get());
     }
 
     @Override
@@ -41,7 +43,9 @@ public class EnemyBulletHitsPlayerSystem extends EntitySystem {
                 BoundingRectangleComponent pr = rm.get(e);
 
                 if (pr.rectangle.overlaps(er.rectangle)) {
-                    destroyed.add(p);
+                    HealthComponent h = hm.get(p);
+                    h.currentHealth -= 20.0f;
+
                     destroyed.add(e);
                 }
             }
