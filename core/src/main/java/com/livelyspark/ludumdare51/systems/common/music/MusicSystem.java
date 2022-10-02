@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.livelyspark.ludumdare51.GlobalGameState;
+import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.enums.GameGenres;
 
 // Music stuff goes here
@@ -44,9 +45,8 @@ public class MusicSystem extends EntitySystem {
                 break;
         }
 
-        music.setVolume(0.1f);
+        music.setVolume(StaticConstants.musicVolume);
         music.setLooping(true);
-        music.setVolume(0.1f);
         music.play();
     }
 
