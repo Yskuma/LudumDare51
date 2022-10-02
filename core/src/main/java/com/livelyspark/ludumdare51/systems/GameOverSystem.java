@@ -25,8 +25,7 @@ public class GameOverSystem extends EntitySystem {
     private float gameOverTime = 0.0f;
     private float gameOverThreshold = 3.0f;
 
-    public GameOverSystem(IScreenManager screenManager)
-    {
+    public GameOverSystem(IScreenManager screenManager) {
         this.screenManager = screenManager;
         uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
         stage = new Stage();
@@ -35,33 +34,26 @@ public class GameOverSystem extends EntitySystem {
     }
 
     @Override
-    public void addedToEngine (Engine engine) {
+    public void addedToEngine(Engine engine) {
         entities = engine.getEntitiesFor(Family.all(PlayerComponent.class).get());
     }
 
     @Override
-    public void removedFromEngine (Engine engine) {
+    public void removedFromEngine(Engine engine) {
 
     }
 
     @Override
     public void update(float deltaTime) {
-        if(entities.size() == 0)
-        {
-            gameOverTime+= deltaTime;
+        if (entities.size() == 0) {
+            gameOverTime += deltaTime;
             stage.act();
             stage.draw();
         }
 
-        if(gameOverTime > gameOverThreshold)
-        {
-            boolean isPressed = Gdx.input.isButtonPressed(Input.Buttons.LEFT)
-                    || Gdx.input.isKeyPressed(Input.Keys.SPACE);
-
-            if(isPressed) {
-                StopMusic();
-                screenManager.switchScreen(Screens.MainMenu);
-            }
+        if (gameOverTime > gameOverThreshold) {
+            StopMusic();
+            screenManager.switchScreen(Screens.MainMenu);
         }
     }
 }
