@@ -19,14 +19,13 @@ public class PlayerHitsEnemySciFiSystem extends EntitySystem {
 
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
     private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
-    private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
 
     private ImmutableArray<Entity> enemyEntities;
     private ImmutableArray<Entity> playerEntities;
 
     @Override
     public void addedToEngine(Engine engine) {
-        enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, BoundingRectangleComponent.class, PositionComponent.class).get());
+        enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, BoundingRectangleComponent.class).get());
         playerEntities = engine.getEntitiesFor(Family.all(GenreSciFiComponent.class,PlayerComponent.class, BoundingRectangleComponent.class, HealthComponent.class).get());
     }
 
@@ -59,10 +58,7 @@ public class PlayerHitsEnemySciFiSystem extends EntitySystem {
 
         for(Entity e : destroyed)
         {
-            PositionComponent pc = pm.get(e);
-
             getEngine().removeEntity(e);
-
         }
 
     }

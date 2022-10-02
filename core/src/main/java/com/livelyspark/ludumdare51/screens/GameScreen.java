@@ -116,11 +116,11 @@ public class GameScreen extends AbstractScreen {
 
         //Screen Effects
         engine.addSystem(new ScreenEffectRenderSystem(camera));
-        engine.addSystem(new PlayerBulletHitsEnemySystem(factoryMap.get(EntityFactories.DeathAnimationFactory), gameState));
+        engine.addSystem(new PlayerBulletHitsEnemySystem());
         //Cleanup
         engine.addSystem(new CleanOutOfBoundsSystem());
         engine.addSystem(new CleanLifespanSystem());
-        engine.addSystem(new CleanHealthSystem());
+        engine.addSystem(new CleanHealthSystem(factoryMap.get(EntityFactories.DeathAnimationFactory), gameState));
 
         //Music
         engine.addSystem(new MusicSystem(gameState));
@@ -147,7 +147,7 @@ public class GameScreen extends AbstractScreen {
         IEntityFactory staticScreenEffectFactory = new StaticScreenEffectFactory(atlasStatic);
         factoryMap.put(EntityFactories.StaticScreenEffectFactory, staticScreenEffectFactory);
 
-        IEntityFactory deathAnimationFactory = new DeathAnimationEntityFactory(atlasStatic);
+        IEntityFactory deathAnimationFactory = new DeathAnimationEntityFactory(atlas);
         factoryMap.put(EntityFactories.DeathAnimationFactory, deathAnimationFactory);
 
         return  factoryMap;

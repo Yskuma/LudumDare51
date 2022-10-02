@@ -22,14 +22,6 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
     private ImmutableArray<Entity> enemyEntities;
     private ImmutableArray<Entity> playerBulletEntities;
 
-    IEntityFactory deathAnimationFactory;
-    GlobalGameState gameState;
-
-    public PlayerBulletHitsEnemySystem(IEntityFactory deathAnimationFactory, GlobalGameState gameState){
-        this.deathAnimationFactory = deathAnimationFactory;
-        this.gameState = gameState;
-    }
-
     @Override
     public void addedToEngine(Engine engine) {
         enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, BoundingRectangleComponent.class, HealthComponent.class, PositionComponent.class).get());
@@ -65,8 +57,6 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
 
         for(Entity e : destroyed)
         {
-            PositionComponent pc = pm.get(e);
-            getEngine().addEntity(deathAnimationFactory.Create(gameState.gameGenre, pc.x, pc.y));
             getEngine().removeEntity(e);
         }
 
