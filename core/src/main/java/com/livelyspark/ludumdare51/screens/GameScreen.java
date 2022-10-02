@@ -13,6 +13,7 @@ import com.livelyspark.ludumdare51.enums.EntityFactories;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
 import com.livelyspark.ludumdare51.systems.GameOverSystem;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
+import com.livelyspark.ludumdare51.systems.common.ai.BossPositioningSystem;
 import com.livelyspark.ludumdare51.systems.common.ai.EnemyBobberAiSystem;
 import com.livelyspark.ludumdare51.systems.common.ai.EnemyShootingSciFiSystem;
 import com.livelyspark.ludumdare51.systems.common.cleanup.CleanHealthSystem;
@@ -80,13 +81,16 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new GenreTransitionSystem(gameState, factoryMap));
 
         //Player
-        engine.addSystem(new PlayerMovementFantasySystem());
+        engine.addSystem(new PlayerMovementFantasySystem(gameState));
         engine.addSystem(new PlayerMovementSciFiSystem());
         engine.addSystem(new PlayerShootingSciFiSystem(factoryMap.get(EntityFactories.PlayerBulletFactory)));
 
         //AI (Can we really call it that?!)
         engine.addSystem(new EnemyShootingSciFiSystem(factoryMap.get(EntityFactories.EnemyBulletFactory)));
         engine.addSystem(new EnemyBobberAiSystem());
+
+        //Boss
+        engine.addSystem(new BossPositioningSystem());
 
         //Move
         engine.addSystem(new GravitySystem());
@@ -149,6 +153,9 @@ public class GameScreen extends AbstractScreen {
 
         IEntityFactory deathAnimationFactory = new DeathAnimationEntityFactory(atlas);
         factoryMap.put(EntityFactories.DeathAnimationFactory, deathAnimationFactory);
+
+        IEntityFactory bossFactory = new BossEntityFactory(atlas);
+        factoryMap.put(EntityFactories.BossFactory, bossFactory);
 
         return  factoryMap;
     }

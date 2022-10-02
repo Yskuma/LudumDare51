@@ -6,6 +6,7 @@ import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.components.HealthComponent;
 import com.livelyspark.ludumdare51.components.LifespanComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
+import com.livelyspark.ludumdare51.components.enemy.BossComponent;
 import com.livelyspark.ludumdare51.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare51.entityfactories.IEntityFactory;
 
@@ -44,8 +45,9 @@ public class CleanHealthSystem extends EntitySystem {
             if (hc.currentHealth <= 0) {
                 PositionComponent pc = e.getComponent(PositionComponent.class);
                 EnemyComponent ec = e.getComponent(EnemyComponent.class);
+                BossComponent bc = e.getComponent(BossComponent.class);
 
-                if(pc != null && ec != null){
+                if(pc != null && ec != null && bc == null){
                     getEngine().addEntity(deathAnimationFactory.Create(gameState.gameGenre, pc.x, pc.y));
                 }
                 
