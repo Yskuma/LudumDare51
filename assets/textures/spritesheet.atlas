@@ -32,6 +32,13 @@ enemy_scifi
   orig: 68, 48
   offset: 0, 0
   index: -1
+health_bar
+  rotate: false
+  xy: 1286, 70
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
 player_fantasy
   rotate: false
   xy: 114, 16

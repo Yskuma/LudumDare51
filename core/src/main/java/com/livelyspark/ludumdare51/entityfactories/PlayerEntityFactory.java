@@ -66,6 +66,7 @@ public class PlayerEntityFactory implements IEntityFactory {
         e.add(new AnimationComponent(
                 new Animation<TextureRegion>(0.1f, atlas.findRegions("player_scifi"), Animation.PlayMode.LOOP)
         ));
+        e.add(new HealthComponent(100.0f));
 
         return e;
     }
@@ -74,6 +75,7 @@ public class PlayerEntityFactory implements IEntityFactory {
     {
         e.remove(GenreSciFiComponent.class);
         e.remove(AnimationComponent.class);
+        e.remove(HealthComponent.class);
 
         VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.y = 0;

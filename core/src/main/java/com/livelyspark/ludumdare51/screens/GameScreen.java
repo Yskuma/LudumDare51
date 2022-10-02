@@ -15,21 +15,24 @@ import com.livelyspark.ludumdare51.systems.GameOverSystem;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
 import com.livelyspark.ludumdare51.systems.common.ai.EnemyBobberAiSystem;
 import com.livelyspark.ludumdare51.systems.common.ai.EnemyShootingSciFiSystem;
+import com.livelyspark.ludumdare51.systems.common.cleanup.CleanHealthSystem;
 import com.livelyspark.ludumdare51.systems.common.cleanup.CleanLifespanSystem;
 import com.livelyspark.ludumdare51.systems.common.cleanup.CleanOutOfBoundsSystem;
 import com.livelyspark.ludumdare51.systems.common.collisions.EnemyBulletHitsPlayerSystem;
 import com.livelyspark.ludumdare51.systems.common.collisions.PlayerBulletHitsEnemySystem;
-import com.livelyspark.ludumdare51.systems.common.collisions.PlayerHitsEnemySystem;
+import com.livelyspark.ludumdare51.systems.fantasy.collisions.PlayerHitsEnemyFantasySystem;
 import com.livelyspark.ludumdare51.systems.common.gameStage.GameStage01System;
 import com.livelyspark.ludumdare51.systems.common.music.MusicSystem;
 import com.livelyspark.ludumdare51.systems.common.physics.BoundingRectangleUpdateSystem;
 import com.livelyspark.ludumdare51.systems.common.physics.GravitySystem;
 import com.livelyspark.ludumdare51.systems.common.render.AnimationKeyframeUpdateSystem;
+import com.livelyspark.ludumdare51.systems.common.render.HealthRenderSystem;
 import com.livelyspark.ludumdare51.systems.common.render.ScreenEffectRenderSystem;
 import com.livelyspark.ludumdare51.systems.common.transition.GenreTransitionSystem;
 import com.livelyspark.ludumdare51.systems.common.ui.DebugGameGenreUiSystem;
 import com.livelyspark.ludumdare51.systems.fantasy.player.PlayerMovementFantasySystem;
 import com.livelyspark.ludumdare51.systems.common.render.SpriteRenderSystem;
+import com.livelyspark.ludumdare51.systems.scifi.collisions.PlayerHitsEnemySciFiSystem;
 import com.livelyspark.ludumdare51.systems.scifi.player.PlayerMovementSciFiSystem;
 import com.livelyspark.ludumdare51.systems.scifi.player.PlayerShootingSciFiSystem;
 
@@ -98,11 +101,13 @@ public class GameScreen extends AbstractScreen {
 
         //Render
         engine.addSystem(new SpriteRenderSystem(camera));
+        engine.addSystem(new HealthRenderSystem(camera, atlas));
 
         //Collisions
         engine.addSystem(new PlayerBulletHitsEnemySystem());
-        engine.addSystem(new PlayerHitsEnemySystem());
         engine.addSystem(new EnemyBulletHitsPlayerSystem());
+        engine.addSystem(new PlayerHitsEnemyFantasySystem());
+        engine.addSystem(new PlayerHitsEnemySciFiSystem());
 
         engine.addSystem(new GameOverSystem(screenManager));
 
@@ -117,6 +122,7 @@ public class GameScreen extends AbstractScreen {
         //Cleanup
         engine.addSystem(new CleanOutOfBoundsSystem());
         engine.addSystem(new CleanLifespanSystem());
+        engine.addSystem(new CleanHealthSystem());
 
         //Music
         engine.addSystem(new MusicSystem(gameState));

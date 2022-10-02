@@ -5,6 +5,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
+import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.physics.VelocityComponent;
@@ -55,7 +56,7 @@ public class PlayerShootingSciFiSystem extends EntitySystem {
                 PositionComponent pos = pm.get(e);
 
                 Entity bullet = bulletFactory.Create(GameGenres.Scifi, pos.x, pos.y);
-                pew.play(0.2f);
+                pew.play(StaticConstants.sfxVolume);
                 getEngine().addEntity(bullet);
 
                 lastShot = 0.0f;

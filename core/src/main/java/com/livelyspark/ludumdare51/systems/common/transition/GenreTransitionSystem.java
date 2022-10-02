@@ -5,6 +5,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.livelyspark.ludumdare51.GlobalGameState;
+import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.FactoryComponent;
 import com.livelyspark.ludumdare51.entityfactories.IEntityFactory;
 import com.livelyspark.ludumdare51.enums.EntityFactories;
@@ -53,7 +54,8 @@ public class GenreTransitionSystem extends EntitySystem {
             }
 
             IEntityFactory screenEffFact = factoryMap.get(EntityFactories.StaticScreenEffectFactory);
-            buzz.play();
+            buzz.play(StaticConstants.sfxVolume + 0.1f);
+
             getEngine().addEntity(screenEffFact.Create(gameState.gameGenre,0,0));
 
             for(Entity e : entities)
