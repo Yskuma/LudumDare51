@@ -55,6 +55,7 @@ public class LoadingScreen extends AbstractScreen {
         assetManager.load("textures/background_fantasy/background_3.png", Texture.class);
         assetManager.load("textures/background_fantasy/background_4.png", Texture.class);
         assetManager.load("textures/background_fantasy/background_5.png", Texture.class);
+        assetManager.load("textures/background_fantasy/background_6.png", Texture.class);
 
         assetManager.load("textures/background_scifi/background_1.png", Texture.class);
         assetManager.load("textures/background_scifi/background_2.png", Texture.class);
