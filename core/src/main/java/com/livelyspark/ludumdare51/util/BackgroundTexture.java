@@ -10,7 +10,7 @@ public class BackgroundTexture {
     public BackgroundTexture(Texture tex, float speed)
     {
         this.tex = tex;
-        this.tex.setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
+        //this.tex.setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
         this.speed = speed;
     }
 }

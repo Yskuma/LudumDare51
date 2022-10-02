@@ -6,10 +6,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.NinePatch;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.components.HealthComponent;
 import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
@@ -113,11 +110,17 @@ public class BackgroundRenderSystem extends EntitySystem {
     private void DrawBackground(ArrayList<BackgroundTexture> fantasyBackList) {
         for(BackgroundTexture bt : fantasyBackList)
         {
-            int xOffset = (int)(bt.speed * totalTime);
+            //Fudge because wrapping doesn't work in GWT with none power of two textures.
+            int texWidth = bt.tex.getWidth();
+            int xOffsetBase = (int)(bt.speed * totalTime);
 
-            TextureRegion tr = new TextureRegion(bt.tex, xOffset, bt.tex.getHeight() - (int)camera.viewportHeight, (int)camera.viewportWidth, (int)camera.viewportHeight);
-            batch.draw(tr, 0,0);
+            int xOffset1 = texWidth - ((xOffsetBase + texWidth) % (2 * texWidth));
+            int xOffset2 = texWidth - (xOffsetBase % (2 * texWidth));
 
+            Sprite s = new Sprite(bt.tex);
+            batch.draw(s, xOffset1,0);
+            s.flip(true, false);
+            batch.draw(s, xOffset2,0);
         }
     }
 }
