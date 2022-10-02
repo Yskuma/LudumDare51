@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
@@ -22,6 +23,7 @@ import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreFantasyComponent;
 import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 import com.livelyspark.ludumdare51.components.player.PlayerRainbowComponent;
+import com.livelyspark.ludumdare51.enums.GameGenres;
 import text.formic.Stringf;
 
 
@@ -30,6 +32,8 @@ public class RainbowUiSystem extends EntitySystem {
     private final GlobalGameState gameState;
     private SpriteBatch batch;
     private final NinePatch progressNp;
+    private ShapeRenderer shapeRenderer;
+    private int progress;
 
     private ComponentMapper<PlayerRainbowComponent> rm = ComponentMapper.getFor(PlayerRainbowComponent.class);
 
@@ -37,6 +41,7 @@ public class RainbowUiSystem extends EntitySystem {
 
         this.gameState = gameState;
         progressNp = new NinePatch(atlas.findRegion("rainbow"), 2, 2, 0, 0);
+        shapeRenderer = new ShapeRenderer();
     }
 
     @Override
@@ -52,15 +57,36 @@ public class RainbowUiSystem extends EntitySystem {
 
     @Override
     public void update(float deltaTime) {
+        if(gameState.gameGenre == GameGenres.Fantasy && gameState.atBoss){
+            int x = 200;
+            int width = Gdx.graphics.getWidth() - (2 * x);
+            float increment = width/100f;
+            int height = 50;
+            progress = 0;
 
-        int x = 200;
+            for (int i = 0; i < entities.size(); ++i){
+                Entity e = entities.get(i);
+                PlayerRainbowComponent rc = rm.get(e);
+                if(rc.charge == 0f){
+                    progress = 0;
+                }
+                else {
+                    progress = Math.round(increment * rc.charge);
+                }
+            }
 
-        int width = Gdx.graphics.getWidth() - (2 * x);
-        int height = 50;
+            int y = Gdx.graphics.getHeight() - height - 5;
 
-        int y = Gdx.graphics.getHeight() - height - 5;
-        batch.begin();
-        progressNp.draw(batch, x, y, width, height);
-        batch.end();
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            shapeRenderer.setColor(Color.GRAY);
+            shapeRenderer.rect(x, y, width, height);
+            shapeRenderer.end();
+
+            if(progress != 0f){
+                batch.begin();
+                progressNp.draw(batch, x, y, progress , height);
+                batch.end();
+            }
+        }
     }
 }

@@ -41,7 +41,7 @@ public class BossEntityFactory implements IEntityFactory {
                 .add(new VelocityComponent())
                 .add(new DebugLabelComponent("Enemy"))
                 .add(new BoundingRectangleComponent())
-                .add(new HealthComponent(1000.0f));;
+                .add(new HealthComponent(12000.0f));;
 
                 VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.x = -StaticConstants.camSpeed;

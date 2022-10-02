@@ -27,13 +27,15 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
 
     private GlobalGameState gameState;
 
-    private float drainMultiplier = 1.0f;
-    private float drainThreshold = 100f;
+    private float drainMultiplier = 2.0f;
+    private float drainThreshold = 0.1f;
     private boolean lastPressed = false;
     private ImmutableArray<Entity> entities;
     private float lastShot = 0.0f;
     private float shotDelay = 0.1f;
 
+    private float rainbowShotDelay = 0.02f;
+    private float rainbowTime = 0f;
 
     public PlayerRainbowPowerSystem(IEntityFactory rainbowFactory, GlobalGameState gameState, AssetManager assetManager) {
         this.rainbowFactory = rainbowFactory;
@@ -43,7 +45,7 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
 
     @Override
     public void addedToEngine (Engine engine) {
-        entities = engine.getEntitiesFor(Family.all(GenreFantasyComponent.class, PlayerComponent.class, PositionComponent.class, PlayerRainbowComponent.class).get());
+        entities = engine.getEntitiesFor(Family.all(PlayerComponent.class, PositionComponent.class, PlayerRainbowComponent.class).get());
     }
 
     @Override
@@ -54,6 +56,7 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
     @Override
     public void update(float deltaTime) {
         lastShot += deltaTime;
+        rainbowTime += deltaTime;
 
         if(gameState.atBoss && gameState.gameGenre == GameGenres.Fantasy){
             boolean isPressed = Gdx.input.isButtonPressed(Input.Buttons.LEFT)
@@ -65,13 +68,31 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
 
                 if(isPressed && lastShot > shotDelay && !lastPressed)
                 {
-                    rainbow.charge += 5f;
+                    rainbow.charge += 20f;
                     lastShot = 0.0f;
                 }
 
+                if(rainbow.charge >= 100f){
+                    rainbow.isCharged = true;
+                }
+
                 if(rainbow.drainTime > drainThreshold){
-                    rainbow.charge -= 1f;
+                    rainbow.charge -= drainMultiplier;
+                    if(rainbow.charge < 0){
+                        rainbow.charge = 0f;
+                    }
                     rainbow.drainTime -= drainThreshold;
+                }
+
+                if(rainbow.isCharged){
+                    rainbow.charge = 100f;
+
+
+                    if(rainbowTime > rainbowShotDelay){
+                        rainbowTime = 0f;
+                        PositionComponent pc = pm.get(e);
+                        getEngine().addEntity(rainbowFactory.Create(gameState.gameGenre, pc.x, pc.y));
+                    }
                 }
             }
             lastPressed = isPressed;
@@ -81,6 +102,7 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
                 PlayerRainbowComponent rainbow = rm.get(e);
                 rainbow.drainTime = 0f;
                 rainbow.charge = 0f;
+                rainbow.isCharged = false;
             }
         }
     }

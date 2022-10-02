@@ -32,6 +32,7 @@ import com.livelyspark.ludumdare51.systems.common.physics.GravitySystem;
 import com.livelyspark.ludumdare51.systems.common.transition.GenreTransitionSystem;
 import com.livelyspark.ludumdare51.systems.common.ui.DebugGameGenreUiSystem;
 import com.livelyspark.ludumdare51.systems.fantasy.player.PlayerMovementFantasySystem;
+import com.livelyspark.ludumdare51.systems.fantasy.player.PlayerRainbowPowerSystem;
 import com.livelyspark.ludumdare51.systems.scifi.collisions.PlayerHitsEnemySciFiSystem;
 import com.livelyspark.ludumdare51.systems.scifi.player.PlayerMovementSciFiSystem;
 import com.livelyspark.ludumdare51.systems.scifi.player.PlayerShootingSciFiSystem;
@@ -87,6 +88,7 @@ public class GameScreen extends AbstractScreen {
         //Player
         engine.addSystem(new PlayerMovementFantasySystem(gameState));
         engine.addSystem(new PlayerMovementSciFiSystem());
+        engine.addSystem(new PlayerRainbowPowerSystem(factoryMap.get(EntityFactories.RainbowFactory), gameState, assetManager));
         engine.addSystem(new PlayerShootingSciFiSystem(factoryMap.get(EntityFactories.PlayerBulletFactory), assetManager));
 
         //AI (Can we really call it that?!)
@@ -164,6 +166,9 @@ public class GameScreen extends AbstractScreen {
 
         IEntityFactory bossFactory = new BossEntityFactory(atlas);
         factoryMap.put(EntityFactories.BossFactory, bossFactory);
+
+        IEntityFactory rainbowFactory = new RainbowFactory(atlas);
+        factoryMap.put(EntityFactories.RainbowFactory, rainbowFactory);
 
         return  factoryMap;
     }

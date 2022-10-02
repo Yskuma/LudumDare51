@@ -16,6 +16,8 @@ import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleCompone
 import com.livelyspark.ludumdare51.enums.EntityFactories;
 import com.livelyspark.ludumdare51.enums.GameGenres;
 
+import java.util.Random;
+
 public class RainbowFactory implements IEntityFactory {
 
     TextureAtlas atlas;
@@ -30,7 +32,9 @@ public class RainbowFactory implements IEntityFactory {
     {
         Entity e = new Entity()
                 .add(new FactoryComponent(EntityFactories.RainbowFactory))
-                .add(new PositionComponent(x, y));
+                .add(new PositionComponent(x, y))
+                .add(new VelocityComponent())
+                .add(new BoundingRectangleComponent());
 
         return ConvertGenre(e, gameGenre);
     }
@@ -51,14 +55,26 @@ public class RainbowFactory implements IEntityFactory {
 
     public Entity ToSciFi(Entity e)
     {
+        e.remove(GenreFantasyComponent.class);
+        e.remove(AnimationComponent.class);
+        e.remove(PlayerBulletComponent.class);
 
-
+        e.add(new GenreSciFiComponent());
         return e;
     }
 
     public Entity ToFantasy(Entity e)
     {
         e.add(new GenreFantasyComponent());
+        VelocityComponent vel = e.getComponent(VelocityComponent.class);
+        vel.x = 5 * StaticConstants.camSpeed;
+        Random rand = new Random();
+        vel.y = 150 * (rand.nextFloat() - 0.5f);
+
+        e.add(new AnimationComponent(
+                new Animation<TextureRegion>(0.033f, atlas.findRegions("rainbow_bullet"), Animation.PlayMode.LOOP)
+        ));
+        e.add(new PlayerBulletComponent(350.0f));
 
         return e;
     }

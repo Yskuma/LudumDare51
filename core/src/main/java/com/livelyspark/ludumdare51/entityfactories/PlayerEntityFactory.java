@@ -10,6 +10,7 @@ import com.livelyspark.ludumdare51.components.genre.GenreSciFiComponent;
 import com.livelyspark.ludumdare51.components.physics.GravityComponent;
 import com.livelyspark.ludumdare51.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare51.components.player.PlayerComponent;
+import com.livelyspark.ludumdare51.components.player.PlayerRainbowComponent;
 import com.livelyspark.ludumdare51.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
 import com.livelyspark.ludumdare51.enums.EntityFactories;
@@ -33,7 +34,8 @@ public class PlayerEntityFactory implements IEntityFactory {
                 .add(new VelocityComponent())
                 .add(new PlayerComponent())
                 .add(new DebugLabelComponent("Player"))
-                .add(new BoundingRectangleComponent());
+                .add(new BoundingRectangleComponent())
+                .add(new PlayerRainbowComponent());
 
         return ConvertGenre(e, gameGenre);
     }
