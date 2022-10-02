@@ -60,9 +60,14 @@ public class GameStage01System extends EntitySystem {
     public void update (float deltaTime) {
         stageTime += deltaTime;
 
+        if(events.isEmpty())
+        {
+            return;
+        }
+
         IGameStageEvent nextEvent = events.get(0);
 
-        if(nextEvent != null && stageTime > nextEvent.getEventTime())
+        if(stageTime > nextEvent.getEventTime())
         {
             nextEvent.event();
             events.remove(0);
@@ -118,8 +123,6 @@ public class GameStage01System extends EntitySystem {
         events.add(new EnemySpawnEvent(45, getEngine(), gameState, enemyFactory, 1000, 250));
         events.add(new EnemySpawnEvent(48, getEngine(), gameState, enemyFactory, 1000, 210));
         events.add(new EnemySpawnEvent(48, getEngine(), gameState, enemyFactory, 1000, 130));
-
-
     }
 
 }
