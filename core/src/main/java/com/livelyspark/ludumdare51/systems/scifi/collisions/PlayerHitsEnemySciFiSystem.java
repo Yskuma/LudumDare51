@@ -2,6 +2,7 @@ package com.livelyspark.ludumdare51.systems.scifi.collisions;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.assets.AssetManager;
 import com.livelyspark.ludumdare51.components.HealthComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.enemy.EnemyComponent;
@@ -22,6 +23,10 @@ public class PlayerHitsEnemySciFiSystem extends EntitySystem {
 
     private ImmutableArray<Entity> enemyEntities;
     private ImmutableArray<Entity> playerEntities;
+
+    public PlayerHitsEnemySciFiSystem(AssetManager assetManager) {
+
+    }
 
     @Override
     public void addedToEngine(Engine engine) {

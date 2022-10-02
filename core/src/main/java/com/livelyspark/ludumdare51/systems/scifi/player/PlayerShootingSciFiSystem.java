@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.player.PlayerComponent;
@@ -27,10 +28,10 @@ public class PlayerShootingSciFiSystem extends EntitySystem {
     private float shotDelay = 0.2f;
 
 
-    public PlayerShootingSciFiSystem(IEntityFactory bulletFactory) {
+    public PlayerShootingSciFiSystem(IEntityFactory bulletFactory, AssetManager assetManager) {
 
         this.bulletFactory = bulletFactory;
-        this.pew = Gdx.audio.newSound(Gdx.files.internal("sounds/Pew.wav"));
+        this.pew = assetManager.get("sounds/pew.wav", Sound.class);
     }
 
     @Override

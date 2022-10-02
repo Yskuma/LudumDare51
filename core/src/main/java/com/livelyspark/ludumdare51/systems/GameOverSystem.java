@@ -11,22 +11,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 import com.livelyspark.ludumdare51.enums.Screens;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
-
-import static com.livelyspark.ludumdare51.managers.MusicManager.StopMusic;
-
+import com.livelyspark.ludumdare51.managers.MusicManager;
 
 public class GameOverSystem extends EntitySystem {
 
     private final IScreenManager screenManager;
     private final Stage stage;
     private final Skin uiSkin;
+    private final MusicManager musicmanager;
     private ImmutableArray<Entity> entities;
 
     private float gameOverTime = 0.0f;
     private float gameOverThreshold = 3.0f;
 
-    public GameOverSystem(IScreenManager screenManager) {
+    public GameOverSystem(IScreenManager screenManager, MusicManager musicManager) {
         this.screenManager = screenManager;
+        this.musicmanager = musicManager;
         uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
         stage = new Stage();
         Label titleLabel = new Label("Game Over", uiSkin, "title", Color.WHITE);
@@ -52,7 +52,7 @@ public class GameOverSystem extends EntitySystem {
         }
 
         if (gameOverTime > gameOverThreshold) {
-            StopMusic();
+            musicmanager.StopMusic();
             screenManager.switchScreen(Screens.MainMenu);
         }
     }

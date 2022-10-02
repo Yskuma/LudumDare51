@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.StaticConstants;
@@ -34,11 +35,10 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
     private float shotDelay = 0.1f;
 
 
-    public PlayerRainbowPowerSystem(IEntityFactory rainbowFactory, GlobalGameState gameState) {
-
+    public PlayerRainbowPowerSystem(IEntityFactory rainbowFactory, GlobalGameState gameState, AssetManager assetManager) {
         this.rainbowFactory = rainbowFactory;
         this.gameState = gameState;
-        this.charge = Gdx.audio.newSound(Gdx.files.internal("sounds/Pew.wav"));
+        this.charge = assetManager.get("sounds/pew.wav", Sound.class);
     }
 
     @Override

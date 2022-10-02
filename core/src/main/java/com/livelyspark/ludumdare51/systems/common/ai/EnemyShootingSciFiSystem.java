@@ -3,6 +3,7 @@ package com.livelyspark.ludumdare51.systems.common.ai;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.enemy.EnemyShooterComponent;
@@ -21,10 +22,10 @@ public class EnemyShootingSciFiSystem extends EntitySystem {
     private ComponentMapper<EnemyShooterComponent> sm = ComponentMapper.getFor(EnemyShooterComponent.class);
     private ImmutableArray<Entity> entities;
 
-    public EnemyShootingSciFiSystem(IEntityFactory bulletFactory) {
+    public EnemyShootingSciFiSystem(IEntityFactory bulletFactory, AssetManager assetManager) {
 
         this.bulletFactory = bulletFactory;
-        this.pew = Gdx.audio.newSound(Gdx.files.internal("sounds/Pew.wav"));
+        this.pew = assetManager.get("sounds/pew.wav", Sound.class);
     }
 
     @Override

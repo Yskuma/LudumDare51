@@ -11,6 +11,7 @@ import com.livelyspark.ludumdare51.entityfactories.*;
 import com.livelyspark.ludumdare51.entityfactories.screeneffects.StaticScreenEffectFactory;
 import com.livelyspark.ludumdare51.enums.EntityFactories;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
+import com.livelyspark.ludumdare51.managers.MusicManager;
 import com.livelyspark.ludumdare51.systems.GameOverSystem;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
 import com.livelyspark.ludumdare51.systems.common.ai.BossPositioningSystem;
@@ -39,11 +40,13 @@ import java.util.HashMap;
 
 public class GameScreen extends AbstractScreen {
 
+    private final MusicManager musicManager;
     private Engine engine;
     private OrthographicCamera camera;
 
-    public GameScreen(IScreenManager screenManager, AssetManager assetManager) {
+    public GameScreen(IScreenManager screenManager, AssetManager assetManager, MusicManager musicManager) {
         super(screenManager, assetManager);
+        this.musicManager = musicManager;
         engine = new Engine();
     }
 
@@ -79,15 +82,15 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new GameStage01System(gameState, factoryMap));
 
         //Genre Transition
-        engine.addSystem(new GenreTransitionSystem(gameState, factoryMap));
+        engine.addSystem(new GenreTransitionSystem(gameState, factoryMap, assetManager));
 
         //Player
         engine.addSystem(new PlayerMovementFantasySystem(gameState));
         engine.addSystem(new PlayerMovementSciFiSystem());
-        engine.addSystem(new PlayerShootingSciFiSystem(factoryMap.get(EntityFactories.PlayerBulletFactory)));
+        engine.addSystem(new PlayerShootingSciFiSystem(factoryMap.get(EntityFactories.PlayerBulletFactory), assetManager));
 
         //AI (Can we really call it that?!)
-        engine.addSystem(new EnemyShootingSciFiSystem(factoryMap.get(EntityFactories.EnemyBulletFactory)));
+        engine.addSystem(new EnemyShootingSciFiSystem(factoryMap.get(EntityFactories.EnemyBulletFactory), assetManager));
         engine.addSystem(new EnemyBobberAiSystem());
 
         //Boss
@@ -108,11 +111,12 @@ public class GameScreen extends AbstractScreen {
 
         //Collisions
 
-        engine.addSystem(new EnemyBulletHitsPlayerSystem());
-        engine.addSystem(new PlayerHitsEnemyFantasySystem());
-        engine.addSystem(new PlayerHitsEnemySciFiSystem());
+        engine.addSystem(new EnemyBulletHitsPlayerSystem(assetManager));
+        engine.addSystem(new PlayerBulletHitsEnemySystem(assetManager));
+        engine.addSystem(new PlayerHitsEnemyFantasySystem(assetManager));
+        engine.addSystem(new PlayerHitsEnemySciFiSystem(assetManager));
 
-        engine.addSystem(new GameOverSystem(screenManager));
+        engine.addSystem(new GameOverSystem(screenManager, musicManager));
 
         //Debug
         //engine.addSystem(new DebugPlayerDetailUiSystem());
@@ -124,14 +128,14 @@ public class GameScreen extends AbstractScreen {
 
         //Screen Effects
         engine.addSystem(new ScreenEffectRenderSystem(camera));
-        engine.addSystem(new PlayerBulletHitsEnemySystem());
+
         //Cleanup
         engine.addSystem(new CleanOutOfBoundsSystem());
         engine.addSystem(new CleanLifespanSystem());
         engine.addSystem(new CleanHealthSystem(factoryMap.get(EntityFactories.DeathAnimationFactory), gameState));
 
         //Music
-        engine.addSystem(new MusicSystem(gameState));
+        engine.addSystem(new MusicSystem(gameState, musicManager));
 
 
     }
@@ -155,7 +159,7 @@ public class GameScreen extends AbstractScreen {
         IEntityFactory staticScreenEffectFactory = new StaticScreenEffectFactory(atlasStatic);
         factoryMap.put(EntityFactories.StaticScreenEffectFactory, staticScreenEffectFactory);
 
-        IEntityFactory deathAnimationFactory = new DeathAnimationEntityFactory(atlas);
+        IEntityFactory deathAnimationFactory = new DeathAnimationEntityFactory(atlas, assetManager);
         factoryMap.put(EntityFactories.DeathAnimationFactory, deathAnimationFactory);
 
         IEntityFactory bossFactory = new BossEntityFactory(atlas);

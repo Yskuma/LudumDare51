@@ -2,6 +2,7 @@ package com.livelyspark.ludumdare51.systems.fantasy.collisions;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.assets.AssetManager;
 import com.livelyspark.ludumdare51.components.HealthComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreFantasyComponent;
 import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
@@ -17,6 +18,10 @@ public class PlayerHitsEnemyFantasySystem extends EntitySystem {
 
     private ImmutableArray<Entity> enemyEntities;
     private ImmutableArray<Entity> playerEntities;
+
+    public PlayerHitsEnemyFantasySystem(AssetManager assetManager) {
+
+    }
 
     @Override
     public void addedToEngine(Engine engine) {

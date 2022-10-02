@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.HealthComponent;
@@ -16,11 +17,16 @@ import java.util.ArrayList;
 
 public class EnemyBulletHitsPlayerSystem extends EntitySystem {
 
+    private final Sound hit;
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
     private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
 
     private ImmutableArray<Entity> enemyBulletEntities;
     private ImmutableArray<Entity> playerEntities;
+
+    public EnemyBulletHitsPlayerSystem(AssetManager assetManager) {
+        hit = assetManager.get("sounds/hit.wav", Sound.class);
+    }
 
     @Override
     public void addedToEngine(Engine engine) {
@@ -57,7 +63,6 @@ public class EnemyBulletHitsPlayerSystem extends EntitySystem {
 
         for(Entity e : destroyed)
         {
-            Sound hit = Gdx.audio.newSound(Gdx.files.getFileHandle("sounds/hit.wav", Files.FileType.Internal));
             hit.play(StaticConstants.sfxVolume);
             getEngine().removeEntity(e);
         }

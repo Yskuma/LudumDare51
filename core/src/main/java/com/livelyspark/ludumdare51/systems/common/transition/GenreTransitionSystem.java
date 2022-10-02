@@ -3,6 +3,7 @@ package com.livelyspark.ludumdare51.systems.common.transition;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.StaticConstants;
@@ -23,10 +24,10 @@ public class GenreTransitionSystem extends EntitySystem {
 
     private ComponentMapper<FactoryComponent> fm = ComponentMapper.getFor(FactoryComponent.class);
 
-    public GenreTransitionSystem(GlobalGameState gameState, HashMap<EntityFactories, IEntityFactory> factoryMap) {
+    public GenreTransitionSystem(GlobalGameState gameState, HashMap<EntityFactories, IEntityFactory> factoryMap, AssetManager assetManager) {
         this.gameState = gameState;
         this.factoryMap = factoryMap;
-        this.buzz = Gdx.audio.newSound(Gdx.files.internal("sounds/Static.wav"));
+        this.buzz = assetManager.get("sounds/static.wav", Sound.class);
     }
 
     @Override

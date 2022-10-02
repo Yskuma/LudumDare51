@@ -3,6 +3,7 @@ package com.livelyspark.ludumdare51.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -18,9 +19,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.livelyspark.ludumdare51.enums.Screens;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
+import com.livelyspark.ludumdare51.managers.MusicManager;
 
 public class LoadingScreen extends AbstractScreen {
 
+    private final MusicManager musicManager;
     private Stage stage;
 
     private float startX, endX;
@@ -29,8 +32,9 @@ public class LoadingScreen extends AbstractScreen {
     private Label titleLabel;
     private ProgressBar progressBar;
 
-    public LoadingScreen(IScreenManager screenManager, AssetManager assetManager) {
+    public LoadingScreen(IScreenManager screenManager, AssetManager assetManager, MusicManager musicManager) {
         super(screenManager, assetManager);
+        this.musicManager = musicManager;
     }
 
     @Override
@@ -63,40 +67,16 @@ public class LoadingScreen extends AbstractScreen {
         assetManager.load("textures/background_scifi/background_4.png", Texture.class);
         assetManager.load("textures/background_scifi/background_5.png", Texture.class);
 
+        assetManager.load("sounds/explosion.wav", Sound.class);
+        assetManager.load("sounds/hit.wav", Sound.class);
+        assetManager.load("sounds/pew.wav", Sound.class);
+        assetManager.load("sounds/static.wav", Sound.class);
+
+        assetManager.load("sounds/music_fantasy.wav", Music.class);
+        assetManager.load("sounds/music_scifi.wav", Music.class);
+
+
         assetManager.load("textures/title_screen.png", Texture.class);
-        /*
-        assetManager.setLoader(TiledMap.class, new TmxMapLoader());
-
-        assetManager.load("textures/dummy.atlas", TextureAtlas.class);
-        assetManager.load("textures/sprites.atlas", TextureAtlas.class);
-        assetManager.load("textures/actionables.atlas", TextureAtlas.class);
-        assetManager.load("textures/dude.atlas", TextureAtlas.class);
-s
-        assetManager.load("textures/nuclear.png", Texture.class);
-        assetManager.load("textures/nuclear-night.png", Texture.class);
-        assetManager.load("textures/nuclear-boom.png", Texture.class);
-
-        assetManager.load("tilemaps/testmapsmall.tmx", TiledMap.class);
-        assetManager.load("tilemaps/powerstation.tmx", TiledMap.class);
-
-        assetManager.load("sound/earthquake.mp3", Sound.class);
-        assetManager.load("sound/turbine.mp3", Sound.class);
-
-        assetManager.load("sound/footstep/Footstep1.mp3", Sound.class);
-        assetManager.load("sound/footstep/Footstep2.mp3", Sound.class);
-        assetManager.load("sound/footstep/Footstep3.mp3", Sound.class);
-        assetManager.load("sound/footstep/Footstep4.mp3", Sound.class);
-        assetManager.load("sound/footstep/Footstep5.mp3", Sound.class);
-        assetManager.load("sound/footstep/Footstep6.mp3", Sound.class);
-        assetManager.load("sound/footstep/Footstep7.mp3", Sound.class);
-        assetManager.load("sound/footstep/Footstep8.mp3", Sound.class);
-
-        assetManager.load("sound/bubble-fast.mp3", Sound.class);
-        assetManager.load("sound/bubble-normal.mp3", Sound.class);
-        assetManager.load("sound/leak.mp3", Sound.class);
-        assetManager.load("sound/pump.mp3", Sound.class);
-        assetManager.load("sound/blip.mp3", Sound.class);
-        */
 
     }
 
@@ -117,6 +97,7 @@ s
 
         // True if we've finished loading assets
         if (assetManager.update()) {
+            musicManager.LoadMusic();
             screenManager.switchScreen(Screens.MainMenu);
         }
 

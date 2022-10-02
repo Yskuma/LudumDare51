@@ -11,6 +11,7 @@ import com.livelyspark.ludumdare51.enums.Screens;
 import com.livelyspark.ludumdare51.managers.FloatFormatter;
 import com.livelyspark.ludumdare51.managers.FormatManager;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
+import com.livelyspark.ludumdare51.managers.MusicManager;
 import com.livelyspark.ludumdare51.screens.GameScreen;
 import com.livelyspark.ludumdare51.screens.LoadingScreen;
 import com.livelyspark.ludumdare51.screens.MainMenuScreen;
@@ -21,7 +22,9 @@ import java.util.HashMap;
 public class LudumDare51 extends ApplicationAdapter implements IScreenManager {
 
 	private Screen screen;
+
 	private final AssetManager assetManager;
+	private final MusicManager musicManager;
 
 	private LoadingScreen loadingScreen;
 	private MainMenuScreen mainMenuScreen;
@@ -30,7 +33,7 @@ public class LudumDare51 extends ApplicationAdapter implements IScreenManager {
 	public void switchScreen(Screens screen)  {
 		switch (screen) {
 			case Loading:
-				if(loadingScreen == null){loadingScreen = new LoadingScreen(this, assetManager);}
+				if(loadingScreen == null){loadingScreen = new LoadingScreen(this, assetManager, musicManager);}
 				setScreen(loadingScreen);
 				break;
 			case MainMenu:
@@ -39,7 +42,7 @@ public class LudumDare51 extends ApplicationAdapter implements IScreenManager {
 				setScreen(mainMenuScreen);
 				break;
 			case Game:
-				gameScreen = new GameScreen(this, assetManager);
+				gameScreen = new GameScreen(this, assetManager, musicManager);
 				setScreen(gameScreen);
 				break;
 		}
@@ -80,6 +83,7 @@ public class LudumDare51 extends ApplicationAdapter implements IScreenManager {
 	public LudumDare51(){//(FloatFormatter floatFormatter){
 
 		this.assetManager = new AssetManager();
+		this.musicManager = new MusicManager(assetManager);
 		//FormatManager.floatFormatter = floatFormatter;
 	}
 
