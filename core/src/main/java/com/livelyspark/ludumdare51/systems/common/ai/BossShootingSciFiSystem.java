@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.math.Vector2;
+import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.enemy.BossComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreSciFiComponent;
@@ -17,8 +17,8 @@ public class BossShootingSciFiSystem extends EntitySystem {
 
     private final IEntityFactory enemyBulletFactory;
     private final IEntityFactory bossBulletFactory;
-
-    private Sound pew;
+    private final Sound enemyBulletSound;
+    private final Sound bossBulletSound;
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
     private ImmutableArray<Entity> entities;
@@ -33,7 +33,9 @@ public class BossShootingSciFiSystem extends EntitySystem {
 
         this.enemyBulletFactory = enemyBulletFactory;
         this.bossBulletFactory = bossBulletFactory;
-        this.pew = assetManager.get("sounds/pew.ogg", Sound.class);
+
+        this.enemyBulletSound = assetManager.get("sounds/pew.ogg", Sound.class);
+        this.bossBulletSound = assetManager.get("sounds/pew.ogg", Sound.class);
     }
 
     @Override
@@ -97,6 +99,7 @@ public class BossShootingSciFiSystem extends EntitySystem {
                 Entity e = enemyBulletFactory.Create(GameGenres.Scifi, pos.x, pos.y);
                 VelocityComponent vel = vm.get(e);
                 vel.setAngleDeg(act);
+                enemyBulletSound.play(StaticConstants.sfxVolume - 0.07f);
                 getEngine().addEntity(e);
 
                 fanCount++;
@@ -113,7 +116,7 @@ public class BossShootingSciFiSystem extends EntitySystem {
 
     private void BigBullet(PositionComponent pos) {
             getEngine().addEntity(bossBulletFactory.Create(GameGenres.Scifi, pos.x, pos.y));
-
+            bossBulletSound.play(StaticConstants.sfxVolume - 0.05f);
             stageTime = 0;
             firingMode++;
     }
