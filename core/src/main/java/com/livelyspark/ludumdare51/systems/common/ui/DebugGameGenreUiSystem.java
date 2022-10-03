@@ -37,8 +37,6 @@ public class DebugGameGenreUiSystem extends EntitySystem {
         Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
         Drawable tableBackground = uiSkin.getDrawable("textfield");
 
-
-
         table = new Table(uiSkin);
         table.columnDefaults(0).pad(5);
         //table.setDebug(true);

@@ -15,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare51.enums.Screens;
@@ -33,6 +35,8 @@ public class MainMenuScreen extends AbstractScreen {
     //private PositionComponent spritePos;
     private Label hintLabel1;
     private Label hintLabel2;
+    private Label subtitleLabel;
+    private Table table;
 
     public MainMenuScreen(IScreenManager screenManager, AssetManager assetManager) {
         super(screenManager, assetManager);
@@ -61,44 +65,65 @@ public class MainMenuScreen extends AbstractScreen {
         camera.position.y = height/2;
         camera.update();
 
+        /*
         float midX = (stage.getWidth() / 2);
         float midY = (stage.getHeight() / 2);
 
         titleLabel.setX(midX - (titleLabel.getWidth() / 2));
         titleLabel.setY((midY + titleLabel.getHeight()));
 
-        //spritePos.x = width/2;
-        //spritePos.y = height / 2;
+        subtitleLabel.setX(midX - (subtitleLabel.getWidth() / 2));
+        subtitleLabel.setY((midY + titleLabel.getHeight()  - 10));
 
         hintLabel1.setX(midX - (hintLabel1.getWidth() / 2));
-        hintLabel1.setY((midY + titleLabel.getHeight()  - 40));
+        hintLabel1.setY((midY + titleLabel.getHeight()  - 60));
 
         hintLabel2.setX(midX - (hintLabel2.getWidth() / 2));
-        hintLabel2.setY((midY + titleLabel.getHeight()  - 60));
+        hintLabel2.setY((midY + titleLabel.getHeight()  - 80));
 
         clickContinueLabel.setX(midX - (clickContinueLabel.getWidth() / 2));
-        clickContinueLabel.setY((midY + titleLabel.getHeight()  - 100));
+        clickContinueLabel.setY((midY + titleLabel.getHeight()  - 120));
+        */
     }
 ////948x533
     @Override
     public void show() {
         camera = new OrthographicCamera(948, 533);
 
-        Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
         stage = new Stage();
+        Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
+        Drawable tableBackground = uiSkin.getDrawable("textfield");
 
-        titleLabel = new Label("Uni-Type", uiSkin, "title", Color.WHITE);
-        clickContinueLabel = new Label("Press Space To Continue", uiSkin, "medium", Color.WHITE);
+        table = new Table(uiSkin);
+        table.columnDefaults(0).pad(5);
+        //table.setDebug(true);
+        table.setWidth(450);
+        table.setHeight(300);
+        table.setX((Gdx.graphics.getWidth()/2) - 225);
+        table.setY((Gdx.graphics.getHeight()/2) - 150);
+        table.background(tableBackground);
 
-        hintLabel1 = new Label("SPACE to flap/fire", uiSkin, "medium", Color.WHITE);
-        hintLabel2 = new Label("WASD to move", uiSkin, "medium", Color.WHITE);
+        table.columnDefaults(0).center();
 
-        stage.addActor(titleLabel);
-        stage.addActor(clickContinueLabel);
-        stage.addActor(hintLabel1);
-        stage.addActor(hintLabel2);
+
+        table.add("R-Corn", "title", Color.WHITE);
+        table.row();
+        table.add("(Uni-Type?)", "medium", Color.BLACK);
+        table.row();
+        table.add("", "medium", Color.BLACK);
+        table.row();
+        table.add("SPACE to flap/fire", "medium", Color.BLACK);
+        table.row();
+        table.add("WASD to move", "medium", Color.BLACK);
+        table.row();
+        table.add("", "medium", Color.BLACK);
+        table.row();
+        table.add("Press Space To Continue","medium", Color.BLACK);
+
+        stage.addActor(table);
 
         addEntities();
+
 
         engine.addSystem(new AnimationKeyframeUpdateSystem());
         engine.addSystem(new SpriteRenderSystem(camera));
