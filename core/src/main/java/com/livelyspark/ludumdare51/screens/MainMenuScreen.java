@@ -87,7 +87,7 @@ public class MainMenuScreen extends AbstractScreen {
         Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
         stage = new Stage();
 
-        titleLabel = new Label("Unicorn in Space!", uiSkin, "title", Color.WHITE);
+        titleLabel = new Label("Uni-Type", uiSkin, "title", Color.WHITE);
         clickContinueLabel = new Label("Press Space To Continue", uiSkin, "medium", Color.WHITE);
 
         hintLabel1 = new Label("SPACE to flap/fire", uiSkin, "medium", Color.WHITE);
