@@ -21,8 +21,8 @@ public class MusicManager {
 
     public void LoadMusic()
     {
-        musicFantasy = assetManager.get("sounds/music_fantasy.wav", Music.class);
-        musicSciFi = assetManager.get("sounds/music_scifi.wav", Music.class);
+        musicFantasy = assetManager.get("sounds/music_fantasy.ogg", Music.class);
+        musicSciFi = assetManager.get("sounds/music_scifi.ogg", Music.class);
     }
 
     public void PickMusic(GameGenres genre){

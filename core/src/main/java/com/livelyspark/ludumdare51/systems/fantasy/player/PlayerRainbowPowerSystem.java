@@ -40,7 +40,7 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
     public PlayerRainbowPowerSystem(IEntityFactory rainbowFactory, GlobalGameState gameState, AssetManager assetManager) {
         this.rainbowFactory = rainbowFactory;
         this.gameState = gameState;
-        this.charge = assetManager.get("sounds/pew.wav", Sound.class);
+        this.charge = assetManager.get("sounds/pew.ogg", Sound.class);
     }
 
     @Override

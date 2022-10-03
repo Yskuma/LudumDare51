@@ -27,7 +27,7 @@ public class GenreTransitionSystem extends EntitySystem {
     public GenreTransitionSystem(GlobalGameState gameState, HashMap<EntityFactories, IEntityFactory> factoryMap, AssetManager assetManager) {
         this.gameState = gameState;
         this.factoryMap = factoryMap;
-        this.buzz = assetManager.get("sounds/static.wav", Sound.class);
+        this.buzz = assetManager.get("sounds/static.ogg", Sound.class);
     }
 
     @Override

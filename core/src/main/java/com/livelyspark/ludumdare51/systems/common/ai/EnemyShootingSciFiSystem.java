@@ -25,7 +25,7 @@ public class EnemyShootingSciFiSystem extends EntitySystem {
     public EnemyShootingSciFiSystem(IEntityFactory bulletFactory, AssetManager assetManager) {
 
         this.bulletFactory = bulletFactory;
-        this.pew = assetManager.get("sounds/pew.wav", Sound.class);
+        this.pew = assetManager.get("sounds/pew.ogg", Sound.class);
     }
 
     @Override

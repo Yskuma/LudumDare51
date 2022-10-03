@@ -22,7 +22,7 @@ public class DeathAnimationEntityFactory implements IEntityFactory {
     public DeathAnimationEntityFactory(TextureAtlas atlas, AssetManager assetManager)
     {
         this.atlas = atlas;
-        explosion = assetManager.get("sounds/explosion.wav", Sound.class);
+        explosion = assetManager.get("sounds/explosion.ogg", Sound.class);
     }
 
     @Override

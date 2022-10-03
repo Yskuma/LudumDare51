@@ -67,13 +67,13 @@ public class LoadingScreen extends AbstractScreen {
         assetManager.load("textures/background_scifi/background_4.png", Texture.class);
         assetManager.load("textures/background_scifi/background_5.png", Texture.class);
 
-        assetManager.load("sounds/explosion.wav", Sound.class);
-        assetManager.load("sounds/hit.wav", Sound.class);
-        assetManager.load("sounds/pew.wav", Sound.class);
-        assetManager.load("sounds/static.wav", Sound.class);
+        assetManager.load("sounds/explosion.ogg", Sound.class);
+        assetManager.load("sounds/hit.ogg", Sound.class);
+        assetManager.load("sounds/pew.ogg", Sound.class);
+        assetManager.load("sounds/static.ogg", Sound.class);
 
-        assetManager.load("sounds/music_fantasy.wav", Music.class);
-        assetManager.load("sounds/music_scifi.wav", Music.class);
+        assetManager.load("sounds/music_fantasy.ogg", Music.class);
+        assetManager.load("sounds/music_scifi.ogg", Music.class);
 
 
         assetManager.load("textures/title_screen.png", Texture.class);

@@ -25,7 +25,7 @@ public class EnemyBulletHitsPlayerSystem extends EntitySystem {
     private ImmutableArray<Entity> playerEntities;
 
     public EnemyBulletHitsPlayerSystem(AssetManager assetManager) {
-        hit = assetManager.get("sounds/hit.wav", Sound.class);
+        hit = assetManager.get("sounds/hit.ogg", Sound.class);
     }
 
     @Override
