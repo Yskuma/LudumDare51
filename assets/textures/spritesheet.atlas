@@ -1,17 +1,31 @@
 
 spritesheet.png
-size: 1024, 256
+size: 2048, 256
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 boss_fantasy
   rotate: false
-  xy: 164, 84
+  xy: 459, 84
+  size: 131, 170
+  orig: 131, 170
+  offset: 0, 0
+  index: -1
+boss_fantasy_dead
+  rotate: false
+  xy: 326, 84
   size: 131, 170
   orig: 131, 170
   offset: 0, 0
   index: -1
 boss_scifi
+  rotate: false
+  xy: 164, 79
+  size: 160, 175
+  orig: 160, 175
+  offset: 0, 0
+  index: -1
+boss_scifi_dead
   rotate: false
   xy: 2, 79
   size: 160, 175
@@ -20,63 +34,63 @@ boss_scifi
   index: -1
 bullet_enemy
   rotate: false
-  xy: 473, 42
+  xy: 168, 27
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 bullet_player
   rotate: false
-  xy: 963, 180
+  xy: 274, 69
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 enemy_fantasy
   rotate: false
-  xy: 963, 190
+  xy: 1063, 88
   size: 50, 64
   orig: 50, 64
   offset: 0, 0
   index: -1
 enemy_fantasy-export
   rotate: false
-  xy: 963, 190
+  xy: 1063, 88
   size: 50, 64
   orig: 50, 64
   offset: 0, 0
   index: -1
 enemy_scifi
   rotate: false
-  xy: 297, 2
+  xy: 993, 104
   size: 68, 48
   orig: 68, 48
   offset: 0, 0
   index: -1
-enemy_ship_explode
+enemy_scifi_dead
   rotate: false
   xy: 2, 10
   size: 81, 67
   orig: 81, 67
   offset: 0, 0
   index: 2
-enemy_ship_explode
+enemy_scifi_dead
   rotate: false
-  xy: 630, 85
+  xy: 592, 85
   size: 81, 67
   orig: 81, 67
   offset: 0, 0
   index: 4
-enemy_ship_explode
+enemy_scifi_dead
   rotate: false
-  xy: 713, 85
+  xy: 1591, 187
   size: 81, 67
   orig: 81, 67
   offset: 0, 0
   index: 1
-enemy_ship_explode
+enemy_scifi_dead
   rotate: false
-  xy: 796, 85
+  xy: 85, 10
   size: 81, 67
   orig: 81, 67
   offset: 0, 0
@@ -88,135 +102,135 @@ health_bar
   orig: 6, 6
   offset: 0, 0
   index: -1
-player_fantasty_dead
-  rotate: false
-  xy: 408, 52
-  size: 109, 100
-  orig: 109, 100
-  offset: 0, 0
-  index: -1
 player_fantasy
   rotate: false
-  xy: 297, 154
+  xy: 592, 154
   size: 109, 100
   orig: 109, 100
   offset: 0, 0
   index: 1
 player_fantasy
   rotate: false
-  xy: 408, 154
+  xy: 814, 154
   size: 109, 100
   orig: 109, 100
   offset: 0, 0
   index: 6
 player_fantasy
   rotate: false
-  xy: 519, 154
+  xy: 925, 154
   size: 109, 100
   orig: 109, 100
   offset: 0, 0
   index: 3
 player_fantasy
   rotate: false
-  xy: 630, 154
+  xy: 1036, 154
   size: 109, 100
   orig: 109, 100
   offset: 0, 0
   index: 8
 player_fantasy
   rotate: false
-  xy: 741, 154
+  xy: 1147, 154
   size: 109, 100
   orig: 109, 100
   offset: 0, 0
   index: 5
 player_fantasy
   rotate: false
-  xy: 852, 154
+  xy: 1258, 154
   size: 109, 100
   orig: 109, 100
   offset: 0, 0
   index: 2
 player_fantasy
   rotate: false
-  xy: 297, 52
+  xy: 1369, 154
   size: 109, 100
   orig: 109, 100
   offset: 0, 0
   index: 7
 player_fantasy
   rotate: false
-  xy: 519, 52
+  xy: 1480, 154
   size: 109, 100
   orig: 109, 100
   offset: 0, 0
   index: 4
+player_fantasy_dead
+  rotate: false
+  xy: 703, 154
+  size: 109, 100
+  orig: 109, 100
+  offset: 0, 0
+  index: -1
 player_scifi
   rotate: false
-  xy: 630, 43
+  xy: 675, 112
   size: 104, 40
   orig: 104, 40
   offset: 0, 0
   index: 2
 player_scifi
   rotate: false
-  xy: 630, 43
+  xy: 675, 112
   size: 104, 40
   orig: 104, 40
   offset: 0, 0
   index: 4
 player_scifi
   rotate: false
-  xy: 879, 112
+  xy: 168, 37
   size: 104, 40
   orig: 104, 40
   offset: 0, 0
   index: 1
 player_scifi
   rotate: false
-  xy: 191, 42
+  xy: 887, 112
   size: 104, 40
   orig: 104, 40
   offset: 0, 0
   index: 3
 player_scifi_dead
   rotate: false
-  xy: 736, 43
+  xy: 1674, 214
   size: 104, 40
   orig: 104, 40
   offset: 0, 0
   index: 2
 player_scifi_dead
   rotate: false
-  xy: 879, 70
+  xy: 781, 112
   size: 104, 40
   orig: 104, 40
   offset: 0, 0
   index: 4
 player_scifi_dead
   rotate: false
-  xy: 85, 37
+  xy: 1780, 214
   size: 104, 40
   orig: 104, 40
   offset: 0, 0
   index: 1
 player_scifi_dead
   rotate: false
-  xy: 367, 10
+  xy: 1886, 214
   size: 104, 40
   orig: 104, 40
   offset: 0, 0
   index: 3
 rainbow
   rotate: false
-  xy: 85, 21
+  xy: 1674, 198
   size: 20, 14
   orig: 20, 14
   offset: 0, 0
   index: -1
 rainbow_bullet
   rotate: false
-  xy: 842, 69
+  xy: 1591, 171
   size: 20, 14
   orig: 20, 14
   offset: 0, 0

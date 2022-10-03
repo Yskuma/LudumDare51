@@ -4,14 +4,10 @@ import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.assets.AssetManager;
 import com.livelyspark.ludumdare51.components.HealthComponent;
-import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.enemy.EnemyComponent;
-import com.livelyspark.ludumdare51.components.genre.GenreFantasyComponent;
 import com.livelyspark.ludumdare51.components.genre.GenreSciFiComponent;
-import com.livelyspark.ludumdare51.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
-import com.livelyspark.ludumdare51.entityfactories.DeathAnimationEntityFactory;
 
 import java.util.ArrayList;
 

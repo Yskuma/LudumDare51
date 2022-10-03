@@ -24,6 +24,7 @@ import com.livelyspark.ludumdare51.systems.common.cleanup.CleanOutOfBoundsSystem
 import com.livelyspark.ludumdare51.systems.common.collisions.EnemyBulletHitsPlayerSystem;
 import com.livelyspark.ludumdare51.systems.common.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare51.systems.common.render.*;
+import com.livelyspark.ludumdare51.systems.common.ui.DebugPlayerDetailUiSystem;
 import com.livelyspark.ludumdare51.systems.common.ui.RainbowUiSystem;
 import com.livelyspark.ludumdare51.systems.fantasy.collisions.PlayerHitsEnemyFantasySystem;
 import com.livelyspark.ludumdare51.systems.common.gameStage.GameStage01System;
@@ -116,14 +117,14 @@ public class GameScreen extends AbstractScreen {
 
         engine.addSystem(new EnemyBulletHitsPlayerSystem(assetManager));
         engine.addSystem(new PlayerBulletHitsEnemySystem(assetManager));
-        engine.addSystem(new PlayerHitsEnemyFantasySystem(assetManager));
+        engine.addSystem(new PlayerHitsEnemyFantasySystem(assetManager, gameState, factoryMap));
         engine.addSystem(new PlayerHitsEnemySciFiSystem(assetManager));
 
         engine.addSystem(new GameOverSystem(screenManager, musicManager));
         engine.addSystem(new YouWinSystem(screenManager, musicManager));
 
         //Debug
-        //engine.addSystem(new DebugPlayerDetailUiSystem());
+        engine.addSystem(new DebugPlayerDetailUiSystem());
         engine.addSystem(new DebugGameGenreUiSystem(gameState));
         //engine.addSystem(new DebugBoundBoxRenderSystem(camera));
 
@@ -136,7 +137,7 @@ public class GameScreen extends AbstractScreen {
         //Cleanup
         engine.addSystem(new CleanOutOfBoundsSystem());
         engine.addSystem(new CleanLifespanSystem());
-        engine.addSystem(new CleanHealthSystem(factoryMap.get(EntityFactories.DeathAnimationFactory), gameState));
+        engine.addSystem(new CleanHealthSystem(gameState, factoryMap));
 
         //Music
         engine.addSystem(new MusicSystem(gameState, musicManager));
@@ -154,20 +155,30 @@ public class GameScreen extends AbstractScreen {
         IEntityFactory enemyFactory = new EnemyEntityFactory(atlas);
         factoryMap.put(EntityFactories.EnemyFactory, enemyFactory);
 
+        IEntityFactory bossFactory = new BossEntityFactory(atlas);
+        factoryMap.put(EntityFactories.BossFactory, bossFactory);
+
+
+        IEntityFactory playerDeathFactory = new PlayerDeathEntityFactory(atlas, assetManager);
+        factoryMap.put(EntityFactories.PlayerDeathFactory, playerDeathFactory);
+
+        IEntityFactory enemyDeathFactory = new EnemyDeathEntityFactory(atlas, assetManager);
+        factoryMap.put(EntityFactories.EnemyDeathFactory, enemyDeathFactory);
+
+        IEntityFactory bossDeathFactory = new BossDeathEntityFactory(atlas, assetManager);
+        factoryMap.put(EntityFactories.BossDeathFactory, bossDeathFactory);
+
+
         IEntityFactory playerBulletFactory = new PlayerBulletEntityFactory(atlas);
         factoryMap.put(EntityFactories.PlayerBulletFactory, playerBulletFactory);
 
         IEntityFactory enemyBulletFactory = new EnemyBulletEntityFactory(atlas);
         factoryMap.put(EntityFactories.EnemyBulletFactory, enemyBulletFactory);
 
+
         IEntityFactory staticScreenEffectFactory = new StaticScreenEffectFactory(atlasStatic);
         factoryMap.put(EntityFactories.StaticScreenEffectFactory, staticScreenEffectFactory);
 
-        IEntityFactory deathAnimationFactory = new DeathAnimationEntityFactory(atlas, assetManager);
-        factoryMap.put(EntityFactories.DeathAnimationFactory, deathAnimationFactory);
-
-        IEntityFactory bossFactory = new BossEntityFactory(atlas);
-        factoryMap.put(EntityFactories.BossFactory, bossFactory);
 
         IEntityFactory rainbowFactory = new RainbowFactory(atlas);
         factoryMap.put(EntityFactories.RainbowFactory, rainbowFactory);
