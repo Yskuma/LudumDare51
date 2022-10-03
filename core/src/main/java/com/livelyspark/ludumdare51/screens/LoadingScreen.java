@@ -52,7 +52,6 @@ public class LoadingScreen extends AbstractScreen {
         // Add everything to be loaded, for instance:
 
         assetManager.load("textures/spritesheet.atlas", TextureAtlas.class);
-        assetManager.load("textures/static.atlas", TextureAtlas.class);
 
         assetManager.load("textures/background_fantasy/background_1.png", Texture.class);
         assetManager.load("textures/background_fantasy/background_2.png", Texture.class);
@@ -67,6 +66,12 @@ public class LoadingScreen extends AbstractScreen {
         assetManager.load("textures/background_scifi/background_3.png", Texture.class);
         assetManager.load("textures/background_scifi/background_4.png", Texture.class);
         assetManager.load("textures/background_scifi/background_5.png", Texture.class);
+
+        assetManager.load("textures/static/static_0.png", Texture.class);
+        assetManager.load("textures/static/static_1.png", Texture.class);
+        assetManager.load("textures/static/static_2.png", Texture.class);
+        assetManager.load("textures/static/static_3.png", Texture.class);
+        assetManager.load("textures/static/static_4.png", Texture.class);
 
         assetManager.load("sounds/explosion.ogg", Sound.class);
         assetManager.load("sounds/hit.ogg", Sound.class);

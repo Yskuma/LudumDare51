@@ -1,9 +1,12 @@
 package com.livelyspark.ludumdare51.entityfactories.screeneffects;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
 import com.livelyspark.ludumdare51.components.*;
 import com.livelyspark.ludumdare51.components.genre.ScreenEffectComponent;
 import com.livelyspark.ludumdare51.components.rendering.AnimationComponent;
@@ -12,20 +15,25 @@ import com.livelyspark.ludumdare51.enums.GameGenres;
 
 public class StaticScreenEffectFactory implements IEntityFactory {
 
-    TextureAtlas atlas;
+    private final AssetManager assetMananger;
 
-    public StaticScreenEffectFactory(TextureAtlas atlas)
-    {
-        this.atlas = atlas;
+    public StaticScreenEffectFactory(AssetManager assetManager) {
+        this.assetMananger = assetManager;
     }
 
     @Override
-    public Entity Create(GameGenres gameGenre, float x, float y)
-    {
+    public Entity Create(GameGenres gameGenre, float x, float y) {
         Entity e = new Entity()
                 .add(new ScreenEffectComponent())
                 .add(new AnimationComponent(
-                        new Animation<TextureRegion>(0.1f, atlas.findRegions("static"), Animation.PlayMode.LOOP)
+                        new Animation(0.1f, new Array<TextureRegion>(new TextureRegion[]
+                                {
+                                        new TextureRegion(assetMananger.get("textures/static/static_0.png", Texture.class)),
+                                        new TextureRegion(assetMananger.get("textures/static/static_1.png", Texture.class)),
+                                        new TextureRegion(assetMananger.get("textures/static/static_2.png", Texture.class)),
+                                        new TextureRegion(assetMananger.get("textures/static/static_3.png", Texture.class)),
+                                        new TextureRegion(assetMananger.get("textures/static/static_4.png", Texture.class))
+                                }), Animation.PlayMode.LOOP)
                 ))
                 .add(new LifespanComponent(0.5f));
 
@@ -33,8 +41,7 @@ public class StaticScreenEffectFactory implements IEntityFactory {
     }
 
     @Override
-    public Entity ConvertGenre(Entity e, GameGenres gameGenre)
-    {
+    public Entity ConvertGenre(Entity e, GameGenres gameGenre) {
         return e;
     }
 

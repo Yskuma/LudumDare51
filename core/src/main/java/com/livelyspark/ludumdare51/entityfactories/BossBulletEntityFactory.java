@@ -1,4 +1,4 @@
-package com.livelyspark.ludumdare51.entityfactories.screeneffects;
+package com.livelyspark.ludumdare51.entityfactories;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.Animation;

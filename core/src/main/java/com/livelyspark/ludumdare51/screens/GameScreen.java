@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.entityfactories.*;
-import com.livelyspark.ludumdare51.entityfactories.screeneffects.BossBulletEntityFactory;
+import com.livelyspark.ludumdare51.entityfactories.BossBulletEntityFactory;
 import com.livelyspark.ludumdare51.entityfactories.screeneffects.StaticScreenEffectFactory;
 import com.livelyspark.ludumdare51.enums.EntityFactories;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
@@ -26,7 +26,6 @@ import com.livelyspark.ludumdare51.systems.common.cleanup.CleanOutOfBoundsSystem
 import com.livelyspark.ludumdare51.systems.common.collisions.EnemyBulletHitsPlayerSystem;
 import com.livelyspark.ludumdare51.systems.common.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare51.systems.common.render.*;
-import com.livelyspark.ludumdare51.systems.common.ui.DebugPlayerDetailUiSystem;
 import com.livelyspark.ludumdare51.systems.common.ui.RainbowUiSystem;
 import com.livelyspark.ludumdare51.systems.fantasy.collisions.PlayerHitsEnemyFantasySystem;
 import com.livelyspark.ludumdare51.systems.common.gameStage.GameStage01System;
@@ -80,9 +79,8 @@ public class GameScreen extends AbstractScreen {
         camera = new OrthographicCamera(948, 533);
 
         TextureAtlas atlas = assetManager.get("textures/spritesheet.atlas", TextureAtlas.class);
-        TextureAtlas atlasStatic = assetManager.get("textures/static.atlas", TextureAtlas.class);
 
-        HashMap<EntityFactories, IEntityFactory> factoryMap = createFactoryMap(atlas, atlasStatic);
+        HashMap<EntityFactories, IEntityFactory> factoryMap = createFactoryMap(atlas);
 
         //Stage Control
         engine.addSystem(new GameStage01System(gameState, factoryMap));
@@ -152,7 +150,7 @@ public class GameScreen extends AbstractScreen {
 
     }
 
-    private HashMap<EntityFactories, IEntityFactory> createFactoryMap(TextureAtlas atlas, TextureAtlas atlasStatic)
+    private HashMap<EntityFactories, IEntityFactory> createFactoryMap(TextureAtlas atlas)
     {
         HashMap<EntityFactories, IEntityFactory> factoryMap = new HashMap<EntityFactories, IEntityFactory>();
 
@@ -185,7 +183,7 @@ public class GameScreen extends AbstractScreen {
         IEntityFactory bossBulletFactory = new BossBulletEntityFactory(atlas);
         factoryMap.put(EntityFactories.BossBulletFactory, bossBulletFactory);
 
-        IEntityFactory staticScreenEffectFactory = new StaticScreenEffectFactory(atlasStatic);
+        IEntityFactory staticScreenEffectFactory = new StaticScreenEffectFactory(assetManager);
         factoryMap.put(EntityFactories.StaticScreenEffectFactory, staticScreenEffectFactory);
 
 
