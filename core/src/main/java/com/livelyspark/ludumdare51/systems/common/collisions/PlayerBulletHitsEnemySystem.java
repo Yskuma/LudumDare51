@@ -2,25 +2,21 @@ package com.livelyspark.ludumdare51.systems.common.collisions;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.Files;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
-import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.HealthComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare51.components.player.PlayerBulletComponent;
 import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
-import com.livelyspark.ludumdare51.entityfactories.IEntityFactory;
 
 import java.util.ArrayList;
 
 
 public class PlayerBulletHitsEnemySystem extends EntitySystem {
 
-    private final Sound hit;
+    private final Sound playerBulletHitsEnemySound;
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
     private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
@@ -29,7 +25,7 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
     private ImmutableArray<Entity> playerBulletEntities;
 
     public PlayerBulletHitsEnemySystem(AssetManager assetManager) {
-        hit = assetManager.get("sounds/hit.ogg", Sound.class);
+        playerBulletHitsEnemySound = assetManager.get("sounds/hit.ogg", Sound.class);
     }
 
     @Override
@@ -67,7 +63,7 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
 
         for(Entity e : destroyed)
         {
-            hit.play(StaticConstants.sfxVolume);
+            playerBulletHitsEnemySound.play(StaticConstants.sfxVolume);
             getEngine().removeEntity(e);
         }
 

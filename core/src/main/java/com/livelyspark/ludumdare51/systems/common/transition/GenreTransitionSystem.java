@@ -2,7 +2,6 @@ package com.livelyspark.ludumdare51.systems.common.transition;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.livelyspark.ludumdare51.GlobalGameState;
@@ -17,7 +16,7 @@ import java.util.HashMap;
 
 public class GenreTransitionSystem extends EntitySystem {
     GlobalGameState gameState;
-    Sound buzz;
+    Sound staticSound;
     //float timeInThisGenre = 0.0f;
     HashMap<EntityFactories, IEntityFactory> factoryMap;
     private ImmutableArray<Entity> entities;
@@ -27,7 +26,7 @@ public class GenreTransitionSystem extends EntitySystem {
     public GenreTransitionSystem(GlobalGameState gameState, HashMap<EntityFactories, IEntityFactory> factoryMap, AssetManager assetManager) {
         this.gameState = gameState;
         this.factoryMap = factoryMap;
-        this.buzz = assetManager.get("sounds/static.ogg", Sound.class);
+        this.staticSound = assetManager.get("sounds/static.ogg", Sound.class);
     }
 
     @Override
@@ -55,7 +54,7 @@ public class GenreTransitionSystem extends EntitySystem {
             }
 
             IEntityFactory screenEffFact = factoryMap.get(EntityFactories.StaticScreenEffectFactory);
-            buzz.play(StaticConstants.sfxVolume + 0.1f);
+            staticSound.play(StaticConstants.sfxVolume + 0.1f);
 
             getEngine().addEntity(screenEffFact.Create(gameState.gameGenre,0,0));
 

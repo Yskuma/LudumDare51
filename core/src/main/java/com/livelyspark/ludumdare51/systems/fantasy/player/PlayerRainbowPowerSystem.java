@@ -6,12 +6,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.math.MathUtils;
 import com.livelyspark.ludumdare51.GlobalGameState;
-import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.PositionComponent;
-import com.livelyspark.ludumdare51.components.genre.GenreFantasyComponent;
-import com.livelyspark.ludumdare51.components.genre.GenreSciFiComponent;
 import com.livelyspark.ludumdare51.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 import com.livelyspark.ludumdare51.components.player.PlayerRainbowComponent;
@@ -22,7 +18,7 @@ import com.livelyspark.ludumdare51.enums.GameGenres;
 public class PlayerRainbowPowerSystem extends EntitySystem {
 
     private final IEntityFactory rainbowFactory;
-    private Sound charge;
+    private Sound rainbowCannonChargeSound;
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
     private ComponentMapper<PlayerRainbowComponent> rm = ComponentMapper.getFor(PlayerRainbowComponent.class);
@@ -45,7 +41,7 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
     public PlayerRainbowPowerSystem(IEntityFactory rainbowFactory, GlobalGameState gameState, AssetManager assetManager) {
         this.rainbowFactory = rainbowFactory;
         this.gameState = gameState;
-        this.charge = assetManager.get("sounds/pew.ogg", Sound.class);
+        this.rainbowCannonChargeSound = assetManager.get("sounds/pew.ogg", Sound.class);
     }
 
     @Override

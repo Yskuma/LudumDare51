@@ -2,8 +2,6 @@ package com.livelyspark.ludumdare51.systems.common.collisions;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.Files;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.livelyspark.ludumdare51.StaticConstants;
@@ -17,7 +15,7 @@ import java.util.ArrayList;
 
 public class EnemyBulletHitsPlayerSystem extends EntitySystem {
 
-    private final Sound hit;
+    private final Sound enemyBulletHitsPlayerSound;
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
     private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
 
@@ -25,7 +23,7 @@ public class EnemyBulletHitsPlayerSystem extends EntitySystem {
     private ImmutableArray<Entity> playerEntities;
 
     public EnemyBulletHitsPlayerSystem(AssetManager assetManager) {
-        hit = assetManager.get("sounds/hit.ogg", Sound.class);
+        enemyBulletHitsPlayerSound = assetManager.get("sounds/hit.ogg", Sound.class);
     }
 
     @Override
@@ -63,7 +61,7 @@ public class EnemyBulletHitsPlayerSystem extends EntitySystem {
 
         for(Entity e : destroyed)
         {
-            hit.play(StaticConstants.sfxVolume);
+            enemyBulletHitsPlayerSound.play(StaticConstants.sfxVolume);
             getEngine().removeEntity(e);
         }
 

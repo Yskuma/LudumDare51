@@ -2,7 +2,6 @@ package com.livelyspark.ludumdare51.systems.common.ai;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.livelyspark.ludumdare51.StaticConstants;
@@ -17,7 +16,7 @@ public class EnemyShootingSciFiSystem extends EntitySystem {
 
     private final IEntityFactory bulletFactory;
 
-    private Sound pew;
+    private Sound enemyShootingSound;
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<EnemyShooterComponent> sm = ComponentMapper.getFor(EnemyShooterComponent.class);
     private ImmutableArray<Entity> entities;
@@ -25,7 +24,7 @@ public class EnemyShootingSciFiSystem extends EntitySystem {
     public EnemyShootingSciFiSystem(IEntityFactory bulletFactory, AssetManager assetManager) {
 
         this.bulletFactory = bulletFactory;
-        this.pew = assetManager.get("sounds/pew.ogg", Sound.class);
+        this.enemyShootingSound = assetManager.get("sounds/pew.ogg", Sound.class);
     }
 
     @Override
@@ -50,7 +49,7 @@ public class EnemyShootingSciFiSystem extends EntitySystem {
                 PositionComponent pos = pm.get(e);
 
                 Entity bullet = bulletFactory.Create(GameGenres.Scifi, pos.x, pos.y);
-                pew.play(StaticConstants.sfxVolume - 0.07f);
+                enemyShootingSound.play(StaticConstants.sfxVolume - 0.07f);
                 getEngine().addEntity(bullet);
 
                 es.shotTime = 0;
