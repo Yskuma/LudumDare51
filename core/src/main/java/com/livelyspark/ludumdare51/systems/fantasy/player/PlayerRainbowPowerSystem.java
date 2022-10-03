@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.math.MathUtils;
 import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.PositionComponent;
@@ -23,6 +24,7 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
     private final IEntityFactory rainbowFactory;
     private Sound charge;
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
+    private ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
     private ComponentMapper<PlayerRainbowComponent> rm = ComponentMapper.getFor(PlayerRainbowComponent.class);
 
     private GlobalGameState gameState;
@@ -36,6 +38,9 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
 
     private float rainbowShotDelay = 0.02f;
     private float rainbowTime = 0f;
+    private final float sprayRange = 7.5f;
+
+    private int rainbowCount = 0;
 
     public PlayerRainbowPowerSystem(IEntityFactory rainbowFactory, GlobalGameState gameState, AssetManager assetManager) {
         this.rainbowFactory = rainbowFactory;
@@ -90,8 +95,15 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
 
                     if(rainbowTime > rainbowShotDelay){
                         rainbowTime = 0f;
+                        rainbowCount++;
+
                         PositionComponent pc = pm.get(e);
-                        getEngine().addEntity(rainbowFactory.Create(gameState.gameGenre, pc.x, pc.y));
+                        Entity rainE = rainbowFactory.Create(gameState.gameGenre, pc.x, pc.y);
+                        VelocityComponent v = vm.get(rainE);
+
+                        v.setAngleDeg(SawVal(sprayRange, rainbowCount));
+
+                        getEngine().addEntity(rainE);
                     }
                 }
             }
@@ -105,6 +117,12 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
                 rainbow.isCharged = false;
             }
         }
+    }
+
+    private float SawVal(float amp, float x)
+    {
+        float inner = ((x - (amp/4)) % amp ) - (amp/2);
+        return  (4 * Math.abs(inner)) - amp;
     }
 
 }

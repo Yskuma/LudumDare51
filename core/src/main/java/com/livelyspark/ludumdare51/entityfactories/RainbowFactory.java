@@ -68,8 +68,6 @@ public class RainbowFactory implements IEntityFactory {
         e.add(new GenreFantasyComponent());
         VelocityComponent vel = e.getComponent(VelocityComponent.class);
         vel.x = 5 * StaticConstants.camSpeed;
-        Random rand = new Random();
-        vel.y = 150 * (rand.nextFloat() - 0.5f);
 
         e.add(new AnimationComponent(
                 new Animation<TextureRegion>(0.033f, atlas.findRegions("rainbow_bullet"), Animation.PlayMode.LOOP)
