@@ -39,7 +39,7 @@ public class BackgroundRenderSystem extends EntitySystem {
                 0));
         fantasyBackList.add(new BackgroundTexture(
                 assetManager.get("textures/background_fantasy/background_3.png", Texture.class),
-                baseSpeed * 1.2f));
+                0));
         fantasyBackList.add(new BackgroundTexture(
                 assetManager.get("textures/background_fantasy/background_4.png", Texture.class),
                 baseSpeed * 1.4f));
@@ -48,6 +48,9 @@ public class BackgroundRenderSystem extends EntitySystem {
                 baseSpeed * 1.6f));
         fantasyBackList.add(new BackgroundTexture(
                 assetManager.get("textures/background_fantasy/background_6.png", Texture.class),
+                baseSpeed * 1.8f));
+        fantasyBackList.add(new BackgroundTexture(
+                assetManager.get("textures/background_fantasy/background_7.png", Texture.class),
                 baseSpeed * 1.8f));
 
 
