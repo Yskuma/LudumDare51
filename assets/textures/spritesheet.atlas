@@ -20,14 +20,14 @@ boss_scifi
   index: -1
 bullet_enemy
   rotate: false
-  xy: 731, 75
+  xy: 473, 42
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 bullet_player
   rotate: false
-  xy: 85, 19
+  xy: 963, 180
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -39,9 +39,16 @@ enemy_fantasy
   orig: 50, 64
   offset: 0, 0
   index: -1
+enemy_fantasy-export
+  rotate: false
+  xy: 963, 190
+  size: 50, 64
+  orig: 50, 64
+  offset: 0, 0
+  index: -1
 enemy_scifi
   rotate: false
-  xy: 85, 29
+  xy: 297, 2
   size: 68, 48
   orig: 68, 48
   offset: 0, 0
@@ -55,21 +62,21 @@ enemy_ship_explode
   index: 2
 enemy_ship_explode
   rotate: false
-  xy: 519, 85
+  xy: 630, 85
   size: 81, 67
   orig: 81, 67
   offset: 0, 0
   index: 4
 enemy_ship_explode
   rotate: false
-  xy: 602, 85
+  xy: 713, 85
   size: 81, 67
   orig: 81, 67
   offset: 0, 0
   index: 1
 enemy_ship_explode
   rotate: false
-  xy: 685, 85
+  xy: 796, 85
   size: 81, 67
   orig: 81, 67
   offset: 0, 0
@@ -79,6 +86,13 @@ health_bar
   xy: 2, 2
   size: 6, 6
   orig: 6, 6
+  offset: 0, 0
+  index: -1
+player_fantasty_dead
+  rotate: false
+  xy: 408, 52
+  size: 109, 100
+  orig: 109, 100
   offset: 0, 0
   index: -1
 player_fantasy
@@ -132,49 +146,77 @@ player_fantasy
   index: 7
 player_fantasy
   rotate: false
-  xy: 408, 52
+  xy: 519, 52
   size: 109, 100
   orig: 109, 100
   offset: 0, 0
   index: 4
 player_scifi
   rotate: false
-  xy: 768, 112
+  xy: 630, 43
   size: 104, 40
   orig: 104, 40
   offset: 0, 0
   index: 2
 player_scifi
   rotate: false
-  xy: 768, 112
+  xy: 630, 43
   size: 104, 40
   orig: 104, 40
   offset: 0, 0
   index: 4
 player_scifi
   rotate: false
-  xy: 519, 43
+  xy: 879, 112
   size: 104, 40
   orig: 104, 40
   offset: 0, 0
   index: 1
 player_scifi
   rotate: false
-  xy: 625, 43
+  xy: 191, 42
+  size: 104, 40
+  orig: 104, 40
+  offset: 0, 0
+  index: 3
+player_scifi_dead
+  rotate: false
+  xy: 736, 43
+  size: 104, 40
+  orig: 104, 40
+  offset: 0, 0
+  index: 2
+player_scifi_dead
+  rotate: false
+  xy: 879, 70
+  size: 104, 40
+  orig: 104, 40
+  offset: 0, 0
+  index: 4
+player_scifi_dead
+  rotate: false
+  xy: 85, 37
+  size: 104, 40
+  orig: 104, 40
+  offset: 0, 0
+  index: 1
+player_scifi_dead
+  rotate: false
+  xy: 367, 10
   size: 104, 40
   orig: 104, 40
   offset: 0, 0
   index: 3
 rainbow
   rotate: false
-  xy: 874, 138
+  xy: 85, 21
   size: 20, 14
   orig: 20, 14
   offset: 0, 0
   index: -1
 rainbow_bullet
   rotate: false
-  xy: 768, 96
+  xy: 842, 69
   size: 20, 14
   orig: 20, 14
   offset: 0, 0

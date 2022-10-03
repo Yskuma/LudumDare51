@@ -24,24 +24,58 @@ static
   size: 948, 533
   orig: 948, 533
   offset: 0, 0
-  index: 4
+  index: 7
 static
   rotate: false
   xy: 2, 2
   size: 948, 533
   orig: 948, 533
   offset: 0, 0
-  index: 1
+  index: 4
 static
   rotate: false
   xy: 952, 537
   size: 948, 533
   orig: 948, 533
   offset: 0, 0
-  index: 3
+  index: 9
 static
   rotate: false
   xy: 952, 2
+  size: 948, 533
+  orig: 948, 533
+  offset: 0, 0
+  index: 1
+
+static2.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+static
+  rotate: false
+  xy: 2, 1072
+  size: 948, 533
+  orig: 948, 533
+  offset: 0, 0
+  index: 6
+static
+  rotate: false
+  xy: 2, 537
+  size: 948, 533
+  orig: 948, 533
+  offset: 0, 0
+  index: 3
+static
+  rotate: false
+  xy: 952, 1072
+  size: 948, 533
+  orig: 948, 533
+  offset: 0, 0
+  index: 8
+static
+  rotate: false
+  xy: 2, 2
   size: 948, 533
   orig: 948, 533
   offset: 0, 0
