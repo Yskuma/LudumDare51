@@ -17,8 +17,8 @@ public class BossShootingSciFiSystem extends EntitySystem {
 
     private final IEntityFactory enemyBulletFactory;
     private final IEntityFactory bossBulletFactory;
-    private final Sound enemyBulletSound;
-    private final Sound bossBulletSound;
+    private final Sound bossSmallShootingSound;
+    private final Sound bossLargeShootingSound;
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
     private ImmutableArray<Entity> entities;
@@ -34,8 +34,8 @@ public class BossShootingSciFiSystem extends EntitySystem {
         this.enemyBulletFactory = enemyBulletFactory;
         this.bossBulletFactory = bossBulletFactory;
 
-        this.enemyBulletSound = assetManager.get("sounds/pew.ogg", Sound.class);
-        this.bossBulletSound = assetManager.get("sounds/pew.ogg", Sound.class);
+        this.bossSmallShootingSound = assetManager.get("sounds/pew.ogg", Sound.class);
+        this.bossLargeShootingSound = assetManager.get("sounds/big_pew.ogg", Sound.class);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class BossShootingSciFiSystem extends EntitySystem {
                 Entity e = enemyBulletFactory.Create(GameGenres.Scifi, pos.x, pos.y);
                 VelocityComponent vel = vm.get(e);
                 vel.setAngleDeg(act);
-                enemyBulletSound.play(StaticConstants.sfxVolume - 0.07f);
+                bossSmallShootingSound.play(StaticConstants.sfxVolume - 0.07f);
                 getEngine().addEntity(e);
 
                 fanCount++;
@@ -116,7 +116,7 @@ public class BossShootingSciFiSystem extends EntitySystem {
 
     private void BigBullet(PositionComponent pos) {
             getEngine().addEntity(bossBulletFactory.Create(GameGenres.Scifi, pos.x, pos.y));
-            bossBulletSound.play(StaticConstants.sfxVolume - 0.05f);
+            bossLargeShootingSound.play(StaticConstants.sfxVolume);
             stageTime = 0;
             firingMode++;
     }

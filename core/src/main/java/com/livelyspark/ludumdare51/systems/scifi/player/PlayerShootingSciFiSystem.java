@@ -18,7 +18,7 @@ import com.livelyspark.ludumdare51.enums.GameGenres;
 public class PlayerShootingSciFiSystem extends EntitySystem {
 
     private final IEntityFactory bulletFactory;
-    private Sound pew;
+    private Sound playerShootingSound;
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
 
@@ -31,7 +31,7 @@ public class PlayerShootingSciFiSystem extends EntitySystem {
     public PlayerShootingSciFiSystem(IEntityFactory bulletFactory, AssetManager assetManager) {
 
         this.bulletFactory = bulletFactory;
-        this.pew = assetManager.get("sounds/pew.ogg", Sound.class);
+        this.playerShootingSound = assetManager.get("sounds/pew.ogg", Sound.class);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class PlayerShootingSciFiSystem extends EntitySystem {
                 PositionComponent pos = pm.get(e);
 
                 Entity bullet = bulletFactory.Create(GameGenres.Scifi, pos.x, pos.y);
-                pew.play(StaticConstants.sfxVolume);
+                playerShootingSound.play(StaticConstants.sfxVolume);
                 getEngine().addEntity(bullet);
 
                 lastShot = 0.0f;

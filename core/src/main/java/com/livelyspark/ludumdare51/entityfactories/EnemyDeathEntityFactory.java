@@ -14,13 +14,13 @@ import com.livelyspark.ludumdare51.enums.GameGenres;
 
 public class EnemyDeathEntityFactory implements IEntityFactory {
 
-    private final Sound explosion;
+    private final Sound enemyDeathSound;
     TextureAtlas atlas;
 
     public EnemyDeathEntityFactory(TextureAtlas atlas, AssetManager assetManager)
     {
         this.atlas = atlas;
-        explosion = assetManager.get("sounds/explosion.ogg", Sound.class);
+        enemyDeathSound = assetManager.get("sounds/explosion.ogg", Sound.class);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class EnemyDeathEntityFactory implements IEntityFactory {
         e.add(new AnimationComponent(
                 new Animation<TextureRegion>(0.033f, atlas.findRegions("enemy_scifi_dead"), Animation.PlayMode.NORMAL)
         ));
-        explosion.play(StaticConstants.sfxVolume);
+        enemyDeathSound.play(StaticConstants.sfxVolume);
         return e;
     }
 

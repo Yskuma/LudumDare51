@@ -76,6 +76,7 @@ public class LoadingScreen extends AbstractScreen {
         assetManager.load("sounds/explosion.ogg", Sound.class);
         assetManager.load("sounds/hit.ogg", Sound.class);
         assetManager.load("sounds/pew.ogg", Sound.class);
+        assetManager.load("sounds/big_pew.ogg", Sound.class);
         assetManager.load("sounds/static.ogg", Sound.class);
 
         assetManager.load("sounds/music_fantasy.ogg", Music.class);
