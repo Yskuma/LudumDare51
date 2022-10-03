@@ -35,7 +35,7 @@ public class BossShootingSciFiSystem extends EntitySystem {
         this.bossBulletFactory = bossBulletFactory;
 
         this.bossSmallShootingSound = assetManager.get("sounds/pew.ogg", Sound.class);
-        this.bossLargeShootingSound = assetManager.get("sounds/pew.ogg", Sound.class);
+        this.bossLargeShootingSound = assetManager.get("sounds/big_pew.ogg", Sound.class);
     }
 
     @Override
@@ -116,7 +116,7 @@ public class BossShootingSciFiSystem extends EntitySystem {
 
     private void BigBullet(PositionComponent pos) {
             getEngine().addEntity(bossBulletFactory.Create(GameGenres.Scifi, pos.x, pos.y));
-            bossLargeShootingSound.play(StaticConstants.sfxVolume - 0.05f);
+            bossLargeShootingSound.play(StaticConstants.sfxVolume);
             stageTime = 0;
             firingMode++;
     }
