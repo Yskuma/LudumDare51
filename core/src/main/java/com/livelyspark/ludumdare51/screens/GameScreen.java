@@ -129,7 +129,7 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new YouWinSystem(screenManager, musicManager));
 
         //Debug
-        engine.addSystem(new DebugPlayerDetailUiSystem());
+        //engine.addSystem(new DebugPlayerDetailUiSystem());
         engine.addSystem(new DebugGameGenreUiSystem(gameState));
         //engine.addSystem(new DebugBoundBoxRenderSystem(camera));
 

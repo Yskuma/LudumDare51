@@ -22,7 +22,7 @@ public class GameStage01System extends EntitySystem {
     private final HashMap<EntityFactories, IEntityFactory> factoryMap;
     private final GlobalGameState gameState;
     float stageTime = 0.0f;
-    int bossTime = 3;
+    int bossTime = 55;
 
     float enemyLast = 1.5f;
     float enemyThreshold = 2.0f;
@@ -84,7 +84,7 @@ public class GameStage01System extends EntitySystem {
     {
         IEntityFactory enemyFactory = factoryMap.get(EntityFactories.EnemyFactory);
         IEntityFactory bossFactory = factoryMap.get(EntityFactories.BossFactory);
-/*
+
         events.add(new EnemySpawnEvent(0, getEngine(), gameState, enemyFactory, 1000, 30));
         events.add(new EnemySpawnEvent(2, getEngine(), gameState, enemyFactory, 1000, 150));
         events.add(new EnemySpawnEvent(4, getEngine(), gameState, enemyFactory, 1000, 270));
@@ -130,7 +130,7 @@ public class GameStage01System extends EntitySystem {
         events.add(new EnemySpawnEvent(45, getEngine(), gameState, enemyFactory, 1000, 250));
         events.add(new EnemySpawnEvent(48, getEngine(), gameState, enemyFactory, 1000, 210));
         events.add(new EnemySpawnEvent(48, getEngine(), gameState, enemyFactory, 1000, 130));
-*/
+
         events.add(new EnemySpawnEvent(bossTime, getEngine(), gameState, bossFactory, 1000, 300));
     }
 
