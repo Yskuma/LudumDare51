@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.livelyspark.ludumdare51.GlobalGameState;
 import com.livelyspark.ludumdare51.entityfactories.*;
+import com.livelyspark.ludumdare51.entityfactories.screeneffects.BossBulletEntityFactory;
 import com.livelyspark.ludumdare51.entityfactories.screeneffects.StaticScreenEffectFactory;
 import com.livelyspark.ludumdare51.enums.EntityFactories;
 import com.livelyspark.ludumdare51.managers.IScreenManager;
@@ -16,6 +17,7 @@ import com.livelyspark.ludumdare51.systems.GameOverSystem;
 import com.livelyspark.ludumdare51.systems.YouWinSystem;
 import com.livelyspark.ludumdare51.systems.common.MovementSystem;
 import com.livelyspark.ludumdare51.systems.common.ai.BossPositioningSystem;
+import com.livelyspark.ludumdare51.systems.common.ai.BossShootingSciFiSystem;
 import com.livelyspark.ludumdare51.systems.common.ai.EnemyBobberAiSystem;
 import com.livelyspark.ludumdare51.systems.common.ai.EnemyShootingSciFiSystem;
 import com.livelyspark.ludumdare51.systems.common.cleanup.CleanHealthSystem;
@@ -95,6 +97,9 @@ public class GameScreen extends AbstractScreen {
 
         //AI (Can we really call it that?!)
         engine.addSystem(new EnemyShootingSciFiSystem(factoryMap.get(EntityFactories.EnemyBulletFactory), assetManager));
+        engine.addSystem(new BossShootingSciFiSystem(assetManager,
+                factoryMap.get(EntityFactories.EnemyBulletFactory),
+                factoryMap.get(EntityFactories.BossBulletFactory)));
         engine.addSystem(new EnemyBobberAiSystem());
 
         //Boss
@@ -175,6 +180,8 @@ public class GameScreen extends AbstractScreen {
         IEntityFactory enemyBulletFactory = new EnemyBulletEntityFactory(atlas);
         factoryMap.put(EntityFactories.EnemyBulletFactory, enemyBulletFactory);
 
+        IEntityFactory bossBulletFactory = new BossBulletEntityFactory(atlas);
+        factoryMap.put(EntityFactories.BossBulletFactory, bossBulletFactory);
 
         IEntityFactory staticScreenEffectFactory = new StaticScreenEffectFactory(atlasStatic);
         factoryMap.put(EntityFactories.StaticScreenEffectFactory, staticScreenEffectFactory);

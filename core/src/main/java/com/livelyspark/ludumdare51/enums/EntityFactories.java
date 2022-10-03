@@ -8,6 +8,6 @@ public enum EntityFactories {
     EnemyDeathFactory,
 
     BossFactory,
-    PlayerDeathFactory, BossDeathFactory, RainbowFactory
+    PlayerDeathFactory, BossDeathFactory, BossBulletFactory, RainbowFactory
 
 }

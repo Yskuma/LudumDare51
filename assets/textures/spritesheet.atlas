@@ -32,18 +32,25 @@ boss_scifi_dead
   orig: 160, 175
   offset: 0, 0
   index: -1
+bullet_boss
+  rotate: false
+  xy: 1115, 52
+  size: 20, 100
+  orig: 20, 100
+  offset: 0, 0
+  index: -1
 bullet_enemy
   rotate: false
-  xy: 168, 27
-  size: 8, 8
-  orig: 8, 8
+  xy: 1992, 244
+  size: 10, 10
+  orig: 10, 10
   offset: 0, 0
   index: -1
 bullet_player
   rotate: false
-  xy: 274, 69
-  size: 8, 8
-  orig: 8, 8
+  xy: 168, 25
+  size: 16, 10
+  orig: 16, 10
   offset: 0, 0
   index: -1
 enemy_fantasy
