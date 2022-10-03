@@ -38,6 +38,7 @@ import com.livelyspark.ludumdare51.systems.common.ui.DebugGameGenreUiSystem;
 import com.livelyspark.ludumdare51.systems.fantasy.player.PlayerMovementFantasySystem;
 import com.livelyspark.ludumdare51.systems.fantasy.player.PlayerRainbowPowerSystem;
 import com.livelyspark.ludumdare51.systems.scifi.collisions.PlayerHitsEnemySciFiSystem;
+import com.livelyspark.ludumdare51.systems.scifi.player.PlayerMovementRestrictionSciFiSystem;
 import com.livelyspark.ludumdare51.systems.scifi.player.PlayerMovementSciFiSystem;
 import com.livelyspark.ludumdare51.systems.scifi.player.PlayerShootingSciFiSystem;
 
@@ -94,6 +95,7 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new PlayerMovementSciFiSystem());
         engine.addSystem(new PlayerRainbowPowerSystem(factoryMap.get(EntityFactories.RainbowFactory), gameState, assetManager));
         engine.addSystem(new PlayerShootingSciFiSystem(factoryMap.get(EntityFactories.PlayerBulletFactory), assetManager));
+        engine.addSystem(new PlayerMovementRestrictionSciFiSystem(camera));
 
         //AI (Can we really call it that?!)
         engine.addSystem(new EnemyShootingSciFiSystem(factoryMap.get(EntityFactories.EnemyBulletFactory), assetManager));
@@ -119,11 +121,11 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new HealthRenderSystem(camera, atlas));
 
         //Collisions
-
         engine.addSystem(new EnemyBulletHitsPlayerSystem(assetManager));
         engine.addSystem(new PlayerBulletHitsEnemySystem(assetManager));
         engine.addSystem(new PlayerHitsEnemyFantasySystem(assetManager, gameState, factoryMap));
         engine.addSystem(new PlayerHitsEnemySciFiSystem(assetManager));
+
 
         engine.addSystem(new GameOverSystem(screenManager, musicManager));
         engine.addSystem(new YouWinSystem(screenManager, musicManager));
