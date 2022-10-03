@@ -9,6 +9,7 @@ import com.livelyspark.ludumdare51.components.HealthComponent;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare51.components.player.PlayerBulletComponent;
+import com.livelyspark.ludumdare51.components.player.RainbowBulletComponent;
 import com.livelyspark.ludumdare51.components.rendering.BoundingRectangleComponent;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
     private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
+    private ComponentMapper<RainbowBulletComponent> rbm = ComponentMapper.getFor(RainbowBulletComponent.class);
 
     private ImmutableArray<Entity> enemyEntities;
     private ImmutableArray<Entity> playerBulletEntities;
@@ -63,7 +65,10 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
 
         for(Entity e : destroyed)
         {
-            playerBulletHitsEnemySound.play(StaticConstants.sfxVolume);
+            RainbowBulletComponent rb = rbm.get(e);
+            if(rb == null) {
+                playerBulletHitsEnemySound.play(StaticConstants.sfxVolume);
+            }
             getEngine().removeEntity(e);
         }
 

@@ -7,10 +7,12 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.livelyspark.ludumdare51.GlobalGameState;
+import com.livelyspark.ludumdare51.StaticConstants;
 import com.livelyspark.ludumdare51.components.PositionComponent;
 import com.livelyspark.ludumdare51.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare51.components.player.PlayerComponent;
 import com.livelyspark.ludumdare51.components.player.PlayerRainbowComponent;
+import com.livelyspark.ludumdare51.components.player.RainbowBulletComponent;
 import com.livelyspark.ludumdare51.entityfactories.IEntityFactory;
 import com.livelyspark.ludumdare51.enums.GameGenres;
 
@@ -18,6 +20,7 @@ import com.livelyspark.ludumdare51.enums.GameGenres;
 public class PlayerRainbowPowerSystem extends EntitySystem {
 
     private final IEntityFactory rainbowFactory;
+    private final Sound rainbowCannonFireSound;
     private Sound rainbowCannonChargeSound;
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
@@ -37,11 +40,13 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
     private final float sprayRange = 7.5f;
 
     private int rainbowCount = 0;
+    private long soundid;
 
     public PlayerRainbowPowerSystem(IEntityFactory rainbowFactory, GlobalGameState gameState, AssetManager assetManager) {
         this.rainbowFactory = rainbowFactory;
         this.gameState = gameState;
         this.rainbowCannonChargeSound = assetManager.get("sounds/pew.ogg", Sound.class);
+        this.rainbowCannonFireSound = assetManager.get("sounds/brum.ogg", Sound.class);
     }
 
     @Override
@@ -74,6 +79,11 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
                 }
 
                 if(rainbow.charge >= 100f){
+
+                    if(!rainbow.isCharged) {
+                        rainbowCannonFireSound.play(StaticConstants.sfxVolume + 0.2f);
+                    }
+
                     rainbow.isCharged = true;
                 }
 
@@ -95,6 +105,7 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
 
                         PositionComponent pc = pm.get(e);
                         Entity rainE = rainbowFactory.Create(gameState.gameGenre, pc.x, pc.y);
+                        rainE.add(new RainbowBulletComponent());
                         VelocityComponent v = vm.get(rainE);
 
                         v.setAngleDeg(SawVal(sprayRange, rainbowCount));
@@ -107,6 +118,7 @@ public class PlayerRainbowPowerSystem extends EntitySystem {
         }
         else {
             for(Entity e : entities) {
+                rainbowCannonFireSound.stop();
                 PlayerRainbowComponent rainbow = rm.get(e);
                 rainbow.drainTime = 0f;
                 rainbow.charge = 0f;
