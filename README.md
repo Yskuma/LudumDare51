@@ -16,7 +16,7 @@ There's a unicorn and a spaceship, and one day...er...they combined forces to do
 - Written in Java using libGDX. 
 - Graphics in Aseprite, GIMP and Inkscape.
 - Audio in LMMS and Sfxr.
-- The clever bit was only really possible because we were making use of the Ashley ECS library, so we can swap behaviours in a
+- The clever bit was only really possible because we were making use of the Ashley ECS library, so we can swap behaviours in and out easily.
 
 ### Gradle
 
