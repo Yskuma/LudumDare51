@@ -1,12 +1,24 @@
-# ludumdare51
+# R - Corn (Uni-Type?)
+## A Ludum Dare 51 Jam entry
 
-Placeholder project for LD51.
+There's a unicorn and a spaceship, and one day...er...they combined forces to do something. And that something was defeat a cross-dimensional evil or something. Yeah, that's right! You are that spaceship/unicorn. Oh, and the unicorn can fly.
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/tommyettinger/gdx-liftoff).
+### Controls
+- Space - flap/shoot
+- WASD - move
 
-This project was generated with a template including simple application launchers and an `ApplicationAdapter` extension that draws libGDX logo.
+### Credits
+- Kerrindor: Graphics, music, sound, ~~code~~ bugs
+- Yskuma: Code, Backgrounds, BRAAAM
+- Spawn of Yskuma (12): RAINBOWS!!!!
 
-## Gradle
+### Tech stuff
+- Written in Java using libGDX. 
+- Graphics in Aseprite, GIMP and Inkscape.
+- Audio in LMMS and Sfxr.
+- The clever bit was only really possible because we were making use of the Ashley ECS library, so we can swap behaviours in a
+
+### Gradle
 
 This project uses [Gradle](http://gradle.org/) to manage dependencies.
 The Gradle wrapper was included, so you can run Gradle tasks using `gradlew.bat` or `./gradlew` commands.
